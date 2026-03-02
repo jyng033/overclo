@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Overclo Studio | 디자인 스튜디오</title>
+
+  <!-- ===== 파비콘 (이미지 경로만 변경하면 적용) ===== -->
+  <link rel="icon" type="image/png" sizes="32x32" href="image_overclo/pavicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="image_overclo/pavicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="image_overclo/pavicon.png">
+  <link rel="shortcut icon" href="image_overclo/favicon.ico">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ===== 헤더 ===== -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="#hero" class="logo"><img src="image_overclo/logo.png" alt="OVERCLO STUDIO"></a>
+      <nav class="nav">
+        <ul>
+          <li><a href="#about">ABOUT</a></li>
+          <li><a href="#services">SERVICES</a></li>
+          <li><a href="#portfolio">PORTFOLIO</a></li>
+          <li><a href="#contact">CONTACT</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-menu-btn" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== 히어로 슬라이더 ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-slider">
+      <!-- 슬라이드 1 -->
+      <div class="hero-slide hero-slide-1 active">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <span class="hero-tag">DESIGN STUDIO</span>
+          <h1>당신의 브랜드를<br><span class="highlight">디자인</span>으로 완성합니다</h1>
+          <p>홈페이지 제작부터 온라인 배너, 카달로그까지<br>OVERCLO STUDIO가 함께합니다</p>
+          <a href="#portfolio" class="btn btn-hero">포트폴리오 보기</a>
+        </div>
+      </div>
+      <!-- 슬라이드 2 -->
+      <div class="hero-slide hero-slide-2">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <span class="hero-tag">WEB DESIGN</span>
+          <h1>트렌디한 웹사이트<br><span class="highlight">맞춤 제작</span></h1>
+          <p>반응형 웹, 랜딩페이지, 쇼핑몰까지<br>비즈니스에 최적화된 웹 솔루션</p>
+          <a href="#services" class="btn btn-hero">서비스 보기</a>
+        </div>
+      </div>
+      <!-- 슬라이드 3 -->
+      <div class="hero-slide hero-slide-3">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <span class="hero-tag">GRAPHIC DESIGN</span>
+          <h1>시선을 사로잡는<br><span class="highlight">비주얼 콘텐츠</span></h1>
+          <p>배너, 상세페이지, 카달로그 등<br>브랜드 아이덴티티를 담은 디자인</p>
+          <a href="#contact" class="btn btn-hero">문의하기</a>
+        </div>
+      </div>
+    </div>
+    <!-- 좌우 클릭 영역 -->
+    <div class="hero-click hero-click--prev" aria-label="이전 슬라이드"></div>
+    <div class="hero-click hero-click--next" aria-label="다음 슬라이드"></div>
+    <!-- 도트 인디케이터 -->
+    <div class="hero-dots">
+      <button class="hero-dot active" data-slide="0"></button>
+      <button class="hero-dot" data-slide="1"></button>
+      <button class="hero-dot" data-slide="2"></button>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <span class="section-tag">ABOUT US</span>
+          <h2 class="section-title">우리는 <span class="highlight">Overclo Studio</span>입니다</h2>
+          <p class="about-desc">
+            Overclo Studio는 클라이언트의 비전을 시각적으로 구현하는 디자인 전문 스튜디오입니다.
+            홈페이지 제작, 온라인 배너·상세페이지 디자인, 카달로그 제작 등
+            다양한 디자인 영역에서 최적의 결과물을 만들어 드립니다.
+          </p>
+          <p class="about-desc">
+            트렌드를 읽고, 브랜드의 본질을 담아내는 디자인.
+            <br>
+            그것이 Overclo Studio가 추구하는 가치입니다.
+          </p>
+          <div class="about-highlights">
+            <div class="about-highlight-item">
+              <strong>150+</strong>
+              <span>Happy Clients</span>
+            </div>
+            <div class="about-highlight-item">
+              <strong>200+</strong>
+              <span>Projects Done</span>
+            </div>
+            <div class="about-highlight-item">
+              <strong>95%</strong>
+              <span>Repeat Rate</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-image">
+          <img src="image_overclo/about.png" alt="Overclo Studio 오피스">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="services" id="services">
+    <div class="container">
+      <span class="section-tag center">SERVICES</span>
+      <h2 class="section-title center">오버클로가 제공하는 <span class="highlight">디자인 서비스</span></h2>
+      <p class="section-desc center">클라이언트의 비즈니스 목표에 맞춘 최적의 디자인 솔루션을 제공합니다</p>
+
+      <div class="service-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>홈페이지 제작</h3>
+          <p>반응형 웹사이트, 랜딩페이지, 쇼핑몰 등 비즈니스에 최적화된 웹사이트를 기획부터 디자인, 개발까지 원스톱으로 제작합니다.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+          </div>
+          <h3>배너 · 상세페이지</h3>
+          <p>온라인 쇼핑몰 배너, 제품 상세페이지, 이벤트 페이지 등 전환율을 높이는 비주얼 콘텐츠를 제작합니다.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </div>
+          <h3>카달로그 제작</h3>
+          <p>제품 카달로그, 회사 소개서, 브로셔 등 인쇄물 디자인을 브랜드 아이덴티티에 맞게 제작합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ===== PORTFOLIO ===== -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <span class="section-tag center">PORTFOLIO</span>
+      <h2 class="section-title center">오버클로만의 <span class="highlight">디자인</span></h2>
+      <p class="section-desc center">브랜드의 가치를 담아 디자인합니다.</p>
+
+      <!-- 카테고리 필터 -->
+      <div class="portfolio-filter">
+        <button class="filter-btn active" data-filter="all">ALL</button>
+        <button class="filter-btn" data-filter="web">홈페이지</button>
+        <button class="filter-btn" data-filter="banner">배너 · 상세페이지</button>
+        <button class="filter-btn" data-filter="catalog">카달로그</button>
+      </div>
+
+      <!-- 포트폴리오 그리드 -->
+      <div class="portfolio-grid">
+        <!-- 웹 -->
+        <div class="portfolio-item" data-category="web">
+          <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=600" alt="웹 포트폴리오 1">
+          <div class="portfolio-overlay">
+            <span class="portfolio-category">홈페이지</span>
+            <h4>쇼핑몰 리뉴얼</h4>
+            <p>반응형 이커머스 웹사이트</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-category="web">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600" alt="웹 포트폴리오 2">
+          <div class="portfolio-overlay">
+            <span class="portfolio-category">홈페이지</span>
+            <h4>기업 홈페이지</h4>
+            <p>브랜드 소개 웹사이트</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-category="web">
+          <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600" alt="웹 포트폴리오 3">
+          <div class="portfolio-overlay">
+            <span class="portfolio-category">홈페이지</span>
+            <h4>랜딩페이지</h4>
+            <p>마케팅 캠페인 랜딩</p>
+          </div>
+        </div>
+        <!-- 배너 -->
+        <div class="portfolio-item" data-category="banner">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600" alt="배너 포트폴리오 1">
+          <div class="portfolio-overlay">
+            <span class="portfolio-category">배너 · 상세페이지</span>
+            <h4>제품 상세페이지</h4>
+            <p>프리미엄 제품 소개</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-category="banner">
+          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600" alt="배너 포트폴리오 2">
+          <div class="portfolio-overlay">
+            <span class="portfolio-category">배너 · 상세페이지</span>
+            <h4>이벤트 배너</h4>
+            <p>시즌 프로모션 배너</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-category="banner">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600" alt="배너 포트폴리오 3">
+          <div class="portfolio-overlay">
+            <span class="portfolio-category">배너 · 상세페이지</span>
+            <h4>온라인 배너 세트</h4>
+            <p>통합 마케팅 배너</p>
+          </div>
+        </div>
+        <!-- 카달로그 -->
+        <div class="portfolio-item" data-category="catalog">
+          <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=600" alt="카달로그 포트폴리오 1">
+          <div class="portfolio-overlay">
+            <span class="portfolio-category">카달로그</span>
+            <h4>제품 카달로그</h4>
+            <p>시즌 컬렉션 카달로그</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-category="catalog">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600" alt="카달로그 포트폴리오 2">
+          <div class="portfolio-overlay">
+            <span class="portfolio-category">카달로그</span>
+            <h4>회사 소개서</h4>
+            <p>기업 브로셔 디자인</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-category="catalog">
+          <img src="https://images.unsplash.com/photo-1512295767273-ac109ac3acfa?w=600" alt="카달로그 포트폴리오 3">
+          <div class="portfolio-overlay">
+            <span class="portfolio-category">카달로그</span>
+            <h4>브랜드 가이드북</h4>
+            <p>BI/CI 가이드라인</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 실적 (숫자 카운터) ===== -->
+  <section class="stats" id="stats">
+    <div class="stats-overlay"></div>
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number" data-target="150" data-suffix="+">0</span>
+          <span class="stat-label">Happy Clients</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="200" data-suffix="+">0</span>
+          <span class="stat-label">Projects Done</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="95" data-suffix="%">0</span>
+          <span class="stat-label">Repeat Rate</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <span class="section-tag center">CONTACT</span>
+      <h2 class="section-title center">프로젝트를 <span class="highlight">시작</span>해볼까요?</h2>
+      <p class="section-desc center">아래 양식을 작성해 주시면 빠르게 연락드리겠습니다</p>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <h4>Phone</h4>
+              <p>010-9845-5101
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <h4>Email</h4>
+              <p>Overclo51@gmail.com
+            </div>
+          </div>
+          <a href="https://open.kakao.com/o/sYtrPnxf" target="_blank" rel="noopener noreferrer" class="contact-info-item contact-kakao-link">
+            <div class="contact-icon contact-icon--kakao">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 10.9c0 2.78 1.86 5.21 4.65 6.6-.15.53-.96 3.41-1 3.56 0 .09.03.18.1.23a.24.24 0 0 0 .25.01c.33-.05 3.84-2.52 4.45-2.94.5.07 1.01.1 1.55.1 5.52 0 10-3.58 10-7.96C22 6.58 17.52 3 12 3z"/></svg>
+            </div>
+            <div>
+              <h4>KakaoTalk</h4>
+              <p>카카오톡으로 상담하기</p>
+            </div>
+          </a>
+        </div>
+        <form class="contact-form" id="contactForm">
+          <div class="form-row">
+            <input type="text" name="entry.875689023" placeholder="이름" required>
+            <input type="email" name="entry.367322157" placeholder="이메일" required>
+          </div>
+          <input type="text" name="entry.99413212" placeholder="제목" required>
+          <textarea name="entry.298722684" placeholder="프로젝트에 대해 알려주세요" rows="5" required></textarea>
+          <button type="submit" class="btn btn-primary">문의 보내기</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 푸터 ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <a href="#hero" class="footer-logo"><img src="image_overclo/logo.png" alt="OVERCLO STUDIO"></a>
+          <p>대전광역시 유성구 와룡로136번길 15<br>
+          대표: 최수현 | 사업자등록번호: 361-67-00626<br>
+          E-mail  Overclo51@gmail.com</p>
+        </div>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Overclo Studio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== 플로팅 스크롤 버튼 ===== -->
+  <div class="floating-nav">
+    <button class="floating-btn" id="scrollTopBtn" aria-label="맨 위로">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+    <button class="floating-btn" id="scrollBottomBtn" aria-label="맨 아래로">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
