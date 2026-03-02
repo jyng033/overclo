@@ -90,27 +90,312 @@ document.addEventListener('DOMContentLoaded', () => {
   startAuto();
 
 
-  // ===== 포트폴리오 필터 =====
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const portfolioItems = document.querySelectorAll('.portfolio-item');
+  // ===== 포트폴리오 (카테고리별 섹션) =====
+  const homepageGrid = document.getElementById('portfolioHomepageGrid');
+  const homepageMoreBtn = document.getElementById('homepageMoreBtn');
+  const masonryGrid = document.getElementById('portfolioMasonryGrid');
+  const HOMEPAGE_PAGE_SIZE = 2;
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      // 버튼 active 토글
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  // 작업물 추가/수정은 이 메타데이터 배열만 관리하면 됩니다.
+  const homepagePortfolioItems = [
+    {
+      src: 'image_overclo/portfolio/러닝용품 랜딩페이지.png',
+      category: '홈페이지 제작',
+      title: '러닝용품 랜딩페이지',
+      description: '전환 중심의 프로모션 랜딩'
+    },
+    {
+      src: 'image_overclo/portfolio/산물.png',
+      category: '홈페이지 제작',
+      title: '산물 브랜드 사이트',
+      description: '콘텐츠 중심 페이지 구성'
+    },
+    {
+      src: 'image_overclo/portfolio/화장품_KR.png',
+      category: '홈페이지 제작',
+      title: '화장품 KR 페이지',
+      description: '국문 제품 상세 안내'
+    },
+    {
+      src: 'image_overclo/portfolio/화장품_EN.png',
+      category: '홈페이지 제작',
+      title: '화장품 EN 페이지',
+      description: '글로벌 타겟 제품 소개'
+    },
+    {
+      src: 'image_overclo/portfolio/쿠키제과.jpg',
+      category: '홈페이지 제작',
+      title: '쿠키제과 웹페이지',
+      description: '브랜드 스토리형 디자인'
+    },
+    {
+      src: 'image_overclo/portfolio/템플릿판매.png',
+      category: '홈페이지 제작',
+      title: '템플릿 판매 페이지',
+      description: '구매 동선 중심 랜딩'
+    },
+    {
+      src: 'image_overclo/portfolio/필라jpg.jpg',
+      category: '홈페이지 제작',
+      title: '필라테스 사이트',
+      description: '서비스 안내형 웹디자인'
+    },
+    {
+      src: 'image_overclo/portfolio/데키랩.png',
+      category: '홈페이지 제작',
+      title: '데키랩 홈페이지',
+      description: '브랜드 소개형 웹사이트'
+    }
+  ];
 
-      const filter = btn.dataset.filter;
+  const bannerAndDetailItems = [
+    {
+      src: 'image_overclo/portfolio/banner/KakaoTalk_20260215_173056706_02.jpg',
+      category: '배너',
+      title: '프로모션 배너',
+      description: '캠페인 배너 디자인'
+    },
+    {
+      src: 'image_overclo/portfolio/detail_page/KakaoTalk_20260302_193036012_02.jpg',
+      category: '상세페이지',
+      title: '제품 상세페이지',
+      description: '정방형 상세 콘텐츠 구성'
+    },
+    {
+      src: 'image_overclo/portfolio/banner/03_블루베리_네이버-롤링배너_왼쪽당김.png',
+      category: '배너',
+      title: '네이버 롤링 배너',
+      description: '프로모션 배너 디자인'
+    },
+    {
+      src: 'image_overclo/portfolio/detail_page/KakaoTalk_20260302_193400933_01.jpg',
+      category: '상세페이지',
+      title: '브랜드 상세페이지',
+      description: '제품 소개형 상세 구성'
+    },
+    {
+      src: 'image_overclo/portfolio/banner/KakaoTalk_20260301_174546059.jpg',
+      category: '배너',
+      title: '이벤트 배너',
+      description: '프로모션 안내 배너'
+    },
+    {
+      src: 'image_overclo/portfolio/detail_page/상세포폴2.jpg',
+      category: '상세페이지',
+      title: '제품 상세페이지',
+      description: '정방형 상세 콘텐츠 구성'
+    },
+    {
+      src: 'image_overclo/portfolio/banner/KakaoTalk_20260215_173056706_01.jpg',
+      category: '배너',
+      title: '브랜드 배너',
+      description: '콘텐츠 중심 배너 디자인'
+    },
+    {
+      src: 'image_overclo/portfolio/detail_page/KakaoTalk_20260302_193036012_01.jpg',
+      category: '상세페이지',
+      title: '제품 상세페이지',
+      description: '이미지 중심 상세 레이아웃'
+    },
+    {
+      src: 'image_overclo/portfolio/detail_page/KakaoTalk_20260302_193400933.jpg',
+      category: '상세페이지',
+      title: '상세페이지 디자인',
+      description: '정보 전달형 콘텐츠 구성'
+    },
+    {
+      src: 'image_overclo/portfolio/detail_page/KakaoTalk_20260302_193036012_03.jpg',
+      category: '상세페이지',
+      title: '브랜드 상세페이지',
+      description: '제품 기능 강조형 상세'
+    },
+    {
+      src: 'image_overclo/portfolio/detail_page/KakaoTalk_20260302_193036012.jpg',
+      category: '상세페이지',
+      title: '제품 상세페이지',
+      description: '구매 전환 중심 상세 구성'
+    }
+  ];
 
-      portfolioItems.forEach(item => {
-        if (filter === 'all' || item.dataset.category === filter) {
-          item.classList.remove('hidden');
+  function createPortfolioCard(item, cardClassName) {
+    const card = document.createElement('div');
+    card.className = `portfolio-item ${cardClassName}`;
+    if (item.category === '배너') {
+      card.classList.add('portfolio-banner-item');
+    } else if (item.category === '상세페이지') {
+      card.classList.add('portfolio-detail-item');
+    }
+    card.dataset.category = item.category;
+    card.dataset.title = item.title;
+    card.dataset.description = item.description;
+
+    const img = document.createElement('img');
+    img.src = item.src;
+    img.alt = item.title;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'portfolio-overlay';
+    overlay.innerHTML = `
+      <div class="portfolio-overlay-content">
+        <span class="portfolio-category">${item.category}</span>
+        <h4>${item.title}</h4>
+        <p>${item.description}</p>
+      </div>
+    `;
+
+    card.append(img, overlay);
+    return card;
+  }
+
+  if (homepageGrid && homepageMoreBtn) {
+    const homepageCards = homepagePortfolioItems.map(item => createPortfolioCard(item, 'portfolio-homepage-item'));
+    homepageCards.forEach(card => homepageGrid.appendChild(card));
+    let activeHomepageCard = null;
+    let hoverStartScrollY = 0;
+    let hoverBaseOffset = 0;
+    let hoverFrameRequested = false;
+    const HOMEPAGE_HOVER_EDGE_PADDING = 200;
+
+    function getHomepageOverlayMetrics(card) {
+      const overlayContent = card.querySelector('.portfolio-overlay-content');
+      const overlayLayer = card.querySelector('.portfolio-overlay');
+      if (!overlayContent || !overlayLayer) {
+        return null;
+      }
+
+      const contentTravel = Math.max(overlayLayer.clientHeight - overlayContent.clientHeight, 0);
+      const availableTravel = Math.max(contentTravel - (HOMEPAGE_HOVER_EDGE_PADDING * 2), 0);
+      const maxOffset = availableTravel / 2;
+      const scrollRange = Math.max(card.clientHeight * 0.8, 1);
+      return { overlayContent, availableTravel, maxOffset, scrollRange };
+    }
+
+    function getViewportCenteredOffset(card, maxOffset) {
+      const rect = card.getBoundingClientRect();
+      const visibleTop = Math.max(rect.top, 0);
+      const visibleBottom = Math.min(rect.bottom, window.innerHeight);
+
+      if (visibleBottom <= visibleTop) {
+        return 0;
+      }
+
+      const visibleCenterY = (visibleTop + visibleBottom) / 2;
+      const cardCenterY = rect.top + rect.height / 2;
+      const desiredOffset = visibleCenterY - cardCenterY;
+      return Math.max(-maxOffset, Math.min(maxOffset, desiredOffset));
+    }
+
+    function updateHomepageHoverScrollEffect() {
+      if (!activeHomepageCard) {
+        return;
+      }
+      const metrics = getHomepageOverlayMetrics(activeHomepageCard);
+      if (!metrics) {
+        return;
+      }
+
+      const scrollDelta = window.scrollY - hoverStartScrollY;
+      const rawOffset = (scrollDelta / metrics.scrollRange) * metrics.availableTravel;
+      const offset = Math.max(
+        -metrics.maxOffset,
+        Math.min(metrics.maxOffset, hoverBaseOffset + rawOffset)
+      );
+      metrics.overlayContent.style.setProperty('--homepage-hover-scroll-y', `${offset}px`);
+    }
+
+    function requestHomepageHoverScrollUpdate() {
+      if (hoverFrameRequested) {
+        return;
+      }
+      hoverFrameRequested = true;
+      requestAnimationFrame(() => {
+        hoverFrameRequested = false;
+        updateHomepageHoverScrollEffect();
+      });
+    }
+
+    function resetHomepageHoverScrollEffect(card) {
+      const overlayContent = card?.querySelector('.portfolio-overlay-content');
+      if (overlayContent) {
+        overlayContent.style.setProperty('--homepage-hover-scroll-y', '0px');
+      }
+    }
+
+    homepageCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        const metrics = getHomepageOverlayMetrics(card);
+        activeHomepageCard = card;
+        hoverStartScrollY = window.scrollY;
+        hoverBaseOffset = metrics ? getViewportCenteredOffset(card, metrics.maxOffset) : 0;
+        if (metrics) {
+          metrics.overlayContent.style.setProperty('--homepage-hover-scroll-y', `${hoverBaseOffset}px`);
         } else {
-          item.classList.add('hidden');
+          resetHomepageHoverScrollEffect(card);
+        }
+      });
+
+      card.addEventListener('mouseleave', () => {
+        resetHomepageHoverScrollEffect(card);
+        if (activeHomepageCard === card) {
+          activeHomepageCard = null;
+          hoverBaseOffset = 0;
         }
       });
     });
-  });
+
+    window.addEventListener('scroll', requestHomepageHoverScrollUpdate, { passive: true });
+    window.addEventListener('blur', () => {
+      if (activeHomepageCard) {
+        resetHomepageHoverScrollEffect(activeHomepageCard);
+      }
+      activeHomepageCard = null;
+      hoverBaseOffset = 0;
+    });
+
+    let visibleCount = Math.min(HOMEPAGE_PAGE_SIZE, homepageCards.length);
+
+    function updateHomepageVisibility() {
+      homepageCards.forEach((card, idx) => {
+        card.classList.toggle('is-hidden', idx >= visibleCount);
+      });
+
+      const hiddenCount = Math.max(homepageCards.length - visibleCount, 0);
+      const remainingPages = Math.ceil(hiddenCount / HOMEPAGE_PAGE_SIZE);
+
+      if (remainingPages > 0) {
+        homepageMoreBtn.classList.remove('is-hidden');
+        homepageMoreBtn.textContent = `더보기(${remainingPages})`;
+      } else {
+        homepageMoreBtn.classList.add('is-hidden');
+      }
+    }
+
+    homepageMoreBtn.addEventListener('click', () => {
+      visibleCount = Math.min(visibleCount + HOMEPAGE_PAGE_SIZE, homepageCards.length);
+      updateHomepageVisibility();
+    });
+
+    updateHomepageVisibility();
+  }
+
+  if (masonryGrid) {
+    const bannerLayer = document.createElement('div');
+    bannerLayer.className = 'portfolio-banner-layer';
+
+    const detailLayer = document.createElement('div');
+    detailLayer.className = 'portfolio-detail-layer';
+
+    bannerAndDetailItems.forEach(item => {
+      const card = createPortfolioCard(item, 'portfolio-masonry-item');
+      if (item.category === '배너') {
+        bannerLayer.appendChild(card);
+      } else {
+        detailLayer.appendChild(card);
+      }
+    });
+
+    masonryGrid.append(bannerLayer, detailLayer);
+  }
 
 
   // ===== 숫자 카운터 애니메이션 =====
@@ -151,7 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===== 스크롤 등장 애니메이션 =====
   const fadeElements = document.querySelectorAll(
-    '.about-text, .about-image, .service-card, .portfolio-filter, .portfolio-item, .contact-info, .contact-form, .section-tag, .section-title, .section-desc'
+    '.about-text, .about-image, .service-card, .portfolio-subtitle, .portfolio-item, .portfolio-more-wrap, .contact-info, .contact-form, .section-tag, .section-title, .section-desc'
   );
 
   fadeElements.forEach(el => el.classList.add('fade-up'));
