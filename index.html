@@ -29,9 +29,12 @@
           <li><a href="#contact">CONTACT</a></li>
         </ul>
       </nav>
-      <button class="mobile-menu-btn" aria-label="메뉴 열기">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="header-actions">
+        <a href="#contact" class="quote-btn">견적문의</a>
+        <button class="mobile-menu-btn" aria-label="메뉴 열기">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -176,23 +179,12 @@
     </div>
   </section>
 
-  <!-- ===== 실적 (숫자 카운터) ===== -->
+  <!-- ===== 브랜드 로고 섹션 ===== -->
   <section class="stats" id="stats">
     <div class="stats-overlay"></div>
     <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item">
-          <span class="stat-number" data-target="150" data-suffix="+">0</span>
-          <span class="stat-label">Happy Clients</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number" data-target="200" data-suffix="+">0</span>
-          <span class="stat-label">Projects Done</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number" data-target="95" data-suffix="%">0</span>
-          <span class="stat-label">Repeat Rate</span>
-        </div>
+      <div class="stats-logo-wrap">
+        <img src="image_overclo/logo_white.png" alt="OVERCLO STUDIO 로고" class="stats-logo">
       </div>
     </div>
   </section>
@@ -236,11 +228,11 @@
         </div>
         <form class="contact-form" id="contactForm">
           <div class="form-row">
-            <input type="text" name="entry.875689023" placeholder="이름" required>
-            <input type="email" name="entry.367322157" placeholder="이메일" required>
+            <input type="text" name="contact_name" placeholder="이름" required>
+            <input type="email" name="contact_email" placeholder="이메일" required>
           </div>
-          <input type="text" name="entry.99413212" placeholder="제목" required>
-          <textarea name="entry.298722684" placeholder="프로젝트에 대해 알려주세요" rows="5" required></textarea>
+          <input type="text" name="contact_title" placeholder="제목" required>
+          <textarea name="contact_message" placeholder="프로젝트에 대해 알려주세요" rows="5" required></textarea>
           <button type="submit" class="btn btn-primary">문의 보내기</button>
         </form>
       </div>

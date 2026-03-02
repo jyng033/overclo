@@ -152,8 +152,8 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       src: 'image_overclo/portfolio/banner/KakaoTalk_20260215_173056706_02.jpg',
       category: '배너',
-      title: '프로모션 배너',
-      description: '캠페인 배너 디자인'
+      title: '네이버 롤링 배너',
+      description: '스마트스토어 배너 디자인'
     },
     {
       src: 'image_overclo/portfolio/detail_page/KakaoTalk_20260302_193036012_02.jpg',
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
       src: 'image_overclo/portfolio/banner/03_블루베리_네이버-롤링배너_왼쪽당김.png',
       category: '배너',
       title: '네이버 롤링 배너',
-      description: '프로모션 배너 디자인'
+      description: '스마트스토어 배너 디자인'
     },
     {
       src: 'image_overclo/portfolio/detail_page/KakaoTalk_20260302_193400933_01.jpg',
@@ -176,8 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       src: 'image_overclo/portfolio/banner/KakaoTalk_20260301_174546059.jpg',
       category: '배너',
-      title: '이벤트 배너',
-      description: '프로모션 안내 배너'
+      title: '네이버 롤링 배너',
+      description: '스마트스토어 배너 디자인'
     },
     {
       src: 'image_overclo/portfolio/detail_page/상세포폴2.jpg',
@@ -188,8 +188,8 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       src: 'image_overclo/portfolio/banner/KakaoTalk_20260215_173056706_01.jpg',
       category: '배너',
-      title: '브랜드 배너',
-      description: '콘텐츠 중심 배너 디자인'
+      title: '네이버 롤링 배너',
+      description: '스마트스토어 배너 디자인'
     },
     {
       src: 'image_overclo/portfolio/detail_page/KakaoTalk_20260302_193036012_01.jpg',
@@ -517,11 +517,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===== 폼 제출 (Google Forms 연동) =====
   const form = document.getElementById('contactForm');
-  const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdlijx7c9wRD24jbasObIvpCT5WfnaiuuTW7yE4XmVVniN6xA/formResponse';
+  const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfI6y8cdpUcw7W3K6XhtKFOUo0uCaaz7C9zPs-ioD6k5JJK_Q/formResponse';
+  const GOOGLE_FORM_ENTRY = {
+    name: 'entry.556338129',
+    email: 'entry.104054847',
+    message: 'entry.1214816561'
+  };
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const formData = new FormData(form);
+    const rawData = new FormData(form);
+    const name = String(rawData.get('contact_name') || '').trim();
+    const email = String(rawData.get('contact_email') || '').trim();
+    const title = String(rawData.get('contact_title') || '').trim();
+    const message = String(rawData.get('contact_message') || '').trim();
+
+    // 새 Google Form에는 제목 필드가 없어 문의내용에 병합 전달합니다.
+    const mergedMessage = title ? `[제목] ${title}\n\n${message}` : message;
+    const submitData = new FormData();
+    submitData.append(GOOGLE_FORM_ENTRY.name, name);
+    submitData.append(GOOGLE_FORM_ENTRY.email, email);
+    submitData.append(GOOGLE_FORM_ENTRY.message, mergedMessage);
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
     submitBtn.textContent = '전송 중...';
@@ -529,7 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetch(GOOGLE_FORM_URL, {
       method: 'POST',
-      body: formData,
+      body: submitData,
       mode: 'no-cors'
     }).then(() => {
       alert('문의가 전송되었습니다. 빠른 시일 내에 답변드리겠습니다!');

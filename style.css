@@ -76,6 +76,24 @@
   --nav-hover-color: var(--color-primary);
   --nav-letter-spacing: var(--letter-spacing-wider);
 
+  /* ===== 헤더 옵션: [견적문의 버튼 PC] ===== */
+  --quote-btn-pc-font-size: 1.3rem;             /* 버튼 글자 크기 (PC) */
+  --quote-btn-pc-font-weight: 400;              /* 버튼 글자 굵기 (PC) */
+  --quote-btn-pc-padding-y: 10px;               /* 버튼 상하 여백 (PC) */
+  --quote-btn-pc-padding-x: 22px;               /* 버튼 좌우 여백 (PC) */
+  --quote-btn-pc-bg: var(--color-primary);      /* 버튼 배경색 (PC) */
+  --quote-btn-pc-color: #fff;                   /* 버튼 글자색 (PC) */
+  --quote-btn-pc-radius: 14px;                  /* 버튼 모서리 곡률 (PC) */
+
+  /* ===== 헤더 옵션: [견적문의 버튼 모바일] ===== */
+  --quote-btn-mobile-font-size: 1rem;         /* 버튼 글자 크기 (모바일) */
+  --quote-btn-mobile-font-weight: 400;          /* 버튼 글자 굵기 (모바일) */
+  --quote-btn-mobile-padding-y: 8px;            /* 버튼 상하 여백 (모바일) */
+  --quote-btn-mobile-padding-x: 14px;           /* 버튼 좌우 여백 (모바일) */
+  --quote-btn-mobile-bg: var(--color-primary);  /* 버튼 배경색 (모바일) */
+  --quote-btn-mobile-color: #fff;               /* 버튼 글자색 (모바일) */
+  --quote-btn-mobile-radius: 12px;              /* 버튼 모서리 곡률 (모바일) */
+
   /* ===== 히어로 슬라이더 옵션 ===== */
   --hero-height: 900px;
   --hero-overlay-color: rgba(26, 26, 58, 0.55);
@@ -196,7 +214,7 @@
 
   /* ===== 실적 섹션 옵션 ===== */
   --stats-bg-image: url('image_overclo/about.png');
-  --stats-overlay: #2155a9d0;
+  --stats-overlay: rgba(54,54,54,0.5);
   --stats-padding: 80px 0;
   --stat-number-font-size: 3.5rem;
   --stat-number-font-weight: 700;
@@ -406,6 +424,32 @@ button { font-family: inherit; }
   justify-content: space-between;
   align-items: center;
   height: 100%;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quote-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--quote-btn-pc-font-size);
+  font-weight: var(--quote-btn-pc-font-weight);
+  padding: var(--quote-btn-pc-padding-y) var(--quote-btn-pc-padding-x);
+  background: var(--quote-btn-pc-bg);
+  color: var(--quote-btn-pc-color);
+  border-radius: var(--quote-btn-pc-radius);
+  line-height: 1;
+  letter-spacing: var(--letter-spacing-wide);
+  transition: all var(--transition-normal);
+}
+
+.quote-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(0.95);
 }
 
 .logo {
@@ -1010,6 +1054,19 @@ button { font-family: inherit; }
   text-align: center;
 }
 
+.stats-logo-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120px;
+}
+
+.stats-logo {
+  width: min(320px, 70vw);
+  height: auto;
+  object-fit: contain;
+}
+
 .stat-number {
   display: block;
   font-size: var(--stat-number-font-size);
@@ -1323,6 +1380,15 @@ button { font-family: inherit; }
   }
 
   .nav { display: none; }
+
+  .quote-btn {
+    font-size: var(--quote-btn-mobile-font-size);
+    font-weight: var(--quote-btn-mobile-font-weight);
+    padding: var(--quote-btn-mobile-padding-y) var(--quote-btn-mobile-padding-x);
+    background: var(--quote-btn-mobile-bg);
+    color: var(--quote-btn-mobile-color);
+    border-radius: var(--quote-btn-mobile-radius);
+  }
 
   .nav.open {
     display: flex;
