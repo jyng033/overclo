@@ -79,20 +79,20 @@
   /* ===== 헤더 옵션: [견적문의 버튼 PC] ===== */
   --quote-btn-pc-font-size: 1.3rem;             /* 버튼 글자 크기 (PC) */
   --quote-btn-pc-font-weight: 400;              /* 버튼 글자 굵기 (PC) */
-  --quote-btn-pc-padding-y: 10px;               /* 버튼 상하 여백 (PC) */
+  --quote-btn-pc-padding-y: 12px;               /* 버튼 상하 여백 (PC) */
   --quote-btn-pc-padding-x: 22px;               /* 버튼 좌우 여백 (PC) */
   --quote-btn-pc-bg: var(--color-primary);      /* 버튼 배경색 (PC) */
   --quote-btn-pc-color: #fff;                   /* 버튼 글자색 (PC) */
-  --quote-btn-pc-radius: 14px;                  /* 버튼 모서리 곡률 (PC) */
+  --quote-btn-pc-radius: 10px;                  /* 버튼 모서리 곡률 (PC) */
 
   /* ===== 헤더 옵션: [견적문의 버튼 모바일] ===== */
   --quote-btn-mobile-font-size: 1rem;         /* 버튼 글자 크기 (모바일) */
   --quote-btn-mobile-font-weight: 400;          /* 버튼 글자 굵기 (모바일) */
-  --quote-btn-mobile-padding-y: 8px;            /* 버튼 상하 여백 (모바일) */
+  --quote-btn-mobile-padding-y: 12px;            /* 버튼 상하 여백 (모바일) */
   --quote-btn-mobile-padding-x: 14px;           /* 버튼 좌우 여백 (모바일) */
   --quote-btn-mobile-bg: var(--color-primary);  /* 버튼 배경색 (모바일) */
   --quote-btn-mobile-color: #fff;               /* 버튼 글자색 (모바일) */
-  --quote-btn-mobile-radius: 12px;              /* 버튼 모서리 곡률 (모바일) */
+  --quote-btn-mobile-radius: 10px;              /* 버튼 모서리 곡률 (모바일) */
 
   /* ===== 히어로 슬라이더 옵션 ===== */
   --hero-height: 900px;
