@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const homepageGrid = document.getElementById('portfolioHomepageGrid');
   const homepageMoreBtn = document.getElementById('homepageMoreBtn');
   const masonryGrid = document.getElementById('portfolioMasonryGrid');
-  const HOMEPAGE_PAGE_SIZE = 2;
+  const HOMEPAGE_PAGE_SIZE = 3;
 
   // 작업물 추가/수정은 이 메타데이터 배열만 관리하면 됩니다.
   const homepagePortfolioItems = [
@@ -127,12 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
       category: '홈페이지 제작',
       title: '쿠키제과 웹페이지',
       description: '브랜드 스토리형 디자인'
-    },
-    {
-      src: 'image_overclo/portfolio/템플릿판매.png',
-      category: '홈페이지 제작',
-      title: '템플릿 판매 페이지',
-      description: '구매 동선 중심 랜딩'
     },
     {
       src: 'image_overclo/portfolio/필라jpg.jpg',
@@ -217,6 +211,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
+  const portfolioCards = [];
+
   function createPortfolioCard(item, cardClassName) {
     const card = document.createElement('div');
     card.className = `portfolio-item ${cardClassName}`;
@@ -228,6 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
     card.dataset.category = item.category;
     card.dataset.title = item.title;
     card.dataset.description = item.description;
+    card.dataset.src = item.src;
 
     const img = document.createElement('img');
     img.src = item.src;
@@ -244,113 +241,13 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
     card.append(img, overlay);
+    portfolioCards.push(card);
     return card;
   }
 
   if (homepageGrid && homepageMoreBtn) {
     const homepageCards = homepagePortfolioItems.map(item => createPortfolioCard(item, 'portfolio-homepage-item'));
     homepageCards.forEach(card => homepageGrid.appendChild(card));
-    let activeHomepageCard = null;
-    let hoverStartScrollY = 0;
-    let hoverBaseOffset = 0;
-    let hoverFrameRequested = false;
-    const HOMEPAGE_HOVER_EDGE_PADDING = 200;
-
-    function getHomepageOverlayMetrics(card) {
-      const overlayContent = card.querySelector('.portfolio-overlay-content');
-      const overlayLayer = card.querySelector('.portfolio-overlay');
-      if (!overlayContent || !overlayLayer) {
-        return null;
-      }
-
-      const contentTravel = Math.max(overlayLayer.clientHeight - overlayContent.clientHeight, 0);
-      const availableTravel = Math.max(contentTravel - (HOMEPAGE_HOVER_EDGE_PADDING * 2), 0);
-      const maxOffset = availableTravel / 2;
-      const scrollRange = Math.max(card.clientHeight * 0.8, 1);
-      return { overlayContent, availableTravel, maxOffset, scrollRange };
-    }
-
-    function getViewportCenteredOffset(card, maxOffset) {
-      const rect = card.getBoundingClientRect();
-      const visibleTop = Math.max(rect.top, 0);
-      const visibleBottom = Math.min(rect.bottom, window.innerHeight);
-
-      if (visibleBottom <= visibleTop) {
-        return 0;
-      }
-
-      const visibleCenterY = (visibleTop + visibleBottom) / 2;
-      const cardCenterY = rect.top + rect.height / 2;
-      const desiredOffset = visibleCenterY - cardCenterY;
-      return Math.max(-maxOffset, Math.min(maxOffset, desiredOffset));
-    }
-
-    function updateHomepageHoverScrollEffect() {
-      if (!activeHomepageCard) {
-        return;
-      }
-      const metrics = getHomepageOverlayMetrics(activeHomepageCard);
-      if (!metrics) {
-        return;
-      }
-
-      const scrollDelta = window.scrollY - hoverStartScrollY;
-      const rawOffset = (scrollDelta / metrics.scrollRange) * metrics.availableTravel;
-      const offset = Math.max(
-        -metrics.maxOffset,
-        Math.min(metrics.maxOffset, hoverBaseOffset + rawOffset)
-      );
-      metrics.overlayContent.style.setProperty('--homepage-hover-scroll-y', `${offset}px`);
-    }
-
-    function requestHomepageHoverScrollUpdate() {
-      if (hoverFrameRequested) {
-        return;
-      }
-      hoverFrameRequested = true;
-      requestAnimationFrame(() => {
-        hoverFrameRequested = false;
-        updateHomepageHoverScrollEffect();
-      });
-    }
-
-    function resetHomepageHoverScrollEffect(card) {
-      const overlayContent = card?.querySelector('.portfolio-overlay-content');
-      if (overlayContent) {
-        overlayContent.style.setProperty('--homepage-hover-scroll-y', '0px');
-      }
-    }
-
-    homepageCards.forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        const metrics = getHomepageOverlayMetrics(card);
-        activeHomepageCard = card;
-        hoverStartScrollY = window.scrollY;
-        hoverBaseOffset = metrics ? getViewportCenteredOffset(card, metrics.maxOffset) : 0;
-        if (metrics) {
-          metrics.overlayContent.style.setProperty('--homepage-hover-scroll-y', `${hoverBaseOffset}px`);
-        } else {
-          resetHomepageHoverScrollEffect(card);
-        }
-      });
-
-      card.addEventListener('mouseleave', () => {
-        resetHomepageHoverScrollEffect(card);
-        if (activeHomepageCard === card) {
-          activeHomepageCard = null;
-          hoverBaseOffset = 0;
-        }
-      });
-    });
-
-    window.addEventListener('scroll', requestHomepageHoverScrollUpdate, { passive: true });
-    window.addEventListener('blur', () => {
-      if (activeHomepageCard) {
-        resetHomepageHoverScrollEffect(activeHomepageCard);
-      }
-      activeHomepageCard = null;
-      hoverBaseOffset = 0;
-    });
 
     let visibleCount = Math.min(HOMEPAGE_PAGE_SIZE, homepageCards.length);
 
@@ -395,6 +292,174 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     masonryGrid.append(bannerLayer, detailLayer);
+  }
+
+  // ===== 포트폴리오 모달 슬라이더 =====
+  const portfolioModal = document.getElementById('portfolioModal');
+  const portfolioModalTrack = document.getElementById('portfolioModalTrack');
+  const portfolioModalClose = document.getElementById('portfolioModalClose');
+  const portfolioModalPrev = document.getElementById('portfolioModalPrev');
+  const portfolioModalNext = document.getElementById('portfolioModalNext');
+  const portfolioModalViewport = document.getElementById('portfolioModalViewport');
+
+  if (portfolioModal && portfolioModalTrack && portfolioCards.length > 0) {
+    let slides = [];
+    let currentSlide = 0;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function centerMobileBannerImage(slide) {
+      if (!slide || window.innerWidth > 768) return;
+      if (slide.dataset.category !== '배너') return;
+
+      const media = slide.querySelector('.portfolio-modal-media--banner');
+      if (!media) return;
+
+      const applyCenter = () => {
+        const maxScroll = media.scrollWidth - media.clientWidth;
+        if (maxScroll > 0) {
+          media.scrollLeft = maxScroll / 2;
+        }
+      };
+
+      requestAnimationFrame(applyCenter);
+      const img = media.querySelector('img');
+      if (img && !img.complete) {
+        img.addEventListener('load', applyCenter, { once: true });
+      }
+    }
+
+    function sortCardsForModal(cards) {
+      const homepageCardsOnly = cards.filter(card => (card.dataset.category || '') === '홈페이지 제작');
+      const bannerDetailCards = cards.filter(card => (card.dataset.category || '') !== '홈페이지 제작');
+
+      homepageCardsOnly.sort((a, b) => {
+        const ra = a.getBoundingClientRect();
+        const rb = b.getBoundingClientRect();
+        if (Math.abs(ra.top - rb.top) > 2) return ra.top - rb.top;
+        return ra.left - rb.left;
+      });
+
+      // 열 우선 정렬: 1열 1행 -> 1열 2행 -> 2열 1행 ...
+      bannerDetailCards.sort((a, b) => {
+        const ra = a.getBoundingClientRect();
+        const rb = b.getBoundingClientRect();
+        if (Math.abs(ra.left - rb.left) > 2) return ra.left - rb.left;
+        return ra.top - rb.top;
+      });
+
+      return [...homepageCardsOnly, ...bannerDetailCards];
+    }
+
+    function rebuildModalSlides() {
+      portfolioModalTrack.innerHTML = '';
+      slides = [];
+      const visibleCards = portfolioCards.filter(card => !card.classList.contains('is-hidden'));
+      const orderedCards = sortCardsForModal(visibleCards);
+
+      orderedCards.forEach((card, idx) => {
+        card.dataset.modalIndex = String(idx);
+
+        const slide = document.createElement('div');
+        slide.className = 'portfolio-modal-slide';
+
+        const category = card.dataset.category || '';
+        slide.dataset.category = category;
+        let mediaClass = 'portfolio-modal-media';
+        if (category === '홈페이지 제작') {
+          mediaClass += ' portfolio-modal-media--homepage';
+        } else if (category === '배너') {
+          mediaClass += ' portfolio-modal-media--banner';
+        } else {
+          mediaClass += ' portfolio-modal-media--detail';
+        }
+
+        const media = document.createElement('div');
+        media.className = mediaClass;
+        const img = document.createElement('img');
+        img.src = card.dataset.src || '';
+        img.alt = card.dataset.title || '포트폴리오 이미지';
+        media.appendChild(img);
+        slide.appendChild(media);
+        portfolioModalTrack.appendChild(slide);
+        slides.push(slide);
+      });
+    }
+
+    function setSlide(index, animate = true) {
+      if (slides.length === 0) return;
+      currentSlide = (index + slides.length) % slides.length;
+      if (!animate) portfolioModalTrack.style.transition = 'none';
+      portfolioModalTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+      if (!animate) {
+        void portfolioModalTrack.offsetHeight;
+        portfolioModalTrack.style.transition = '';
+      }
+      centerMobileBannerImage(slides[currentSlide]);
+    }
+
+    function openModal(index) {
+      setSlide(index, false);
+      portfolioModal.classList.add('is-open');
+      portfolioModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      portfolioModal.classList.remove('is-open');
+      portfolioModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    function nextSlide() { setSlide(currentSlide + 1, true); }
+    function prevSlide() { setSlide(currentSlide - 1, true); }
+
+    document.addEventListener('click', (e) => {
+      const targetCard = e.target.closest('.portfolio-item');
+      if (!targetCard) return;
+      rebuildModalSlides();
+      const idx = Number(targetCard.dataset.modalIndex || -1);
+      if (idx < 0) return;
+      openModal(idx);
+    });
+
+    portfolioModalClose.addEventListener('click', closeModal);
+    portfolioModalNext.addEventListener('click', nextSlide);
+    portfolioModalPrev.addEventListener('click', prevSlide);
+
+    portfolioModal.addEventListener('click', (e) => {
+      const clickedMedia = e.target.closest('.portfolio-modal-media');
+      const clickedControl = e.target.closest('.portfolio-modal-close, .portfolio-modal-nav');
+      if (clickedMedia || clickedControl) return;
+
+      const viewportMidX = window.innerWidth / 2;
+      if (e.clientX < viewportMidX) prevSlide();
+      else nextSlide();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (!portfolioModal.classList.contains('is-open')) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    portfolioModalViewport.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+
+    portfolioModalViewport.addEventListener('touchend', (e) => {
+      if (slides[currentSlide]?.dataset?.category === '배너' && window.innerWidth <= 768) {
+        return;
+      }
+      touchEndX = e.changedTouches[0].clientX;
+      const deltaX = touchEndX - touchStartX;
+      if (Math.abs(deltaX) < 50) return;
+      if (deltaX < 0) nextSlide();
+      else prevSlide();
+    }, { passive: true });
+
+    rebuildModalSlides();
   }
 
 

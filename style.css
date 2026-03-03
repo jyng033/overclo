@@ -905,14 +905,13 @@ button { font-family: inherit; }
   transition: transform 0.5s ease;
 }
 
-.portfolio-item:hover img {
-  transform: scale(1.08);
-}
+/* 포트폴리오 옵션: [호버효과] 이미지 확대 비활성화 */
+.portfolio-item:hover img { transform: none; }
 
-/* 포트폴리오 옵션: [홈페이지 제작 레이아웃] PC 기본 2열 */
+/* 포트폴리오 옵션: [홈페이지 제작 레이아웃] PC 기본 3열 */
 .portfolio-homepage-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--portfolio-grid-gap);
 }
 
@@ -966,9 +965,8 @@ button { font-family: inherit; }
   text-align: center;
 }
 
-.portfolio-item:hover .portfolio-overlay {
-  opacity: 1;
-}
+/* 포트폴리오 옵션: [호버효과] 오버레이 비활성화 */
+.portfolio-item:hover .portfolio-overlay { opacity: 0; }
 
 /* 포트폴리오 옵션: [홈페이지 제작 호버 텍스트] 내부 스크롤 추적 이동 */
 .portfolio-overlay-content {
@@ -1023,6 +1021,129 @@ button { font-family: inherit; }
   margin: 0;
   padding: 0;
 }
+
+/* ===== PORTFOLIO MODAL ===== */
+.portfolio-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(0, 0, 0, 0.92);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.portfolio-modal.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.portfolio-modal-viewport {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.portfolio-modal-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.35s ease;
+}
+
+.portfolio-modal-slide {
+  width: 100%;
+  flex-shrink: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 78px;
+}
+
+.portfolio-modal-media {
+  max-height: 100%;
+}
+
+/* 포트폴리오 옵션: [모달-홈페이지] PC/모바일 공통 모달 폭 50% */
+.portfolio-modal-media--homepage {
+  width: 50vw;
+  max-height: 100%;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.portfolio-modal-media--homepage::-webkit-scrollbar {
+  display: none;
+}
+
+.portfolio-modal-media--homepage img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 포트폴리오 옵션: [모달-배너] PC 모달 폭 꽉 채움 */
+.portfolio-modal-media--banner {
+  width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.portfolio-modal-media--banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 포트폴리오 옵션: [모달-상세페이지] PC 모달 60% */
+.portfolio-modal-media--detail {
+  width: 40vw;
+  max-height: 100%;
+  margin: 0 auto;
+}
+
+.portfolio-modal-media--detail img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.portfolio-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.portfolio-modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 36px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.portfolio-modal-nav--prev { left: 18px; }
+.portfolio-modal-nav--next { right: 18px; }
 
 
 /* ===== 실적 (Stats) ===== */
@@ -1347,9 +1468,9 @@ button { font-family: inherit; }
     margin: 0 auto;
   }
 
-  /* 포트폴리오 옵션: [홈페이지 제작 레이아웃] 태블릿 2열 유지 */
+  /* 포트폴리오 옵션: [홈페이지 제작 레이아웃] 태블릿 3열 유지 */
   .portfolio-homepage-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   /* 포트폴리오 옵션: [배너/상세 레이어 분리] 태블릿 비율 */
@@ -1443,6 +1564,52 @@ button { font-family: inherit; }
 
   .portfolio-subtitle {
     font-size: 1.3rem;
+  }
+
+  .portfolio-modal-slide {
+    padding: 18px 10px;
+  }
+
+  .portfolio-modal-close {
+    top: 8px;
+    right: 8px;
+    width: 42px;
+    height: 42px;
+    font-size: 28px;
+  }
+
+  .portfolio-modal-nav {
+    width: 42px;
+    height: 42px;
+    font-size: 30px;
+  }
+
+  .portfolio-modal-nav--prev { left: 6px; }
+  .portfolio-modal-nav--next { right: 6px; }
+
+  /* 포트폴리오 옵션: [모달-홈페이지 모바일] 화면폭 100% + 세로 스크롤 */
+  .portfolio-modal-media--homepage {
+    width: 100vw;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  /* 포트폴리오 옵션: [모달-배너 모바일] 크기 축소 + 좌우 스크롤 */
+  .portfolio-modal-media--banner {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .portfolio-modal-media--banner img {
+    height: 30vh;
+    width: auto;
+    max-width: none;
+  }
+
+  /* 포트폴리오 옵션: [모달-상세 모바일] 가로폭 맞춤 */
+  .portfolio-modal-media--detail {
+    width: 100vw;
   }
 
   .stats-grid {
