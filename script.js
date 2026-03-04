@@ -111,12 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
       description: '콘텐츠 중심 페이지 구성'
     },
     {
-      src: 'image_overclo/portfolio/화장품_KR.png',
-      category: '홈페이지 제작',
-      title: '화장품 KR 페이지',
-      description: '국문 제품 상세 안내'
-    },
-    {
       src: 'image_overclo/portfolio/화장품_EN.png',
       category: '홈페이지 제작',
       title: '화장품 EN 페이지',
