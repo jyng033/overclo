@@ -11,15 +11,15 @@
   --color-accent: rgba(255,255,255,0);          /* 메인 핑크 */
   --color-accent-dark: rgba(255,255,255,0);     /* 코랄/살몬 */
   --color-accent-mid: rgba(255,255,255,0);      /* 피치 */
-  --color-dark: #363636;     /* 다크 그레이 */
+  --color-dark: #070707;     /* 다크 그레이 */
   --color-white: #FFFFFF;
-  --color-gray-100: #F8F9FA;
-  --color-gray-200: #E9ECEF;
-  --color-gray-400: #ADB5BD;
-  --color-gray-600: #6C757D;
-  --color-gray-800: #343A40;
-  --color-text: #333333;
-  --color-text-light: #666666;
+  --color-gray-100: #eeeeee;
+  --color-gray-200: #d0d0d0;
+  --color-gray-400: #929292;
+  --color-gray-600: #616161;
+  --color-gray-800: #252525;
+  --color-text: #1a1a1a;
+  --color-text-light: #929292;
 
   /* ===== 글로벌 폰트 옵션 ===== */
   --font-primary: 'Poppins', 'Noto Sans KR', sans-serif;
@@ -142,9 +142,9 @@
   --about-title-padding-top: 0px;
   --about-title-padding-bottom: 20px;
   --about-highlight-text-color: var(--color-primary); /* 제목 강조(highlight) 글자색 */
-  --about-desc-font-size: 1.6rem;                    /* 본문 글자 크기 */
-  --about-desc-font-weight: 300;                   /* 본문 글자 굵기 */
-  --about-desc-color: var(--color-text-light);     /* 본문 글자색 */
+  --about-desc-font-size: 1.4rem;                    /* 본문 글자 크기 */
+  --about-desc-font-weight: 400;                   /* 본문 글자 굵기 */
+  --about-desc-color: var(--color-gray-600);     /* 본문 글자색 */
   --about-desc-line-height: 1.4;                   /* 본문 줄간격 */
   --about-highlight-num-font-size: 2.2rem;
   --about-highlight-num-color: var(--color-primary);
@@ -157,14 +157,14 @@
   --service-bg: var(--color-gray-100);             /* 배경색 */
   --service-tag-font-size: var(--tag-font-size);
   --service-tag-font-weight: var(--tag-font-weight);
-  --service-tag-color: var(--tag-color);
+  --service-tag-color: var(--color-primary);
   --service-tag-bg: var(--tag-bg);
   --service-tag-padding: var(--tag-padding-y) var(--tag-padding-x);
   --service-tag-radius: var(--tag-radius);
   --service-tag-letter-spacing: var(--tag-letter-spacing);
   --service-title-section-font-size: 2.5rem;       /* 섹션 제목 글자 크기 */
   --service-title-section-font-weight: 700;        /* 섹션 제목 글자 굵기 */
-  --service-title-section-color: var(--color-dark); /* 섹션 제목 글자색 */
+  --service-title-section-color: var(--color-primary-dark); /* 섹션 제목 글자색 */
   --service-title-section-line-height: 1.35;       /* 섹션 제목 줄간격 */
   --service-title-section-letter-spacing: var(--letter-spacing-tight); /* 섹션 제목 자간 */
   --service-highlight-text-color: var(--color-primary); /* 제목 강조(highlight) 글자색 */
@@ -189,14 +189,14 @@
   --portfolio-bg: var(--color-white);              /* 배경색 */
   --portfolio-tag-font-size: var(--tag-font-size);
   --portfolio-tag-font-weight: var(--tag-font-weight);
-  --portfolio-tag-color: var(--tag-color);
+  --portfolio-tag-color: var(--color-primary);
   --portfolio-tag-bg: var(--tag-bg);
   --portfolio-tag-padding: var(--tag-padding-y) var(--tag-padding-x);
   --portfolio-tag-radius: var(--tag-radius);
   --portfolio-tag-letter-spacing: var(--tag-letter-spacing);
   --portfolio-title-font-size: 2.5rem;             /* 제목 글자 크기 */
   --portfolio-title-font-weight: 700;              /* 제목 글자 굵기 */
-  --portfolio-title-color: var(--color-dark);      /* 제목 글자색 */
+  --portfolio-title-color: var(--color-primary-dark);      /* 제목 글자색 */
   --portfolio-title-line-height: 1.35;             /* 제목 줄간격 */
   --portfolio-title-letter-spacing: var(--letter-spacing-tight); /* 제목 자간 */
   --portfolio-highlight-text-color: var(--color-primary); /* 제목 강조 글자색 */
@@ -232,14 +232,14 @@
   --contact-bg: var(--color-gray-100);             /* 배경색 */
   --contact-tag-font-size: var(--tag-font-size);
   --contact-tag-font-weight: var(--tag-font-weight);
-  --contact-tag-color: var(--tag-color);
+  --contact-tag-color: var(--color-primary);
   --contact-tag-bg: var(--tag-bg);
   --contact-tag-padding: var(--tag-padding-y) var(--tag-padding-x);
   --contact-tag-radius: var(--tag-radius);
   --contact-tag-letter-spacing: var(--tag-letter-spacing);
   --contact-title-font-size: 2.5rem;               /* 제목 글자 크기 */
   --contact-title-font-weight: 700;                /* 제목 글자 굵기 */
-  --contact-title-color: var(--color-dark);        /* 제목 글자색 */
+  --contact-title-color: var(--color-primary-dark);        /* 제목 글자색 */
   --contact-title-line-height: 1.35;               /* 제목 줄간격 */
   --contact-title-letter-spacing: var(--letter-spacing-tight); /* 제목 자간 */
   --contact-highlight-text-color: var(--color-primary); /* 제목 강조 글자색 */
@@ -280,24 +280,24 @@
   --footer-logo-margin-left: 0px;
 
   /* ===== 푸터 옵션 ===== */
-  --footer-bg: var(--color-dark);                  /* 배경색 */
+  --footer-bg: #161616;                  /* 배경색 */
   --footer-color: rgba(255,255,255,0.7);           /* 기본 글자색 */
   --footer-info-color: rgba(255,255,255,0.7);      /* 회사정보 글자색 */
   --footer-link-color: rgba(255,255,255,0.7);      /* 링크 글자색 */
-  --footer-link-hover-color: var(--color-accent);  /* 링크 호버 글자색 */
+  --footer-link-hover-color: #fff;  /* 링크 호버 글자색 */
   --footer-bottom-color: rgba(255,255,255,0.4);    /* 하단 저작권 글자색 */
   --footer-padding: 60px 0 30px;
 
   /* ===== 플로팅 버튼 옵션 ===== */
-  --floating-btn-size: 44px;
-  --floating-btn-bg: var(--color-primary);
-  --floating-btn-color: var(--color-white);
-  --floating-btn-hover-bg: var(--color-primary-dark);
+  --floating-btn-size: 55px;
+  --floating-btn-bg: none;
+  --floating-btn-color: none;
+  --floating-btn-hover-bg: none;
   --floating-btn-radius: var(--border-radius-sm);
-  --floating-btn-shadow: 0 4px 15px rgba(33,85,169,0.3);
+  --floating-btn-shadow: 0 4px 15px rgba(33,85,169,0);
   --floating-right: 30px;
-  --floating-bottom: 90px;
-  --floating-gap: 10px;
+  --floating-bottom: 120px;
+  --floating-gap: 15px;
 
   /* ===== 버튼 공통 옵션 ===== */
   --btn-font-size: 0.95rem;

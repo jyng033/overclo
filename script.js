@@ -558,7 +558,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== 플로팅 스크롤 버튼 =====
   const floatingNav = document.querySelector('.floating-nav');
   const scrollTopBtn = document.getElementById('scrollTopBtn');
-  const scrollBottomBtn = document.getElementById('scrollBottomBtn');
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 300) {
@@ -570,10 +569,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   scrollTopBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  scrollBottomBtn.addEventListener('click', () => {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   });
 
 
