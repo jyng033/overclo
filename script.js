@@ -33,9 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
     startAuto();
   }
 
-  // 화살표 클릭
-  prevBtn.addEventListener('click', () => { prevSlide(); resetAuto(); });
-  nextBtn.addEventListener('click', () => { nextSlide(); resetAuto(); });
+  // 좌/우 클릭 영역
+  if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAuto(); });
+  if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAuto(); });
 
   // 도트 클릭
   dots.forEach(dot => {
@@ -46,43 +46,87 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 마우스 드래그
+  // 마우스 드래그 + 클릭 넘김
   const heroEl = document.querySelector('.hero');
+  if (!heroEl) return;
   let isDragging = false, startX = 0, dragDist = 0;
   const DRAG_THRESHOLD = 50;
+  const CLICK_GUARD_PX = 6;
+  let didDrag = false;
 
-  heroEl.addEventListener('mousedown', e => {
-    isDragging = true; startX = e.clientX; dragDist = 0;
-    heroEl.style.cursor = 'grabbing';
-  });
-  heroEl.addEventListener('mousemove', e => {
-    if (isDragging) dragDist = e.clientX - startX;
-  });
-  heroEl.addEventListener('mouseup', () => {
+  function endDrag() {
     if (!isDragging) return;
     isDragging = false;
     heroEl.style.cursor = '';
+    didDrag = Math.abs(dragDist) > CLICK_GUARD_PX;
     if (Math.abs(dragDist) > DRAG_THRESHOLD) {
       dragDist < 0 ? nextSlide() : prevSlide();
       resetAuto();
     }
+    dragDist = 0;
+  }
+
+  // Pointer Events 기반 드래그 (setPointerCapture로 안정적인 이동/종료 보장)
+  heroEl.addEventListener('pointerdown', (e) => {
+    if (e.pointerType !== 'mouse') return;
+    if (e.button !== 0) return;
+    // 도트/컨트롤 클릭은 기존 동작 유지
+    if (e.target.closest('.hero-dots')) return;
+
+    isDragging = true;
+    startX = e.clientX;
+    dragDist = 0;
+    didDrag = false;
+    heroEl.style.cursor = 'grabbing';
+    try { heroEl.setPointerCapture(e.pointerId); } catch (_) {}
   });
-  heroEl.addEventListener('mouseleave', () => {
-    isDragging = false; heroEl.style.cursor = '';
+
+  heroEl.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+    if (e.pointerType !== 'mouse') return;
+    dragDist = e.clientX - startX;
   });
+
+  heroEl.addEventListener('pointerup', (e) => {
+    if (e.pointerType !== 'mouse') return;
+    endDrag();
+  });
+
+  heroEl.addEventListener('pointercancel', (e) => {
+    if (e.pointerType !== 'mouse') return;
+    endDrag();
+  });
+
   heroEl.addEventListener('dragstart', e => e.preventDefault());
+  // 드래그로 넘긴 직후 발생하는 클릭(링크 이동 등)은 차단
+  heroEl.addEventListener('click', (e) => {
+    if (!didDrag) return;
+    e.preventDefault();
+    e.stopPropagation();
+    didDrag = false;
+  }, true);
+
+  // 클릭으로 넘기기는 제거하고, 드래그로만 넘깁니다.
 
   // 터치 스와이프
-  let touchStartX = 0, touchDist = 0;
+  let touchStartX = 0, touchStartY = 0, touchDx = 0, touchDy = 0;
   heroEl.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX; touchDist = 0;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchDx = 0;
+    touchDy = 0;
   }, { passive: true });
+
   heroEl.addEventListener('touchmove', e => {
-    touchDist = e.touches[0].clientX - touchStartX;
+    touchDx = e.touches[0].clientX - touchStartX;
+    touchDy = e.touches[0].clientY - touchStartY;
   }, { passive: true });
+
   heroEl.addEventListener('touchend', () => {
-    if (Math.abs(touchDist) > DRAG_THRESHOLD) {
-      touchDist < 0 ? nextSlide() : prevSlide();
+    // 세로 스크롤 의도가 더 크면 무시
+    if (Math.abs(touchDx) <= Math.abs(touchDy)) return;
+    if (Math.abs(touchDx) > DRAG_THRESHOLD) {
+      touchDx < 0 ? nextSlide() : prevSlide();
       resetAuto();
     }
   });

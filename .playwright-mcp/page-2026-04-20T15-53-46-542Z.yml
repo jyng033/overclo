@@ -1,0 +1,293 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "OVERCLO STUDIO" [ref=e4] [cursor=pointer]:
+        - /url: "#hero"
+        - img "OVERCLO STUDIO" [ref=e5]
+      - navigation [ref=e6]:
+        - list [ref=e7]:
+          - listitem [ref=e8]:
+            - link "ABOUT" [ref=e9] [cursor=pointer]:
+              - /url: "#about"
+          - listitem [ref=e10]:
+            - link "PORTFOLIO" [ref=e11] [cursor=pointer]:
+              - /url: "#portfolio"
+          - listitem [ref=e12]:
+            - link "CONTACT" [ref=e13] [cursor=pointer]:
+              - /url: "#contact"
+      - link "견적문의" [ref=e15] [cursor=pointer]:
+        - /url: https://open.kakao.com/o/sYtrPnxf
+  - generic [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e20]:
+        - generic [ref=e21]: DESIGN STUDIO
+        - heading "당신의 브랜드를 디자인으로 완성합니다" [level=1] [ref=e22]:
+          - text: 당신의 브랜드를
+          - text: 디자인으로 완성합니다
+        - paragraph [ref=e23]:
+          - text: 홈페이지 제작부터 온라인 배너, 카달로그까지
+          - text: OVERCLO STUDIO가 함께합니다
+        - link "포트폴리오 보기" [ref=e24] [cursor=pointer]:
+          - /url: "#portfolio"
+      - generic:
+        - generic:
+          - generic: WEB DESIGN
+          - heading "트렌디한 웹사이트 맞춤 제작" [level=1]:
+            - text: 트렌디한 웹사이트
+            - text: 맞춤 제작
+          - paragraph:
+            - text: 반응형 웹, 랜딩페이지, 쇼핑몰까지
+            - text: 비즈니스에 최적화된 웹 솔루션
+          - link "서비스 보기":
+            - /url: "#services"
+      - generic:
+        - generic:
+          - generic: GRAPHIC DESIGN
+          - heading "시선을 사로잡는 비주얼 콘텐츠" [level=1]:
+            - text: 시선을 사로잡는
+            - text: 비주얼 콘텐츠
+          - paragraph:
+            - text: 배너, 상세페이지, 카달로그 등
+            - text: 브랜드 아이덴티티를 담은 디자인
+          - link "문의하기":
+            - /url: "#contact"
+    - generic "이전 슬라이드" [ref=e25] [cursor=pointer]
+    - generic "다음 슬라이드" [ref=e26] [cursor=pointer]
+    - generic [ref=e27]:
+      - button [ref=e28] [cursor=pointer]
+      - button [ref=e29] [cursor=pointer]
+      - button [ref=e30] [cursor=pointer]
+  - generic [ref=e33]:
+    - generic [ref=e34]:
+      - generic [ref=e35]: ABOUT US
+      - heading "왜 오버클로 스튜디오여야 할까?" [level=2] [ref=e36]
+      - paragraph [ref=e37]:
+        - text: 시즌마다 배너 바꾸고 리뉴얼할 때마다
+        - text: 디자이너 새로 알아보고 계시진 않으신가요?
+        - text: 오버클로 스튜디오는
+        - strong [ref=e38]: 홈페이지 제작부터 관리까지
+        - text: 책임집니다.
+      - paragraph [ref=e39]: 진행 여부와 관계없이 10만원 상당의 디자인 상담을 무료로 받아보세요.
+    - generic "오버클로 소개 카드" [ref=e40]:
+      - img "오버클로 소개 카드 1" [ref=e42]
+      - img "오버클로 소개 카드 2" [ref=e44]
+      - img "오버클로 소개 카드 3" [ref=e46]
+  - generic [ref=e48]:
+    - generic [ref=e49]: SERVICES
+    - heading "오버클로가 제공하는 디자인 서비스" [level=2] [ref=e50]
+    - paragraph [ref=e51]: 클라이언트의 비즈니스 목표에 맞춘 최적의 디자인 솔루션을 제공합니다
+    - generic [ref=e52]:
+      - generic [ref=e53]:
+        - img [ref=e55]
+        - heading "홈페이지 제작" [level=3] [ref=e57]
+        - paragraph [ref=e58]: 반응형 웹사이트, 랜딩페이지, 쇼핑몰 등 비즈니스에 최적화된 웹사이트를 기획부터 디자인, 개발까지 원스톱으로 제작합니다.
+      - generic [ref=e59]:
+        - img [ref=e61]
+        - heading "배너 · 상세페이지" [level=3] [ref=e63]
+        - paragraph [ref=e64]: 온라인 쇼핑몰 배너, 제품 상세페이지, 이벤트 페이지 등 전환율을 높이는 비주얼 콘텐츠를 제작합니다.
+      - generic [ref=e65]:
+        - img [ref=e67]
+        - heading "카달로그 제작" [level=3] [ref=e70]
+        - paragraph [ref=e71]: 제품 카달로그, 회사 소개서, 브로셔 등 인쇄물 디자인을 브랜드 아이덴티티에 맞게 제작합니다.
+  - separator [ref=e72]
+  - generic [ref=e74]:
+    - generic [ref=e75]: PORTFOLIO
+    - heading "오버클로만의 디자인" [level=2] [ref=e76]
+    - paragraph [ref=e77]: 브랜드의 가치를 담아 디자인합니다.
+    - generic [ref=e78]:
+      - heading "홈페이지 제작" [level=3] [ref=e79]
+      - generic [ref=e80]:
+        - generic [ref=e81] [cursor=pointer]:
+          - img "러닝용품 랜딩페이지" [ref=e82]
+          - generic [ref=e84]:
+            - generic [ref=e85]: 홈페이지 제작
+            - heading "러닝용품 랜딩페이지" [level=4] [ref=e86]
+            - paragraph [ref=e87]: 전환 중심의 프로모션 랜딩
+        - generic [ref=e88] [cursor=pointer]:
+          - img "산물 브랜드 사이트" [ref=e89]
+          - generic [ref=e91]:
+            - generic [ref=e92]: 홈페이지 제작
+            - heading "산물 브랜드 사이트" [level=4] [ref=e93]
+            - paragraph [ref=e94]: 콘텐츠 중심 페이지 구성
+        - generic [ref=e95] [cursor=pointer]:
+          - img "화장품 EN 페이지" [ref=e96]
+          - generic [ref=e98]:
+            - generic [ref=e99]: 홈페이지 제작
+            - heading "화장품 EN 페이지" [level=4] [ref=e100]
+            - paragraph [ref=e101]: 글로벌 타겟 제품 소개
+      - button "더보기(1)" [ref=e103] [cursor=pointer]
+    - generic [ref=e104]:
+      - heading "배너⋅상세페이지" [level=3] [ref=e105]
+      - generic [ref=e106]:
+        - generic [ref=e107]:
+          - generic [ref=e108] [cursor=pointer]:
+            - img "네이버 롤링 배너" [ref=e109]
+            - generic [ref=e111]:
+              - generic [ref=e112]: 배너
+              - heading "네이버 롤링 배너" [level=4] [ref=e113]
+              - paragraph [ref=e114]: 스마트스토어 배너 디자인
+          - generic [ref=e115] [cursor=pointer]:
+            - img "네이버 롤링 배너" [ref=e116]
+            - generic [ref=e118]:
+              - generic [ref=e119]: 배너
+              - heading "네이버 롤링 배너" [level=4] [ref=e120]
+              - paragraph [ref=e121]: 스마트스토어 배너 디자인
+          - generic [ref=e122] [cursor=pointer]:
+            - img "네이버 롤링 배너" [ref=e123]
+            - generic [ref=e125]:
+              - generic [ref=e126]: 배너
+              - heading "네이버 롤링 배너" [level=4] [ref=e127]
+              - paragraph [ref=e128]: 스마트스토어 배너 디자인
+          - generic [ref=e129] [cursor=pointer]:
+            - img "네이버 롤링 배너" [ref=e130]
+            - generic [ref=e132]:
+              - generic [ref=e133]: 배너
+              - heading "네이버 롤링 배너" [level=4] [ref=e134]
+              - paragraph [ref=e135]: 스마트스토어 배너 디자인
+        - generic [ref=e136]:
+          - generic [ref=e137] [cursor=pointer]:
+            - img "제품 상세페이지" [ref=e138]
+            - generic [ref=e140]:
+              - generic [ref=e141]: 상세페이지
+              - heading "제품 상세페이지" [level=4] [ref=e142]
+              - paragraph [ref=e143]: 정방형 상세 콘텐츠 구성
+          - generic [ref=e144] [cursor=pointer]:
+            - img "브랜드 상세페이지" [ref=e145]
+            - generic [ref=e147]:
+              - generic [ref=e148]: 상세페이지
+              - heading "브랜드 상세페이지" [level=4] [ref=e149]
+              - paragraph [ref=e150]: 제품 소개형 상세 구성
+          - generic [ref=e151] [cursor=pointer]:
+            - img "제품 상세페이지" [ref=e152]
+            - generic [ref=e154]:
+              - generic [ref=e155]: 상세페이지
+              - heading "제품 상세페이지" [level=4] [ref=e156]
+              - paragraph [ref=e157]: 정방형 상세 콘텐츠 구성
+          - generic [ref=e158] [cursor=pointer]:
+            - img "제품 상세페이지" [ref=e159]
+            - generic [ref=e161]:
+              - generic [ref=e162]: 상세페이지
+              - heading "제품 상세페이지" [level=4] [ref=e163]
+              - paragraph [ref=e164]: 이미지 중심 상세 레이아웃
+          - generic [ref=e165] [cursor=pointer]:
+            - img "상세페이지 디자인" [ref=e166]
+            - generic [ref=e168]:
+              - generic [ref=e169]: 상세페이지
+              - heading "상세페이지 디자인" [level=4] [ref=e170]
+              - paragraph [ref=e171]: 정보 전달형 콘텐츠 구성
+          - generic [ref=e172] [cursor=pointer]:
+            - img "브랜드 상세페이지" [ref=e173]
+            - generic [ref=e175]:
+              - generic [ref=e176]: 상세페이지
+              - heading "브랜드 상세페이지" [level=4] [ref=e177]
+              - paragraph [ref=e178]: 제품 기능 강조형 상세
+          - generic [ref=e179] [cursor=pointer]:
+            - img "제품 상세페이지" [ref=e180]
+            - generic [ref=e182]:
+              - generic [ref=e183]: 상세페이지
+              - heading "제품 상세페이지" [level=4] [ref=e184]
+              - paragraph [ref=e185]: 구매 전환 중심 상세 구성
+  - img "OVERCLO STUDIO 로고" [ref=e190]
+  - generic [ref=e192]:
+    - generic [ref=e193]: CONTACT
+    - heading "프로젝트를 시작해볼까요?" [level=2] [ref=e194]
+    - paragraph [ref=e195]: 아래 양식을 작성해 주시면 빠르게 연락드리겠습니다
+    - generic [ref=e196]:
+      - generic [ref=e197]:
+        - generic [ref=e198]:
+          - img [ref=e200]
+          - generic [ref=e202]:
+            - heading "Phone" [level=4] [ref=e203]
+            - paragraph [ref=e204]: 010-9845-5101
+        - generic [ref=e205]:
+          - img [ref=e207]
+          - generic [ref=e210]:
+            - heading "Email" [level=4] [ref=e211]
+            - paragraph [ref=e212]: Overclo51@gmail.com
+        - link "KakaoTalk 카카오톡으로 빠르게 상담하기" [ref=e213] [cursor=pointer]:
+          - /url: https://open.kakao.com/o/sYtrPnxf
+          - img [ref=e215]
+          - generic [ref=e217]:
+            - heading "KakaoTalk" [level=4] [ref=e218]
+            - paragraph [ref=e219]: 카카오톡으로 빠르게 상담하기
+      - generic [ref=e220]:
+        - generic [ref=e221]:
+          - textbox "이름" [ref=e222]
+          - textbox "이메일" [ref=e223]
+        - textbox "제목" [ref=e224]
+        - textbox "프로젝트에 대해 알려주세요" [ref=e225]
+        - button "문의 보내기" [ref=e226] [cursor=pointer]
+  - contentinfo [ref=e227]:
+    - generic [ref=e228]:
+      - generic [ref=e229]:
+        - generic [ref=e230]:
+          - link "OVERCLO STUDIO" [ref=e231] [cursor=pointer]:
+            - /url: "#hero"
+            - img "OVERCLO STUDIO" [ref=e232]
+          - paragraph [ref=e233]:
+            - text: 대전광역시 유성구 와룡로136번길 15
+            - text: "대표: 최수현 | 사업자등록번호: 361-67-00626"
+            - text: E-mail Overclo51@gmail.com
+        - generic [ref=e234]:
+          - link "About" [ref=e235] [cursor=pointer]:
+            - /url: "#about"
+          - link "Services" [ref=e236] [cursor=pointer]:
+            - /url: "#services"
+          - link "Portfolio" [ref=e237] [cursor=pointer]:
+            - /url: "#portfolio"
+          - link "Contact" [ref=e238] [cursor=pointer]:
+            - /url: "#contact"
+      - paragraph [ref=e240]: © 2026 Overclo Studio. All rights reserved.
+  - generic:
+    - button "맨 위로":
+      - img
+    - button "맨 아래로":
+      - img
+  - dialog:
+    - button: ×
+    - button: ‹
+    - button: ›
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - img
+        - generic:
+          - generic:
+            - img
+        - generic:
+          - generic:
+            - img
+        - generic:
+          - generic:
+            - img
+        - generic:
+          - generic:
+            - img
+        - generic:
+          - generic:
+            - img
+        - generic:
+          - generic:
+            - img
+        - generic:
+          - generic:
+            - img
+        - generic:
+          - generic:
+            - img
+        - generic:
+          - generic:
+            - img
+        - generic:
+          - generic:
+            - img
+        - generic:
+          - generic:
+            - img
+        - generic:
+          - generic:
+            - img
+        - generic:
+          - generic:
+            - img
