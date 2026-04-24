@@ -5,9 +5,9 @@
 
 /* ===== 컬러 팔레트 (산 일러스트 기반) ===== */
 :root {
-  --color-primary: #000dff;         /* 메인 블루 */
-  --color-primary-dark: #05084e;    /* 진한 블루 */
-  --color-primary-light: #eaebff;   /* 밝은 블루 */
+  --color-primary: #2155A9;         /* 메인 블루 */
+  --color-primary-dark: #002766;    /* 진한 블루 */
+  --color-primary-light: #ccdfff;   /* 밝은 블루 */
   --color-accent: rgba(255,255,255,0);          /* 메인 핑크 */
   --color-accent-dark: rgba(255,255,255,0);     /* 코랄/살몬 */
   --color-accent-mid: rgba(255,255,255,0);      /* 피치 */
@@ -143,7 +143,7 @@
   --about-title-padding-bottom: 20px;
   --about-highlight-text-color: var(--color-primary); /* 제목 강조(highlight) 글자색 */
   --about-desc-font-size: 1.4rem;                    /* 본문 글자 크기 */
-  --about-desc-font-weight: 400;                   /* 본문 글자 굵기 */
+  --about-desc-font-weight: 300;                   /* 본문 글자 굵기 */
   --about-desc-color: var(--color-gray-600);     /* 본문 글자색 */
   --about-desc-line-height: 1.4;                   /* 본문 줄간격 */
   --about-highlight-num-font-size: 2.2rem;
@@ -162,14 +162,14 @@
   --service-tag-padding: var(--tag-padding-y) var(--tag-padding-x);
   --service-tag-radius: var(--tag-radius);
   --service-tag-letter-spacing: var(--tag-letter-spacing);
-  --service-title-section-font-size: 2.5rem;       /* 섹션 제목 글자 크기 */
+  --service-title-section-font-size: 2.8rem;       /* 섹션 제목 글자 크기 */
   --service-title-section-font-weight: 700;        /* 섹션 제목 글자 굵기 */
   --service-title-section-color: var(--color-primary-dark); /* 섹션 제목 글자색 */
   --service-title-section-line-height: 1.35;       /* 섹션 제목 줄간격 */
   --service-title-section-letter-spacing: var(--letter-spacing-tight); /* 섹션 제목 자간 */
   --service-highlight-text-color: var(--color-primary); /* 제목 강조(highlight) 글자색 */
   --service-desc-section-font-size: 1.5rem;        /* 섹션 설명 글자 크기 */
-  --service-desc-section-font-weight: 400;         /* 섹션 설명 글자 굵기 */
+  --service-desc-section-font-weight: 300;         /* 섹션 설명 글자 굵기 */
   --service-desc-section-color: var(--color-text-light); /* 섹션 설명 글자색 */
   --service-card-bg: var(--color-white);           /* 카드 배경색 */
   --service-card-radius: var(--border-radius-md);
@@ -194,14 +194,14 @@
   --portfolio-tag-padding: var(--tag-padding-y) var(--tag-padding-x);
   --portfolio-tag-radius: var(--tag-radius);
   --portfolio-tag-letter-spacing: var(--tag-letter-spacing);
-  --portfolio-title-font-size: 2.5rem;             /* 제목 글자 크기 */
+  --portfolio-title-font-size: 2.8rem;             /* 제목 글자 크기 */
   --portfolio-title-font-weight: 700;              /* 제목 글자 굵기 */
   --portfolio-title-color: var(--color-primary-dark);      /* 제목 글자색 */
   --portfolio-title-line-height: 1.35;             /* 제목 줄간격 */
   --portfolio-title-letter-spacing: var(--letter-spacing-tight); /* 제목 자간 */
   --portfolio-highlight-text-color: var(--color-primary); /* 제목 강조 글자색 */
   --portfolio-desc-font-size: 1.5rem;              /* 설명 글자 크기 */
-  --portfolio-desc-font-weight: 400;               /* 설명 글자 굵기 */
+  --portfolio-desc-font-weight: 300;               /* 설명 글자 굵기 */
   --portfolio-desc-color: var(--color-text-light); /* 설명 글자색 */
   --portfolio-filter-font-size: 0.9rem;
   --portfolio-filter-font-weight: 500;
@@ -883,7 +883,7 @@ button { font-family: inherit; }
 
 /* 포트폴리오 옵션: [섹션 간격] 홈페이지 제작 ↔ 배너⋅상세페이지 */
 .portfolio-subsection + .portfolio-subsection {
-  margin-top: 120px;
+  margin-top: 120px;;
 }
 
 /* 포트폴리오 옵션: [서브타이틀 스타일] 정렬/밑줄/간격 */
@@ -1182,6 +1182,7 @@ button { font-family: inherit; }
 
 /* ===== 실적 (Stats) ===== */
 .stats {
+  margin-top: 120px;
   padding: var(--stats-padding);
   background-image: var(--stats-bg-image);
   background-size: cover;
