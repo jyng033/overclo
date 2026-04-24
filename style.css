@@ -259,8 +259,8 @@
 
   /* ===== 로고 이미지 옵션 ===== */
   --logo-image: url('image_overclo/logo.png');     /* 로고 이미지 경로 */
-  --logo-width: 120px;                              /* 로고 너비 (auto, 150px, 10rem 등) */
-  --logo-height: auto;                             /* 로고 높이 */
+  --logo-width: auto;                              /* 로고 너비 (auto, 150px, 10rem 등) */
+  --logo-height: 45px;                             /* 로고 높이 */
   --logo-max-width: 200px;                         /* 로고 최대 너비 */
   --logo-object-fit: contain;                      /* 이미지 맞춤 (contain, cover) */
   --logo-object-position: left center;             /* 이미지 정렬 위치 */
