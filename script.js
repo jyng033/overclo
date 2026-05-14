@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
       category: '홈페이지 제작',
       title: '사주명리 사이트',
       description: '서비스 신청기능 포함 웹디자인'
-    }
+    },
     {
       src: 'image_overclo/portfolio/지구상회.jpg',
       category: '홈페이지 제작',
