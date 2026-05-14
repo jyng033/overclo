@@ -143,10 +143,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // 작업물 추가/수정은 이 메타데이터 배열만 관리하면 됩니다.
   const homepagePortfolioItems = [
     {
-      src: 'image_overclo/portfolio/러닝용품 랜딩페이지.png',
+      src: 'image_overclo/portfolio/디모스.jpg',
       category: '홈페이지 제작',
-      title: '러닝용품 랜딩페이지',
-      description: '전환 중심의 프로모션 랜딩'
+      title: '고급 수입가구 브랜드 사이트',
+      description: '쇼핑몰 웹디자인'
     },
     {
       src: 'image_overclo/portfolio/산물.png',
@@ -155,28 +155,40 @@ document.addEventListener('DOMContentLoaded', () => {
       description: '콘텐츠 중심 페이지 구성'
     },
     {
-      src: 'image_overclo/portfolio/화장품_EN.png',
+      src: 'image_overclo/portfolio/피른.jpg',
       category: '홈페이지 제작',
-      title: '화장품 EN 페이지',
-      description: '글로벌 타겟 제품 소개'
+      title: '프리미엄 유리잔 브랜드 사이트',
+      description: '쇼핑몰 웹디자인'
     },
     {
-      src: 'image_overclo/portfolio/쿠키제과.jpg',
+      src: 'image_overclo/portfolio/러닝용품 랜딩페이지.png',
       category: '홈페이지 제작',
-      title: '쿠키제과 웹페이지',
-      description: '브랜드 스토리형 디자인'
+      title: '러닝용품 랜딩페이지',
+      description: '전환 중심의 프로모션 랜딩'
     },
     {
-      src: 'image_overclo/portfolio/필라jpg.jpg',
+      src: 'image_overclo/portfolio/인사이팅.jpg',
       category: '홈페이지 제작',
-      title: '필라테스 사이트',
+      title: '숏폼 영상제작 전문 업체',
       description: '서비스 안내형 웹디자인'
     },
     {
-      src: 'image_overclo/portfolio/데키랩.png',
+      src: 'image_overclo/portfolio/개운한하루.jpg',
       category: '홈페이지 제작',
-      title: '데키랩 홈페이지',
-      description: '브랜드 소개형 웹사이트'
+      title: '사주명리 사이트',
+      description: '서비스 신청기능 포함 웹디자인'
+    }
+    {
+      src: 'image_overclo/portfolio/지구상회.jpg',
+      category: '홈페이지 제작',
+      title: '협동조합 쇼핑몰 사이트',
+      description: '쇼핑몰 웹디자인'
+    },
+    {
+      src: 'image_overclo/portfolio/지스타지구조합.jpg',
+      category: '홈페이지 제작',
+      title: '친환경 협동조합 사이트',
+      description: '회사 소개 중심의 웹디자인'
     }
   ];
 
