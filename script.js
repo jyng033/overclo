@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== 히어로 슬라이더 =====
   const slides = document.querySelectorAll('.hero-slide');
   const dots = document.querySelectorAll('.hero-dot');
-  const prevBtn = document.querySelector('.hero-click--prev');
-  const nextBtn = document.querySelector('.hero-click--next');
+  // hero-click 영역은 CSS에서 pointer-events:none 처리
+  // → 탭/스와이프 모두 .hero에서 통합 처리
   let current = 0;
   let autoSlideTimer;
   const SLIDE_INTERVAL = 5000;
@@ -33,10 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
     startAuto();
   }
 
-  // 좌/우 클릭 영역
-  if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAuto(); });
-  if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAuto(); });
-
   // 도트 클릭
   dots.forEach(dot => {
     dot.addEventListener('click', (e) => {
@@ -46,13 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 마우스 드래그 + 클릭 넘김
+  // ===== 히어로 드래그/스와이프 =====
   const heroEl = document.querySelector('.hero');
   if (!heroEl) return;
-  let isDragging = false, startX = 0, dragDist = 0;
-  const DRAG_THRESHOLD = 50;
-  const CLICK_GUARD_PX = 6;
-  let didDrag = false;
+
+  let isDragging = false; /* 마우스 드래그 진행 중 여부 */
+  let startX = 0;         /* 드래그 시작 X 좌표 */
+  let dragDist = 0;       /* 현재 드래그 이동 거리 */
+  let didDrag = false;    /* 드래그로 슬라이드 전환했는지 (클릭 차단용) */
+  const DRAG_THRESHOLD = 50;  /* 슬라이드 전환 최소 이동 거리(px) */
+  const CLICK_GUARD_PX = 6;   /* 드래그 판정 최소 거리(px) */
 
   function endDrag() {
     if (!isDragging) return;
@@ -60,18 +59,19 @@ document.addEventListener('DOMContentLoaded', () => {
     heroEl.style.cursor = '';
     didDrag = Math.abs(dragDist) > CLICK_GUARD_PX;
     if (Math.abs(dragDist) > DRAG_THRESHOLD) {
+      /* 왼쪽으로 드래그(음수) = 다음 슬라이드, 오른쪽(양수) = 이전 슬라이드 */
       dragDist < 0 ? nextSlide() : prevSlide();
       resetAuto();
     }
     dragDist = 0;
   }
 
-  // Pointer Events 기반 드래그 (setPointerCapture로 안정적인 이동/종료 보장)
+  // ----- [PC] 마우스 드래그: Pointer Events (pointerType === 'mouse'만 처리) -----
   heroEl.addEventListener('pointerdown', (e) => {
-    if (e.pointerType !== 'mouse') return;
-    if (e.button !== 0) return;
-    // 도트/컨트롤 클릭은 기존 동작 유지
+    if (e.pointerType !== 'mouse') return;  /* 터치는 아래 Touch Events에서 처리 */
+    if (e.button !== 0) return;             /* 좌클릭만 */
     if (e.target.closest('.hero-dots')) return;
+    if (e.target.closest('.btn')) return;
 
     isDragging = true;
     startX = e.clientX;
@@ -82,8 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   heroEl.addEventListener('pointermove', (e) => {
-    if (!isDragging) return;
-    if (e.pointerType !== 'mouse') return;
+    if (!isDragging || e.pointerType !== 'mouse') return;
     dragDist = e.clientX - startX;
   });
 
@@ -97,39 +96,55 @@ document.addEventListener('DOMContentLoaded', () => {
     endDrag();
   });
 
+  /* 이미지 기본 드래그 방지 */
   heroEl.addEventListener('dragstart', e => e.preventDefault());
-  // 드래그로 넘긴 직후 발생하는 클릭(링크 이동 등)은 차단
-  heroEl.addEventListener('click', (e) => {
-    if (!didDrag) return;
-    e.preventDefault();
-    e.stopPropagation();
-    didDrag = false;
-  }, true);
 
-  // 클릭으로 넘기기는 제거하고, 드래그로만 넘깁니다.
+  // ----- [모바일] 터치 스와이프: Touch Events (가장 안정적인 모바일 터치 처리) -----
+  let touchStartX = 0;  /* 터치 시작 X 좌표 */
+  let touchStartY = 0;  /* 터치 시작 Y 좌표 */
+  let touchDx = 0;      /* 가로 이동 거리 */
+  let touchDy = 0;      /* 세로 이동 거리 */
 
-  // 터치 스와이프
-  let touchStartX = 0, touchStartY = 0, touchDx = 0, touchDy = 0;
-  heroEl.addEventListener('touchstart', e => {
+  heroEl.addEventListener('touchstart', (e) => {
+    /* CTA 버튼/도트 위에서는 스와이프 비활성화 */
+    if (e.target.closest('.hero-dots') || e.target.closest('.btn')) return;
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
     touchDx = 0;
     touchDy = 0;
   }, { passive: true });
 
-  heroEl.addEventListener('touchmove', e => {
+  heroEl.addEventListener('touchmove', (e) => {
     touchDx = e.touches[0].clientX - touchStartX;
     touchDy = e.touches[0].clientY - touchStartY;
   }, { passive: true });
 
   heroEl.addEventListener('touchend', () => {
-    // 세로 스크롤 의도가 더 크면 무시
+    /* 세로 스크롤 의도가 더 크면 무시 (세로 > 가로이면 스크롤로 판단) */
     if (Math.abs(touchDx) <= Math.abs(touchDy)) return;
     if (Math.abs(touchDx) > DRAG_THRESHOLD) {
       touchDx < 0 ? nextSlide() : prevSlide();
       resetAuto();
+      didDrag = true; /* 스와이프 직후 click 이벤트 차단 */
     }
   });
+
+  // ----- 클릭 처리: 드래그/스와이프 후 클릭 차단 + 탭 넘기기 -----
+  heroEl.addEventListener('click', (e) => {
+    if (didDrag) {
+      e.preventDefault();
+      e.stopPropagation();
+      didDrag = false;
+      return;
+    }
+    /* 탭으로 슬라이드 넘기기: 좌측 절반 = 이전, 우측 절반 = 다음 */
+    if (e.target.closest('.hero-dots')) return;
+    if (e.target.closest('.btn')) return;
+    const rect = heroEl.getBoundingClientRect();
+    const midX = rect.left + rect.width / 2;
+    if (e.clientX < midX) { prevSlide(); } else { nextSlide(); }
+    resetAuto();
+  }, true);
 
   startAuto();
 

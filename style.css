@@ -521,6 +521,7 @@ button { font-family: inherit; }
   position: relative;
   overflow: hidden;
   user-select: none;
+  touch-action: pan-y; /* 세로 스크롤은 브라우저 기본, 가로 스와이프는 JS 처리 */
 }
 
 .hero-slider {
@@ -630,14 +631,14 @@ button { font-family: inherit; }
   box-shadow: 0 8px 30px rgba(0,0,0,0.2);
 }
 
-/* 좌우 클릭 영역 (이미지 절반씩) */
+/* 좌우 클릭 영역: pointer-events 비활성화 → 드래그/스와이프가 .hero로 직접 전달 */
 .hero-click {
   position: absolute;
   top: 0;
   width: 50%;
   height: 100%;
   z-index: 5;
-  cursor: pointer;
+  pointer-events: none; /* 스와이프/드래그 이벤트 통과 */
 }
 
 .hero-click--prev { left: 0; }
