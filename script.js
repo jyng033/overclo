@@ -138,57 +138,85 @@ document.addEventListener('DOMContentLoaded', () => {
   const homepageGrid = document.getElementById('portfolioHomepageGrid');
   const homepageMoreBtn = document.getElementById('homepageMoreBtn');
   const masonryGrid = document.getElementById('portfolioMasonryGrid');
-  const HOMEPAGE_PAGE_SIZE = 3;
+  const HOMEPAGE_PAGE_SIZE = 12;
 
   // 작업물 추가/수정은 이 메타데이터 배열만 관리하면 됩니다.
+  // objectPosition: 썸네일에서 보여줄 이미지 영역 지정
+  //   - 'top'    : 이미지 최상단 (기본값)
+  //   - 'center' : 이미지 중앙
+  //   - '20%'    : 상단에서 20% 지점
+  //   - '50%'    : 상단에서 50% 지점 (= center)
+  //   - 'bottom' : 이미지 최하단
   const homepagePortfolioItems = [
     {
       src: 'image_overclo/portfolio/디모스.jpg',
       category: '홈페이지 제작',
       title: '고급 수입가구 브랜드 사이트',
-      description: '쇼핑몰 웹디자인'
+      description: '쇼핑몰 웹디자인',
+      objectPosition: 'top' /* 크롭 위치: 상단 */
     },
     {
       src: 'image_overclo/portfolio/산물.png',
       category: '홈페이지 제작',
       title: '산물 브랜드 사이트',
-      description: '콘텐츠 중심 페이지 구성'
+      description: '콘텐츠 중심 페이지 구성',
+      objectPosition: 'top' /* 크롭 위치: 상단 */
     },
     {
       src: 'image_overclo/portfolio/피른.jpg',
       category: '홈페이지 제작',
       title: '프리미엄 유리잔 브랜드 사이트',
-      description: '쇼핑몰 웹디자인'
+      description: '쇼핑몰 웹디자인',
+      objectPosition: 'top' /* 크롭 위치: 상단 */
     },
     {
       src: 'image_overclo/portfolio/러닝용품 랜딩페이지.png',
       category: '홈페이지 제작',
       title: '러닝용품 랜딩페이지',
-      description: '전환 중심의 프로모션 랜딩'
+      description: '전환 중심의 프로모션 랜딩',
+      objectPosition: 'top' /* 크롭 위치: 상단 */
     },
     {
       src: 'image_overclo/portfolio/인사이팅.jpg',
       category: '홈페이지 제작',
       title: '숏폼 영상제작 전문 업체',
-      description: '서비스 안내형 웹디자인'
+      description: '서비스 안내형 웹디자인',
+      objectPosition: 'top' /* 크롭 위치: 상단 */
     },
     {
       src: 'image_overclo/portfolio/개운한하루.jpg',
       category: '홈페이지 제작',
       title: '사주명리 사이트',
-      description: '서비스 신청기능 포함 웹디자인'
+      description: '서비스 신청기능 포함 웹디자인',
+      objectPosition: 'top' /* 크롭 위치: 상단 */
     },
     {
       src: 'image_overclo/portfolio/지구상회.jpg',
       category: '홈페이지 제작',
       title: '협동조합 쇼핑몰 사이트',
-      description: '쇼핑몰 웹디자인'
+      description: '쇼핑몰 웹디자인',
+      objectPosition: 'top' /* 크롭 위치: 상단 */
     },
     {
       src: 'image_overclo/portfolio/지스타지구조합.jpg',
       category: '홈페이지 제작',
       title: '친환경 협동조합 사이트',
-      description: '회사 소개 중심의 웹디자인'
+      description: '회사 소개 중심의 웹디자인',
+      objectPosition: 'top' /* 크롭 위치: 상단 */
+    },
+    {
+      src: 'image_overclo/portfolio/루멘창호.jpg',
+      category: '홈페이지 제작',
+      title: '인테리어 시공업체 사이트',
+      description: '회사 소개 중심의 웹디자인',
+      objectPosition: 'top' /* 크롭 위치: 상단 */
+    },
+    {
+      src: 'image_overclo/portfolio/쿠키제과.jpg',
+      category: '홈페이지 제작',
+      title: '온라인 쿠키판매 사이트',
+      description: '주문관리 중심의 홈페이지',
+      objectPosition: 'top' /* 크롭 위치: 상단 */
     }
   ];
 
@@ -279,6 +307,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const img = document.createElement('img');
     img.src = item.src;
     img.alt = item.title;
+    /* 아이템별 크롭 위치 적용 (objectPosition 값이 있으면 인라인 스타일로 오버라이드) */
+    if (item.objectPosition) {
+      img.style.objectPosition = `center ${item.objectPosition}`;
+    }
 
     const overlay = document.createElement('div');
     overlay.className = 'portfolio-overlay';

@@ -949,12 +949,16 @@ button { font-family: inherit; }
   gap: var(--portfolio-grid-gap);
 }
 
+/* 포트폴리오 옵션: [홈페이지 카드] 16:9 비율 통일, 크롭 위치는 JS에서 아이템별 지정 */
 .portfolio-homepage-item {
   background: #f6f7fa;
+  aspect-ratio: 16 / 9; /* 카드 비율: 16:9 (가로형) */
 }
 
 .portfolio-homepage-item img {
-  object-fit: contain;
+  object-fit: cover; /* 크롭 방식: cover (비율 유지하며 잘라냄) */
+  object-position: top; /* 크롭 기준점 기본값: 상단 (JS에서 아이템별 오버라이드 가능) */
+  height: 100%; /* 카드 높이에 맞춤 */
 }
 
 .portfolio-masonry-item {
