@@ -1531,10 +1531,18 @@ button { font-family: inherit; }
   :root {
     --hero-height: 100vh;
     --hero-title-font-size: 2.2rem;
+    --hero-tag-font-size: 0.95rem;            /* 히어로 태그 (PC: 1.15rem) */
+    --hero-desc-font-size: 1.05rem;           /* 히어로 설명 (PC: 1.4rem) */
+    --tag-font-size: 1.2rem;                  /* 공통 섹션 태그 (PC: 1.6rem) */
     --about-title-font-size: 1.7rem;
+    --about-desc-font-size: 1.05rem;          /* about 본문 (PC: 1.4rem) */
+    --about-highlight-num-font-size: 1.8rem;  /* about 수치 (PC: 2.2rem) */
     --service-title-section-font-size: 1.7rem;
+    --service-desc-section-font-size: 1.05rem; /* 서비스 섹션 설명 (PC: 1.5rem) */
     --portfolio-title-font-size: 1.7rem;
+    --portfolio-desc-font-size: 1.05rem;      /* 포트폴리오 설명 (PC: 1.5rem) */
     --contact-title-font-size: 1.7rem;
+    --contact-desc-font-size: 1.05rem;        /* 컨택트 설명 (PC: 1.5rem) */
     --section-padding: 80px 0;
     --header-height: 64px;
   }
@@ -1680,10 +1688,18 @@ button { font-family: inherit; }
 @media (max-width: 480px) {
   :root {
     --hero-title-font-size: 1.8rem;
+    --hero-tag-font-size: 0.85rem;             /* 히어로 태그 (768: 0.95rem) */
+    --hero-desc-font-size: 0.95rem;            /* 히어로 설명 (768: 1.05rem) */
+    --tag-font-size: 1.1rem;                   /* 공통 섹션 태그 (768: 1.2rem) */
     --about-title-font-size: 1.5rem;
+    --about-desc-font-size: 0.95rem;           /* about 본문 (768: 1.05rem) */
+    --about-highlight-num-font-size: 1.6rem;   /* about 수치 (768: 1.8rem) */
     --service-title-section-font-size: 1.5rem;
+    --service-desc-section-font-size: 0.95rem; /* 서비스 섹션 설명 (768: 1.05rem) */
     --portfolio-title-font-size: 1.5rem;
+    --portfolio-desc-font-size: 0.95rem;       /* 포트폴리오 설명 (768: 1.05rem) */
     --contact-title-font-size: 1.5rem;
+    --contact-desc-font-size: 0.95rem;         /* 컨택트 설명 (768: 1.05rem) */
     --stat-number-font-size: 2.5rem;
   }
 
