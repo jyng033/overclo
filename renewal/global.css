@@ -9,6 +9,20 @@
 
 * {
   box-sizing: border-box;
+  cursor: none;
+}
+
+.custom-cursor {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  background: url('re_img/커스텀커서.png') no-repeat center / contain;
+  pointer-events: none;
+  z-index: 99999;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  transition: transform 80ms ease-out;
 }
 
 html {

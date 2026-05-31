@@ -207,5 +207,12 @@
         window.addEventListener("resize", requestUpdate);
       })();
     </script>
+    <div class="custom-cursor"></div>
+    <script>
+      const c=document.querySelector('.custom-cursor');
+      document.addEventListener('mousemove',e=>{c.style.left=e.clientX+'px';c.style.top=e.clientY+'px'});
+      document.addEventListener('mouseleave',()=>c.style.display='none');
+      document.addEventListener('mouseenter',()=>c.style.display='');
+    </script>
   </body>
 </html>
