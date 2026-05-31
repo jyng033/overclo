@@ -39,56 +39,6 @@ img {
   padding-top: 0;
 }
 
-.header {
-  width: 100%;
-  min-height: 90px;
-  padding: 24px var(--page-pad);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-  background: rgba(255, 255, 255, 0.6);
-
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.brand__mark {
-  width: 30px;
-  height: 30px;
-  flex: 0 0 auto;
-}
-
-.brand__name {
-  color: var(--pink);
-  font-size: clamp(22px, 1.46vw, 28px);
-  font-weight: 700;
-  letter-spacing: -0.05em;
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  gap: clamp(18px, 2.1vw, 40px);
-}
-
-.nav a {
-  color: var(--navy);
-  font-size: clamp(15px, 1.04vw, 18px);
-  font-weight: 500;
-  line-height: 1.3;
-  letter-spacing: -0.05em;
-}
-
 .hero {
   position: relative;
   width: 100%;
@@ -239,7 +189,7 @@ img {
   font-weight: 900;
   line-height: 1.3;
   white-space: nowrap;
-  animation: word-scan 6s ease-in-out infinite alternate;
+  animation: word-scan 4s ease-in-out infinite alternate;
   will-change: transform;
 }
 
@@ -296,12 +246,14 @@ img {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 25px;
+  align-items: end;
 }
 
 .portfolio-column {
   display: flex;
   flex-direction: column;
   gap: 25px;
+  will-change: transform;
 }
 
 .portfolio-column img {
@@ -328,6 +280,12 @@ img {
   color: var(--navy);
   font-size: 20px;
   line-height: 1.3;
+  transition: background 800ms ease, color 800ms ease;
+}
+
+.outline-button:hover {
+  background: var(--navy);
+  color: #fff;
 }
 
 .why {
@@ -353,16 +311,24 @@ img {
   line-height: 1.4;
 }
 
+.why__question,
+.why__answer {
+  width: min(884px, 100%);
+  text-align: left;
+}
+
 .why h3 {
+  width: min(884px, 100%);
   font-size: clamp(42px, 3.9vw, 60px);
   font-weight: 700;
   line-height: 1.4;
+  text-align: left;
 }
 
 .why p {
   width: min(884px, 100%);
   padding: 12px 0;
-  font-size: clamp(28px, 2.3vw, 44px);
+  font-size: clamp(28px, 2.3vw, 36px);
   font-weight: 500;
   line-height: 1.45;
   text-align: left;
@@ -377,7 +343,7 @@ img {
 }
 
 .card-rail {
-  padding: 80px var(--page-pad);
+  padding: 80px 0;
   overflow: hidden;
 }
 
@@ -385,6 +351,8 @@ img {
   display: flex;
   align-items: flex-end;
   gap: 16px;
+  width: max-content;
+  animation: marquee-scroll 30s linear infinite;
 }
 
 .card-rail__track div {
@@ -392,6 +360,11 @@ img {
   height: 450px;
   flex: 0 0 350px;
   background: var(--soft-gray);
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .consulting {
@@ -488,6 +461,11 @@ img {
 .tag-row .is-active {
   background: var(--navy);
   color: #ffffff;
+  transition: transform 250ms ease;
+}
+
+.tag-row .is-active:hover {
+  transform: scale(1.15);
 }
 
 .cta-links {
@@ -509,15 +487,29 @@ img {
   font-weight: 700;
   line-height: 1.45;
   text-transform: capitalize;
+  transition: color 300ms ease;
+}
+
+.cta-links a:hover {
+  color: var(--pink);
 }
 
 .cta-links i {
-  position: absolute;
-  right: 0;
-  bottom: 19px;
-  width: 43px;
-  height: 43px;
-  border: 6px solid var(--mid-gray);
+  display: inline-block;
+  font-style: normal;
+  transition: transform 300ms ease;
+}
+
+.cta-links i::after {
+  content: "↘";
+}
+
+.cta-links a:hover i::after {
+  content: "→";
+}
+
+.cta-links a:hover i {
+  transform: translateX(4px);
 }
 
 .footer {
@@ -542,15 +534,9 @@ img {
 }
 
 @media (max-width: 1024px) {
-  .header,
-  .nav,
   .hero__logo,
   .cta-links {
     flex-direction: column;
-  }
-
-  .header {
-    align-items: flex-start;
   }
 
   .hero {
@@ -598,12 +584,6 @@ img {
     padding-bottom: 56px;
   }
 
-  .nav {
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
   .hero {
     height: 166vh;
     --orb-size: 620px;
@@ -627,12 +607,32 @@ img {
     height: 360px;
   }
 
+  .portfolio-column {
+    transform: none !important;
+  }
+
+  .tags {
+    align-items: center;
+  }
+
+  .tag-row {
+    justify-content: center;
+  }
+
+  .tag-row--offset {
+    padding-left: 0;
+  }
+
   .tag-row span {
     font-size: 18px;
   }
 
+  .cta-links {
+    align-items: center;
+  }
+
   .cta-links a {
-    min-width: 100%;
-    padding-right: 56px;
+    min-width: auto;
+    text-align: center;
   }
 }

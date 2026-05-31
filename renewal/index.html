@@ -22,9 +22,9 @@
         </a>
 
         <nav class="nav" aria-label="Main navigation">
-          <a href="./about.html">ABOUT</a>
+          <a href="#why">ABOUT</a>
           <a href="./work.html">WORK</a>
-          <a href="./contact.html">CONTACT</a>
+          <a href="#contact">CONTACT</a>
         </nav>
       </header>
 
@@ -33,10 +33,10 @@
           <div class="hero__sticky">
             <div class="hero__pattern" aria-hidden="true"></div>
             <div class="hero__orb" aria-hidden="true"></div>
-            <img class="hero__halo" src="/renewal/re_img/히어로배경.png" alt="" />
+            <img class="hero__halo" src="./re_img/히어로배경.png" alt="" />
 
             <div class="hero__logo">
-              <img class="hero__mark" src="/renewal/re_img/로고모양@300x-8.png" alt="" />
+              <img class="hero__mark" src="./re_img/%EB%A1%9C%EA%B3%A0%EB%AA%A8%EC%96%91@300x-8.png" alt="" />
               <h1>Overclo<br />Studio</h1>
             </div>
 
@@ -73,27 +73,27 @@
 
         <section class="portfolio-grid" aria-label="Portfolio">
           <div class="portfolio-column">
-            <img src="/image_overclo/portfolio/루멘창호.jpg" alt="Portfolio project 1" />
-            <img src="/image_overclo/portfolio/피른.jpg" alt="Portfolio project 2" />
-            <img src="/image_overclo/portfolio/디모스.jpg" alt="Portfolio project 3" />
+            <img src="https://overclo.vercel.app/image_overclo/portfolio/루멘창호.jpg" alt="Portfolio project 1" />
+            <img src="https://overclo.vercel.app/image_overclo/portfolio/피른.jpg" alt="Portfolio project 2" />
+            <img src="https://overclo.vercel.app/image_overclo/portfolio/디모스.jpg" alt="Portfolio project 3" />
           </div>
           <div class="portfolio-column">
-            <img src="/image_overclo/portfolio/개운한하루.jpg" alt="Portfolio project 4" />
-            <img src="/image_overclo/portfolio/산물.png" alt="Portfolio project 5" />
-            <img src="/image_overclo/portfolio/지구상회.jpg" alt="Portfolio project 6" />
+            <img src="https://overclo.vercel.app/image_overclo/portfolio/개운한하루.jpg" alt="Portfolio project 4" />
+            <img src="https://overclo.vercel.app/image_overclo/portfolio/산물.png" alt="Portfolio project 5" />
+            <img src="https://overclo.vercel.app/image_overclo/portfolio/지구상회.jpg" alt="Portfolio project 6" />
           </div>
           <div class="portfolio-column">
-            <img src="/image_overclo/portfolio/인사이팅.jpg" alt="Portfolio project 7" />
-            <img src="/image_overclo/portfolio/쿠키제과.jpg" alt="Portfolio project 8" />
-            <img src="/image_overclo/portfolio/러닝용품 랜딩페이지.png" alt="Portfolio project 9" />
+            <img src="https://overclo.vercel.app/image_overclo/portfolio/인사이팅.jpg" alt="Portfolio project 7" />
+            <img src="https://overclo.vercel.app/image_overclo/portfolio/쿠키제과.jpg" alt="Portfolio project 8" />
+            <img src="https://overclo.vercel.app/image_overclo/portfolio/러닝용품 랜딩페이지.png" alt="Portfolio project 9" />
           </div>
         </section>
 
         <div class="center-action">
-          <a class="outline-button" href="/renewal/work.html">View More+</a>
+          <a class="outline-button" href="./work.html">View More+</a>
         </div>
 
-        <section class="why">
+        <section class="why" id="why">
           <h2>왜?</h2>
           <h3>오버클로 스튜디오여야 할까?</h3>
           <p class="why__question">
@@ -106,6 +106,12 @@
 
         <section class="card-rail" aria-label="Process previews">
           <div class="card-rail__track">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
             <div></div>
             <div></div>
             <div></div>
@@ -155,12 +161,10 @@
 
         <section class="cta-links" id="contact">
           <a href="#">
-            <span>10만원 상당의<br />디자인 상담하기</span>
-            <i aria-hidden="true"></i>
+            10만원 상당의<br />디자인 상담하기 <i aria-hidden="true"></i>
           </a>
           <a href="#">
-            <span>오버클로 스튜디오<br />포트폴리오 더보기</span>
-            <i aria-hidden="true"></i>
+            오버클로 스튜디오<br />포트폴리오 더보기 <i aria-hidden="true"></i>
           </a>
         </section>
       </main>
@@ -205,6 +209,47 @@
         updateHeroOrb();
         window.addEventListener("scroll", requestUpdate, { passive: true });
         window.addEventListener("resize", requestUpdate);
+      })();
+    </script>
+    <script>
+      (() => {
+        const grid = document.querySelector('.portfolio-grid');
+        const cols = document.querySelectorAll('.portfolio-column');
+        const btn = document.querySelector('.center-action');
+        if (!grid || !cols.length || !btn) return;
+
+        const starts = [300, -150, 250];
+        const current = [starts[0], starts[1], starts[2]];
+        const ease = 0.06;
+
+        const getTarget = () => {
+          const gridRect = grid.getBoundingClientRect();
+          const btnRect = btn.getBoundingClientRect();
+          const viewH = window.innerHeight;
+          const scrolled = viewH - gridRect.top;
+          const total = (viewH + gridRect.height - btnRect.height) * 0.7;
+          return Math.max(0, Math.min(scrolled / total, 1));
+        };
+
+        const loop = () => {
+          const progress = getTarget();
+          let moving = false;
+          starts.forEach((s, i) => {
+            const target = s * (1 - progress);
+            current[i] += (target - current[i]) * ease;
+            if (Math.abs(target - current[i]) > 0.5) moving = true;
+            else current[i] = target;
+            cols[i].style.transform = 'translateY(' + current[i] + 'px)';
+          });
+          if (moving) requestAnimationFrame(loop);
+          else running = false;
+        };
+
+        let running = false;
+        const kick = () => { if (!running) { running = true; requestAnimationFrame(loop); } };
+
+        window.addEventListener('scroll', kick, { passive: true });
+        kick();
       })();
     </script>
     <div class="custom-cursor"></div>

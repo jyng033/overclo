@@ -22,9 +22,9 @@
         </a>
 
         <nav class="nav" aria-label="Main navigation">
-          <a href="./about.html">ABOUT</a>
+          <a href="./index.html#why">ABOUT</a>
           <a class="is-active" href="./work.html">WORK</a>
-          <a href="./contact.html">CONTACT</a>
+          <a href="./index.html#contact">CONTACT</a>
         </nav>
       </header>
 
@@ -34,25 +34,42 @@
         </section>
 
         <section class="work-tabs" aria-label="Work categories">
-          <a class="is-active" href="#">WEB DESIGN</a>
-          <a href="#">PRODUCT DETAIL PAGE</a>
-          <a href="#">BLOG DESIGN</a>
-          <a href="#">PACKAGING DESIGN</a>
-          <a href="#">COMMERCIAL VIDEO</a>
+          <a class="is-active" data-tab="web" href="#">WEB DESIGN</a>
+          <a data-tab="detail" href="#">PRODUCT DETAIL PAGE</a>
+          <a data-tab="blog" href="#">BLOG DESIGN</a>
+          <a data-tab="packaging" href="#">PACKAGING DESIGN</a>
+          <a data-tab="video" href="#">COMMERCIAL VIDEO</a>
         </section>
 
         <section class="work-gallery" aria-label="Work portfolio">
-          <img src="https://placehold.co/632x356" alt="Work preview 1" />
-          <img src="https://placehold.co/632x356" alt="Work preview 2" />
-          <img src="https://placehold.co/632x356" alt="Work preview 3" />
-          <img src="https://placehold.co/632x356" alt="Work preview 4" />
-          <img src="https://placehold.co/632x356" alt="Work preview 5" />
-          <img src="https://placehold.co/632x356" alt="Work preview 6" />
-          <img src="https://placehold.co/632x355" alt="Work preview 7" />
-          <img src="https://placehold.co/632x356" alt="Work preview 8" />
-          <img src="https://placehold.co/632x356" alt="Work preview 9" />
-          <img src="https://placehold.co/632x355" alt="Work preview 10" />
-          <img src="https://placehold.co/632x355" alt="Work preview 11" />
+          <div class="tab-panel is-active" data-panel="web">
+            <img src="https://placehold.co/632x356?text=Web+Design+1" alt="Web Design 1" />
+            <img src="https://placehold.co/632x356?text=Web+Design+2" alt="Web Design 2" />
+            <img src="https://placehold.co/632x356?text=Web+Design+3" alt="Web Design 3" />
+            <img src="https://placehold.co/632x356?text=Web+Design+4" alt="Web Design 4" />
+            <img src="https://placehold.co/632x356?text=Web+Design+5" alt="Web Design 5" />
+            <img src="https://placehold.co/632x356?text=Web+Design+6" alt="Web Design 6" />
+          </div>
+          <div class="tab-panel" data-panel="detail">
+            <img src="https://placehold.co/632x356?text=Detail+Page+1" alt="Detail Page 1" />
+            <img src="https://placehold.co/632x356?text=Detail+Page+2" alt="Detail Page 2" />
+            <img src="https://placehold.co/632x356?text=Detail+Page+3" alt="Detail Page 3" />
+          </div>
+          <div class="tab-panel" data-panel="blog">
+            <img src="https://placehold.co/632x356?text=Blog+Design+1" alt="Blog Design 1" />
+            <img src="https://placehold.co/632x356?text=Blog+Design+2" alt="Blog Design 2" />
+            <img src="https://placehold.co/632x356?text=Blog+Design+3" alt="Blog Design 3" />
+          </div>
+          <div class="tab-panel" data-panel="packaging">
+            <img src="https://placehold.co/632x356?text=Packaging+1" alt="Packaging 1" />
+            <img src="https://placehold.co/632x356?text=Packaging+2" alt="Packaging 2" />
+            <img src="https://placehold.co/632x356?text=Packaging+3" alt="Packaging 3" />
+          </div>
+          <div class="tab-panel" data-panel="video">
+            <img src="https://placehold.co/632x356?text=Video+1" alt="Video 1" />
+            <img src="https://placehold.co/632x356?text=Video+2" alt="Video 2" />
+            <img src="https://placehold.co/632x356?text=Video+3" alt="Video 3" />
+          </div>
         </section>
       </main>
 
@@ -64,6 +81,17 @@
         </p>
       </footer>
     </div>
+    <script>
+      document.querySelectorAll('.work-tabs a').forEach(tab => {
+        tab.addEventListener('click', e => {
+          e.preventDefault();
+          document.querySelector('.work-tabs .is-active').classList.remove('is-active');
+          tab.classList.add('is-active');
+          document.querySelector('.tab-panel.is-active').classList.remove('is-active');
+          document.querySelector('[data-panel="' + tab.dataset.tab + '"]').classList.add('is-active');
+        });
+      });
+    </script>
     <div class="custom-cursor"></div>
     <script>
       const c=document.querySelector('.custom-cursor');
