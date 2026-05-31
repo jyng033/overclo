@@ -21,7 +21,7 @@
   z-index: 99999;
   top: 0;
   left: 0;
-  transform: translate(-50%, -50%);
+  transform: translate(-15%, -10%);
   transition: transform 80ms ease-out;
 }
 
