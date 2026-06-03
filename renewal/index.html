@@ -97,10 +97,10 @@
           <h2>왜?</h2>
           <h3>오버클로 스튜디오여야 할까?</h3>
           <p class="why__question">
-            시즌마다 배너 바꾸고 리뉴얼할 때마다<br />디자이너 새로 알아보고 계시진 않으신가요?
+            시즌마다 배너 바꾸고 리뉴얼할 때마다<br />디자이너 새로 알아보고 계신가요?
           </p>
           <p class="why__answer">
-            오버클로 스튜디오는<br />홈페이지 제작부터 관리까지 책임집니다.
+            오버클로 스튜디오는<br />홈페이지 제작부터 관리까지<br>원스톱으로 책임집니다.
           </p>
         </section>
 
@@ -157,15 +157,88 @@
             <span class="is-active">#아임웹</span>
             <span>#카페24</span>
           </div>
+          <div class="tag-row tag-row--mobile">
+            <span>#반응형 홈페이지</span>
+            <span>#모바일 최적화</span>
+            <span class="is-active">#아임웹</span>
+            <span>#카페24</span>
+            <span>#반응형 홈페이지</span>
+            <span>#모바일 최적화</span>
+          </div>
         </section>
 
-        <section class="cta-links" id="contact">
-          <a href="#">
+        <section class="cta-links" id="quick-contact">
+          <a href="https://open.kakao.com/o/sYtrPnxf" target="_blank">
             10만원 상당의<br />디자인 상담하기 <i aria-hidden="true"></i>
           </a>
-          <a href="#">
+          <a href="/renewal/work.html">
             오버클로 스튜디오<br />포트폴리오 더보기 <i aria-hidden="true"></i>
           </a>
+        </section>
+
+        <section class="home-contact" id="contact">
+          <div class="home-contact__intro">
+            <div>
+              <h2>Contact</h2>
+              <p>브랜딩부터 홈페이지, 홍보영상까지<br />오버클로 스튜디오가 직접 만들어 드립니다.</p>
+            </div>
+
+            <dl class="home-contact__info">
+              <div>
+                <dt>Phone</dt>
+                <dd><a href="tel:01098455101">010-9845-5101</a></dd>
+              </div>
+              <div>
+                <dt>Email</dt>
+                <dd><a href="mailto:Overclo51@gmail.com">Overclo51@gmail.com</a></dd>
+              </div>
+            </dl>
+          </div>
+
+          <form class="home-contact__form" id="homeContactForm" aria-label="Contact form">
+            <label class="home-contact__field">
+              <span>회사명(브랜드명)<b aria-hidden="true"></b></span>
+              <input type="text" name="brand" required />
+            </label>
+
+            <label class="home-contact__field">
+              <span>담당자명<b aria-hidden="true"></b></span>
+              <input type="text" name="name" required />
+            </label>
+
+            <label class="home-contact__field">
+              <span>연락처<b aria-hidden="true"></b></span>
+              <input type="tel" name="phone" required />
+            </label>
+
+            <label class="home-contact__field">
+              <span>이메일<b aria-hidden="true"></b></span>
+              <input type="email" name="email" required />
+            </label>
+
+            <fieldset class="home-contact__projects">
+              <legend>원하시는 프로젝트를 선택해주세요.<b aria-hidden="true"></b></legend>
+              <label><input type="checkbox" name="project" value="홈페이지 제작" /> 홈페이지 제작</label>
+              <label><input type="checkbox" name="project" value="상세페이지 제작" /> 상세페이지 제작</label>
+              <label><input type="checkbox" name="project" value="블로그 디자인" /> 블로그 디자인</label>
+              <label><input type="checkbox" name="project" value="패키지 디자인" /> 패키지 디자인</label>
+              <label><input type="checkbox" name="project" value="홍보영상" /> 홍보영상</label>
+              <label><input type="checkbox" name="project" value="__other_option__" data-other-label="기타" /> 기타</label>
+            </fieldset>
+
+            <label class="home-contact__field">
+              <span>의뢰 내용을 자유롭게 작성해주세요.<b aria-hidden="true"></b></span>
+              <textarea name="message" rows="3" required></textarea>
+            </label>
+
+            <label class="home-contact__field">
+              <span>오버클로 스튜디오를 알게 된 경로를 적어주세요.</span>
+              <input type="text" name="route" />
+            </label>
+
+            <button class="home-contact__submit" type="submit">Submit</button>
+            <p class="home-contact__status" aria-live="polite"></p>
+          </form>
         </section>
       </main>
 
@@ -210,6 +283,74 @@
         window.addEventListener("scroll", requestUpdate, { passive: true });
         window.addEventListener("resize", requestUpdate);
       })();
+
+      (() => {
+        const form = document.getElementById("homeContactForm");
+        if (!form) return;
+
+        const GOOGLE_FORM_URL =
+          "https://docs.google.com/forms/d/e/1FAIpQLScAx_S1mUqAah4lCHf_cWqYDaqWPwYMrz6y2z48mMWDA74tMg/formResponse";
+        const ENTRY = {
+          brand: "entry.1648909042",
+          name: "entry.1029724008",
+          phone: "entry.595797541",
+          email: "entry.1463977824",
+          project: "entry.1844343421",
+          message: "entry.911862151",
+          route: "entry.477834280",
+        };
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          const rawData = new FormData(form);
+          const submitData = new FormData();
+          const submitButton = form.querySelector(".home-contact__submit");
+          const status = form.querySelector(".home-contact__status");
+          const originalText = submitButton.textContent;
+          const selectedProjects = rawData.getAll("project");
+
+          if (!selectedProjects.length) {
+            status.textContent = "원하시는 프로젝트를 하나 이상 선택해 주세요.";
+            return;
+          }
+
+          submitData.append(ENTRY.brand, String(rawData.get("brand") || "").trim());
+          submitData.append(ENTRY.name, String(rawData.get("name") || "").trim());
+          submitData.append(ENTRY.phone, String(rawData.get("phone") || "").trim());
+          submitData.append(ENTRY.email, String(rawData.get("email") || "").trim());
+          submitData.append(ENTRY.message, String(rawData.get("message") || "").trim());
+          submitData.append(ENTRY.route, String(rawData.get("route") || "").trim());
+
+          selectedProjects.forEach((project) => {
+            submitData.append(ENTRY.project, project);
+            if (project === "__other_option__") {
+              submitData.append(`${ENTRY.project}.other_option_response`, "기타");
+            }
+          });
+
+          submitButton.textContent = "전송 중...";
+          submitButton.disabled = true;
+          status.textContent = "";
+
+          fetch(GOOGLE_FORM_URL, {
+            method: "POST",
+            body: submitData,
+            mode: "no-cors",
+          })
+            .then(() => {
+              status.textContent = "문의가 전송되었습니다. 빠른 시일 내에 연락드리겠습니다.";
+              form.reset();
+            })
+            .catch(() => {
+              status.textContent = "전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.";
+            })
+            .finally(() => {
+              submitButton.textContent = originalText;
+              submitButton.disabled = false;
+            });
+        });
+      })();
     </script>
     <script>
       (() => {
@@ -253,11 +394,6 @@
       })();
     </script>
     <div class="custom-cursor"></div>
-    <script>
-      const c=document.querySelector('.custom-cursor');
-      document.addEventListener('mousemove',e=>{c.style.left=e.clientX+'px';c.style.top=e.clientY+'px'});
-      document.addEventListener('mouseleave',()=>c.style.display='none');
-      document.addEventListener('mouseenter',()=>c.style.display='');
-    </script>
+    <script src="./cursor.js"></script>
   </body>
 </html>

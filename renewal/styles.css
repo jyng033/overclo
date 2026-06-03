@@ -55,6 +55,8 @@ img {
   position: fixed;
   inset: 0;
   height: 100vh;
+  height: 100dvh;
+  min-height: 100svh;
   padding: 0 var(--page-pad);
   overflow: hidden;
   background: var(--gray-bg);
@@ -69,10 +71,9 @@ img {
   position: absolute;
   inset: 0;
   background-image: url("./re_img/히어로배경.png");
-  background-position: center;
-  background-size: 170% auto;
+  background-position: bottom center;
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: bottom;
   z-index: 0;
 }
 
@@ -164,13 +165,13 @@ img {
 }
 
 .statement h2 {
-  font-size: clamp(46px, 4.17vw, 80px);
+  font-size: clamp(40px, 4.17vw, 80px);
   font-weight: 900;
   line-height: 1.3;
 }
 
 .statement p {
-  font-size: clamp(26px, 2.08vw, 40px);
+  font-size: clamp(22px, 2.08vw, 32px);
   font-weight: 500;
   line-height: 1.3;
 }
@@ -278,7 +279,7 @@ img {
   justify-content: center;
   border: 1px solid var(--navy);
   color: var(--navy);
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.3;
   transition: background 800ms ease, color 800ms ease;
 }
@@ -319,19 +320,19 @@ img {
 
 .why h3 {
   width: min(884px, 100%);
-  font-size: clamp(42px, 3.9vw, 60px);
+  font-size: clamp(26px, 3.9vw, 60px);
   font-weight: 700;
   line-height: 1.4;
-  text-align: left;
+  text-align: ceter;
 }
 
 .why p {
   width: min(884px, 100%);
-  padding: 12px 0;
-  font-size: clamp(28px, 2.3vw, 36px);
+  padding: 12px 0px;
+  font-size: clamp(18px, 2.3vw, 30px);
   font-weight: 500;
   line-height: 1.45;
-  text-align: left;
+  text-align: center;
 }
 
 .why__question {
@@ -378,7 +379,7 @@ img {
 }
 
 .consulting p {
-  font-size: clamp(26px, 1.875vw, 36px);
+  font-size: clamp(22px, 1.875vw, 28px);
   font-weight: 500;
   line-height: 1.45;
 }
@@ -421,7 +422,7 @@ img {
 .service-card h3 {
   margin: 0;
   font-family: "Inter", sans-serif;
-  font-size: clamp(26px, 1.875vw, 36px);
+  font-size: clamp(24px, 1.875vw, 32px);
   font-weight: 700;
   line-height: 1.45;
   text-align: center;
@@ -443,6 +444,10 @@ img {
   gap: 16px;
 }
 
+.tag-row--mobile {
+  display: none;
+}
+
 .tag-row--offset {
   padding-left: 120px;
 }
@@ -453,7 +458,7 @@ img {
   border-radius: 500px;
   color: var(--navy);
   font-family: "Inter", sans-serif;
-  font-size: 24px;
+  font-size: clamp(16px, 1.875vw, 24px);
   font-weight: 500;
   line-height: 1.45;
 }
@@ -470,11 +475,11 @@ img {
 
 .cta-links {
   min-height: 480px;
-  padding: 120px var(--page-pad);
+  padding: 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(64px, 15.625vw, 300px);
+  gap: clamp(40px, 6.25vw, 80px);
 }
 
 .cta-links a {
@@ -483,11 +488,11 @@ img {
   min-width: min(511px, 100%);
   color: var(--mid-gray);
   font-family: "Inter", sans-serif;
-  font-size: clamp(38px, 3.125vw, 60px);
+  font-size: clamp(30px, 3.125vw, 60px);
   font-weight: 700;
   line-height: 1.45;
   text-transform: capitalize;
-  transition: color 300ms ease;
+  transition: color 400ms ease;
 }
 
 .cta-links a:hover {
@@ -497,7 +502,7 @@ img {
 .cta-links i {
   display: inline-block;
   font-style: normal;
-  transition: transform 300ms ease;
+  transition: transform 400ms ease;
 }
 
 .cta-links i::after {
@@ -510,6 +515,197 @@ img {
 
 .cta-links a:hover i {
   transform: translateX(4px);
+}
+
+.home-contact {
+  padding: 120px var(--page-pad);
+  display: grid;
+  grid-template-columns: minmax(320px, 0.85fr) minmax(420px, 810px);
+  gap: clamp(72px, 8vw, 154px);
+  align-items: flex-start;
+  background: #ffffff;
+}
+
+.home-contact__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 81px;
+}
+
+.home-contact h2 {
+  margin: 0 0 10px;
+  color: var(--navy);
+  font-family: "Inter", sans-serif;
+  font-size: clamp(36px, 2.3vw, 44px);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.home-contact__intro p {
+  margin: 0;
+  color: var(--navy);
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: clamp(20px, 1.25vw, 24px);
+  font-weight: 500;
+  line-height: 1.45;
+  text-transform: capitalize;
+}
+
+.home-contact__info {
+  margin: 0;
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+.home-contact__info div {
+  padding: 0 10px;
+  border-left: 2px solid var(--pink);
+}
+
+.home-contact__info dt,
+.home-contact__info dd {
+  margin: 0;
+  color: var(--navy);
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: clamp(20px, 1.25vw, 24px);
+  line-height: 1.45;
+}
+
+.home-contact__info dt {
+  font-weight: 700;
+}
+
+.home-contact__info dd,
+.home-contact__info a {
+  font-weight: 500;
+}
+
+.home-contact__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.home-contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.home-contact__field span,
+.home-contact__projects legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--navy);
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.home-contact__field b,
+.home-contact__projects b {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ff0900;
+}
+
+.home-contact__field input,
+.home-contact__field textarea {
+  width: 100%;
+  min-height: 32px;
+  padding: 2px 0 6px;
+  border: 0;
+  border-bottom: 1px solid var(--navy);
+  border-radius: 0;
+  color: var(--navy);
+  background: transparent;
+  font: 500 20px/1.45 "Inter", "Noto Sans KR", sans-serif;
+  outline: none;
+  resize: vertical;
+}
+
+.home-contact__field input:focus,
+.home-contact__field textarea:focus {
+  border-bottom-color: var(--pink);
+}
+
+.home-contact__projects {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.home-contact__projects legend {
+  margin-bottom: 15px;
+  padding: 0;
+}
+
+.home-contact__projects label {
+  width: fit-content;
+  margin-left: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--navy);
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.45;
+  cursor: pointer;
+}
+
+.home-contact__projects input {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--pink);
+}
+
+.home-contact__submit {
+  width: fit-content;
+  align-self: flex-end;
+  margin-top: 20px;
+  padding: 10px 30px;
+  border: 1px solid var(--navy);
+  background: transparent;
+  color: var(--navy);
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.3;
+  cursor: pointer;
+  transition: background 240ms ease, color 240ms ease, border-color 240ms ease;
+}
+
+.home-contact__submit:hover {
+  border-color: var(--pink);
+  background: var(--pink);
+  color: #ffffff;
+}
+
+.home-contact__submit:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+.home-contact__status {
+  min-height: 23px;
+  margin: -8px 0 0;
+  color: var(--pink);
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: right;
 }
 
 .footer {
@@ -564,6 +760,10 @@ img {
 
   .tag-row--offset {
     padding-left: 0;
+  }
+
+  .home-contact {
+    grid-template-columns: 1fr;
   }
 
   .cta-links {
@@ -627,6 +827,43 @@ img {
     font-size: 18px;
   }
 
+  .home-contact {
+    padding-top: 56px;
+    padding-bottom: 56px;
+    gap: 48px;
+  }
+
+  .home-contact__intro {
+    gap: 36px;
+  }
+
+  .home-contact__intro p,
+  .home-contact__info dt,
+  .home-contact__info dd {
+    font-size: 18px;
+  }
+
+  .home-contact__info {
+    padding: 0;
+    gap: 24px;
+  }
+
+  .home-contact__field span,
+  .home-contact__projects legend,
+  .home-contact__field input,
+  .home-contact__field textarea {
+    font-size: 16px;
+  }
+
+  .home-contact__projects label {
+    margin-left: 0;
+    font-size: 16px;
+  }
+
+  .home-contact__submit {
+    width: 100%;
+  }
+
   .cta-links {
     align-items: center;
   }
@@ -634,5 +871,31 @@ img {
   .cta-links a {
     min-width: auto;
     text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .tags {
+    padding: 30px 24px;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .tags > .tag-row:not(.tag-row--mobile) {
+    display: none;
+  }
+
+  .tags > .tag-row--mobile {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .tag-row--mobile span {
+    padding: 5px 8px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.45;
   }
 }
