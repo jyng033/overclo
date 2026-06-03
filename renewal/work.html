@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -148,7 +148,9 @@
           <div class="tab-panel" data-panel="detail">
             <article class="work-card work-card--detail">
               <div class="work-card__media">
-                <img src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/차량용품.png" alt="유막제거 티슈" />
+                <img src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/썸네일_유막제거.jpg"  
+                data-modal-src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/차량용품.png"  
+                alt="유막제거 티슈"/>
               </div>
               <div class="work-card__body">
                 <h2>유막제거 티슈</h2>
@@ -157,29 +159,57 @@
             </article>
             <article class="work-card work-card--detail">
               <div class="work-card__media">
-                <img src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/휴토피아.png" alt="케겔운동기" />
+                <img src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/썸네일_케겔운동기.jpg"  
+                data-modal-src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/휴토피아.png"  
+                alt="케겔운동기"/>
               </div>
               <div class="work-card__body">
                 <h2>케겔운동기</h2>
-                <p>#생활용품 <span>#온열운동기</span></p>
+                <p>#생활용품</span></p>
               </div>
             </article>
             <article class="work-card work-card--detail">
               <div class="work-card__media">
-                <img src="" alt="" />
+                <img src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/레드비트.jpg"  
+                data-modal-src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/레드비트.jpg"  
+                alt="레드비트 원액"/>
               </div>
               <div class="work-card__body">
-                <h2>제품명</h2>
-                <p># <span>#</span></p>
+                <h2>레드비트 원액</h2>
+                <p>#건강음료</p>
               </div>
             </article>
             <article class="work-card work-card--detail">
               <div class="work-card__media">
-                <img src="" alt="" />
+                <img src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/석류즙.jpg" 
+                data-modal-src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/석류즙.jpg" 
+                alt="석류즙"/>
               </div>
               <div class="work-card__body">
-                <h2>제품명</h2>
-                <p># <span>#</span></p>
+                <h2>석류즙</h2>
+                <p>#건강음료</p>
+              </div>
+            </article>
+            <article class="work-card work-card--detail">
+              <div class="work-card__media">
+                <img src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/양배추즙.jpg" 
+                data-modal-src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/양배추즙.jpg " 
+                alt="양배추즙"/>
+              </div>
+              <div class="work-card__body">
+                <h2>양배추즙</h2>
+                <p>#건강음료</p>
+              </div>
+            </article>
+            <article class="work-card work-card--detail">
+              <div class="work-card__media">
+                <img src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/보탬 가르시니아.jpg" 
+                data-modal-src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/영양제.jpg" 
+                alt="영양제"/>
+              </div>
+              <div class="work-card__body">
+                <h2>영양제</h2>
+                <p>#건강보조식품</p>
               </div>
             </article>
           </div>
@@ -267,8 +297,9 @@
           
           <div class="tab-panel" data-panel="video">
             <article class="work-card work-card--detail">
-              <div class="work-card__media">
+              <div class="work-card__media work-card__media--video" data-video-src="">
                 <img src="" alt="상업 영상" />
+                <span class="work-card__video-label">Video</span>
               </div>
               <div class="work-card__body">
                 <h2>상업 영상</h2>
@@ -276,8 +307,9 @@
               </div>
             </article>
             <article class="work-card work-card--detail">
-              <div class="work-card__media">
+              <div class="work-card__media work-card__media--video" data-video-src="">
                 <img src="" alt="상업 영상" />
+                <span class="work-card__video-label">Video</span>
               </div>
               <div class="work-card__body">
                 <h2>상업 영상</h2>
@@ -285,8 +317,9 @@
               </div>
             </article>
             <article class="work-card work-card--detail">
-              <div class="work-card__media">
+              <div class="work-card__media work-card__media--video" data-video-src="">
                 <img src="" alt="상업 영상" />
+                <span class="work-card__video-label">Video</span>
               </div>
               <div class="work-card__body">
                 <h2>상업 영상</h2>
@@ -309,6 +342,7 @@
       <button class="work-image-modal__close" type="button" aria-label="Close image preview">×</button>
       <div class="work-image-modal__scroll">
         <img class="work-image-modal__image" src="" alt="" />
+        <iframe class="work-image-modal__video" src="" title="Commercial video preview" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
     <script>
@@ -324,22 +358,70 @@
 
       const imageModal = document.querySelector('.work-image-modal');
       const imageModalImg = document.querySelector('.work-image-modal__image');
+      const imageModalVideo = document.querySelector('.work-image-modal__video');
       const imageModalClose = document.querySelector('.work-image-modal__close');
 
+      const normalizeVideoSrc = src => {
+        if (!src) return '';
+
+        try {
+          const url = new URL(src);
+          let embedSrc = src;
+
+          if (url.hostname.includes('youtube.com')) {
+            const videoId = url.searchParams.get('v') || url.pathname.split('/').filter(Boolean).pop();
+            if (videoId) embedSrc = 'https://www.youtube.com/embed/' + videoId;
+          } else if (url.hostname.includes('youtu.be')) {
+            const videoId = url.pathname.split('/').filter(Boolean)[0];
+            if (videoId) embedSrc = 'https://www.youtube.com/embed/' + videoId;
+          } else if (url.hostname.includes('vimeo.com') && !url.hostname.includes('player.')) {
+            const videoId = url.pathname.split('/').filter(Boolean).pop();
+            if (videoId) embedSrc = 'https://player.vimeo.com/video/' + videoId;
+          }
+
+          const embedUrl = new URL(embedSrc);
+          embedUrl.searchParams.set('autoplay', '1');
+          return embedUrl.toString();
+        } catch {
+          return src;
+        }
+      };
+
       const closeImageModal = () => {
-        imageModal.classList.remove('is-open');
+        imageModal.classList.remove('is-open', 'is-detail', 'is-video');
         imageModal.setAttribute('aria-hidden', 'true');
         imageModalImg.src = '';
         imageModalImg.alt = '';
+        imageModalVideo.src = '';
         document.body.classList.remove('is-modal-open');
       };
 
-      document.querySelectorAll('.work-card__media img').forEach(image => {
-        image.addEventListener('click', () => {
-          if (!image.getAttribute('src')) return;
-          imageModalImg.src = image.currentSrc || image.src;
-          imageModalImg.alt = image.alt || '';
-          imageModal.classList.add('is-open');
+      document.querySelectorAll('.work-card__media').forEach(media => {
+        media.addEventListener('click', () => {
+          const panel = media.closest('.tab-panel');
+          const image = media.querySelector('img');
+          const videoSrc = media.dataset.videoSrc;
+
+          imageModalImg.hidden = true;
+          imageModalVideo.hidden = true;
+
+          if (videoSrc) {
+            imageModalVideo.src = normalizeVideoSrc(videoSrc);
+            imageModalVideo.hidden = false;
+            imageModal.classList.add('is-open', 'is-video');
+          } else {
+            const modalSrc = image?.dataset.modalSrc || image?.currentSrc || image?.src;
+            if (!modalSrc) return;
+            imageModalImg.src = modalSrc;
+            imageModalImg.alt = image?.alt || '';
+            imageModalImg.hidden = false;
+            imageModal.classList.add('is-open');
+
+            if (panel?.dataset.panel === 'detail') {
+              imageModal.classList.add('is-detail');
+            }
+          }
+
           imageModal.setAttribute('aria-hidden', 'false');
           document.body.classList.add('is-modal-open');
         });
@@ -359,3 +441,5 @@
     <script src="./cursor.js"></script>
   </body>
 </html>
+
+
