@@ -1,9 +1,28 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
-  <head>
+    <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Work | Overclo Studio</title>
+    <title>Work | Overclo Studio 포트폴리오</title>
+    <meta name="description" content="오버클로 스튜디오의 홈페이지 제작, 상세페이지, 블로그 디자인, 패키징, 커머셜 비디오 포트폴리오를 확인하세요." />
+    <meta name="keywords" content="오버클로 포트폴리오, 홈페이지 제작 포트폴리오, 상세페이지 디자인, 블로그 디자인, 패키징 디자인, 커머셜 영상, 웹디자인 포트폴리오" />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://www.overclo.com/work.html" />
+    <link rel="icon" type="image/png" href="https://overclo.vercel.app/image_overclo/renewal/re_img/%ED%8C%8C%EB%B9%84%EC%BD%98.png" />
+    <link rel="apple-touch-icon" href="https://overclo.vercel.app/image_overclo/renewal/re_img/%ED%8C%8C%EB%B9%84%EC%BD%98.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Overclo Studio" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content="Work | Overclo Studio 포트폴리오" />
+    <meta property="og:description" content="웹디자인부터 상세페이지, 패키징, 영상까지 오버클로 스튜디오의 작업을 확인하세요." />
+    <meta property="og:url" content="https://www.overclo.com/work.html" />
+    <meta property="og:image" content="https://overclo.vercel.app/image_overclo/renewal/re_img/%EB%8C%80%ED%91%9C%EC%9D%B4%EB%AF%B8%EC%A7%80.png" />
+    <meta property="og:image:secure_url" content="https://overclo.vercel.app/image_overclo/renewal/re_img/%EB%8C%80%ED%91%9C%EC%9D%B4%EB%AF%B8%EC%A7%80.png" />
+    <meta property="og:image:alt" content="Overclo Studio" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Work | Overclo Studio 포트폴리오" />
+    <meta name="twitter:description" content="오버클로 스튜디오의 웹디자인 및 브랜드 디자인 포트폴리오." />
+    <meta name="twitter:image" content="https://overclo.vercel.app/image_overclo/renewal/re_img/%EB%8C%80%ED%91%9C%EC%9D%B4%EB%AF%B8%EC%A7%80.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -297,32 +316,32 @@
           
           <div class="tab-panel" data-panel="video">
             <article class="work-card work-card--detail">
-              <div class="work-card__media work-card__media--video" data-video-src="">
+              <div class="work-card__media work-card__media--video" data-video-src="https://www.youtube.com/shorts/nCP1B5rq2MM">
                 <img src="" alt="상업 영상" />
                 <span class="work-card__video-label">Video</span>
               </div>
               <div class="work-card__body">
-                <h2>상업 영상</h2>
+                <h2>숏폼 영상</h2>
                 <p>#홍보영상 <span>#콘텐츠</span></p>
               </div>
             </article>
             <article class="work-card work-card--detail">
-              <div class="work-card__media work-card__media--video" data-video-src="">
+              <div class="work-card__media work-card__media--video" data-video-src="https://www.youtube.com/shorts/VdT7QJk-z_Q">
                 <img src="" alt="상업 영상" />
                 <span class="work-card__video-label">Video</span>
               </div>
               <div class="work-card__body">
-                <h2>상업 영상</h2>
+                <h2>숏폼 영상</h2>
                 <p>#홍보영상 <span>#콘텐츠</span></p>
               </div>
             </article>
             <article class="work-card work-card--detail">
-              <div class="work-card__media work-card__media--video" data-video-src="">
+              <div class="work-card__media work-card__media--video" data-video-src="https://www.youtube.com/shorts/ndiNlA-6pOc">
                 <img src="" alt="상업 영상" />
                 <span class="work-card__video-label">Video</span>
               </div>
               <div class="work-card__body">
-                <h2>상업 영상</h2>
+                <h2>숏폼 영상</h2>
                 <p>#홍보영상 <span>#콘텐츠</span></p>
               </div>
             </article>
@@ -361,6 +380,39 @@
       const imageModalVideo = document.querySelector('.work-image-modal__video');
       const imageModalClose = document.querySelector('.work-image-modal__close');
 
+      const getYouTubeId = src => {
+        if (!src) return '';
+
+        try {
+          const url = new URL(src);
+
+          if (url.hostname.includes('youtube.com')) {
+            return url.searchParams.get('v') || url.pathname.split('/').filter(Boolean).pop() || '';
+          }
+
+          if (url.hostname.includes('youtu.be')) {
+            return url.pathname.split('/').filter(Boolean)[0] || '';
+          }
+        } catch {
+          return '';
+        }
+
+        return '';
+      };
+
+      document.querySelectorAll('.work-card__media--video').forEach(media => {
+        const image = media.querySelector('img');
+        const videoId = getYouTubeId(media.dataset.videoSrc);
+
+        if (image && videoId && !image.getAttribute('src')) {
+          image.src = 'https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg';
+        }
+
+        if (image && image.getAttribute('src')) {
+          media.classList.add('has-thumbnail');
+        }
+      });
+
       const normalizeVideoSrc = src => {
         if (!src) return '';
 
@@ -369,10 +421,10 @@
           let embedSrc = src;
 
           if (url.hostname.includes('youtube.com')) {
-            const videoId = url.searchParams.get('v') || url.pathname.split('/').filter(Boolean).pop();
+            const videoId = getYouTubeId(src);
             if (videoId) embedSrc = 'https://www.youtube.com/embed/' + videoId;
           } else if (url.hostname.includes('youtu.be')) {
-            const videoId = url.pathname.split('/').filter(Boolean)[0];
+            const videoId = getYouTubeId(src);
             if (videoId) embedSrc = 'https://www.youtube.com/embed/' + videoId;
           } else if (url.hostname.includes('vimeo.com') && !url.hostname.includes('player.')) {
             const videoId = url.pathname.split('/').filter(Boolean).pop();
@@ -441,5 +493,3 @@
     <script src="./cursor.js"></script>
   </body>
 </html>
-
-
