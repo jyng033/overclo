@@ -151,7 +151,7 @@ img {
 .nav {
   display: flex;
   align-items: center;
-  gap: clamp(18px, 2.1vw, 24px);
+  gap: clamp(18px, 2.1vw, 40px);
 }
 
 .site-nav a,
