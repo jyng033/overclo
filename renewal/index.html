@@ -168,30 +168,22 @@
 
         <section class="tags" aria-label="Service tags">
           <div class="tag-row">
-            <span>#반응형 홈페이지</span>
-            <span>#모바일 최적화</span>
-            <span>#아임웹</span>
-            <span>#카페24</span>
+            <a href="./work.html">#반응형 홈페이지</a>
+            <a href="./work.html">#모바일 최적화</a>
+            <a href="./work.html">#아임웹</a>
+            <a href="./work.html">#카페24</a>
           </div>
           <div class="tag-row tag-row--offset">
-            <span>#반응형 홈페이지</span>
-            <span>#모바일 최적화</span>
-            <span class="is-active">#아임웹</span>
-            <span>#카페24</span>
+            <a href="./work.html">#홈페이지제작 </a>
+            <a href="./work.html">#제품 브랜딩</a>
+            <a href="./work.html">#상세페이지</a>
+            <a href="./work.html">#홈페이지형 블로그</a>
+            <a href="./work.html">#패키지 디자인</a>
           </div>
           <div class="tag-row">
-            <span>#반응형 홈페이지</span>
-            <span>#모바일 최적화</span>
-            <span class="is-active">#아임웹</span>
-            <span>#카페24</span>
-          </div>
-          <div class="tag-row tag-row--mobile">
-            <span>#반응형 홈페이지</span>
-            <span>#모바일 최적화</span>
-            <span class="is-active">#아임웹</span>
-            <span>#카페24</span>
-            <span>#반응형 홈페이지</span>
-            <span>#모바일 최적화</span>
+            <a href="./work.html">#광고영상, ai영상</a>
+            <a href="./work.html">#블로그체험단</a>
+            <a href="./work.html">#웹앱/모바일앱 제작</a>
           </div>
         </section>
 
@@ -426,6 +418,73 @@
 
         window.addEventListener('scroll', kick, { passive: true });
         kick();
+      })();
+    </script>
+    <script>
+      (() => {
+        const tagSection = document.querySelector('.tags');
+        const tags = [...document.querySelectorAll('.tag-row a')];
+        const canRepel = window.matchMedia('(hover: hover) and (pointer: fine)');
+        if (!tagSection || !tags.length || !canRepel.matches) return;
+
+        const radius = 170;
+        const strength = 34;
+        let pointerX = 0;
+        let pointerY = 0;
+        let isInside = false;
+        let ticking = false;
+
+        const resetTags = () => {
+          tags.forEach(tag => {
+            tag.style.setProperty('--repel-x', '0px');
+            tag.style.setProperty('--repel-y', '0px');
+          });
+        };
+
+        const updateTags = () => {
+          ticking = false;
+          if (!isInside) {
+            resetTags();
+            return;
+          }
+
+          tags.forEach(tag => {
+            const rect = tag.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const dx = centerX - pointerX;
+            const dy = centerY - pointerY;
+            const distance = Math.hypot(dx, dy);
+
+            if (!distance || distance > radius) {
+              tag.style.setProperty('--repel-x', '0px');
+              tag.style.setProperty('--repel-y', '0px');
+              return;
+            }
+
+            const force = (1 - distance / radius) * strength;
+            tag.style.setProperty('--repel-x', `${(dx / distance) * force}px`);
+            tag.style.setProperty('--repel-y', `${(dy / distance) * force}px`);
+          });
+        };
+
+        const requestUpdate = () => {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(updateTags);
+        };
+
+        tagSection.addEventListener('pointermove', event => {
+          pointerX = event.clientX;
+          pointerY = event.clientY;
+          isInside = true;
+          requestUpdate();
+        });
+
+        tagSection.addEventListener('pointerleave', () => {
+          isInside = false;
+          requestUpdate();
+        });
       })();
     </script>
     <a class="floating-kakao" href="https://open.kakao.com/o/sYtrPnxf" target="_blank" rel="noopener" aria-label="카톡문의">

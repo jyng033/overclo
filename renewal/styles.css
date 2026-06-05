@@ -497,7 +497,7 @@ img {
   padding: 80px var(--page-pad);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 16px;
 }
 
@@ -505,6 +505,7 @@ img {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 16px;
 }
 
@@ -513,28 +514,40 @@ img {
 }
 
 .tag-row--offset {
-  padding-left: 120px;
+  padding-left: 0;
 }
 
-.tag-row span {
+.tag-row a {
+  --repel-x: 0px;
+  --repel-y: 0px;
+  --tag-scale: 1;
   padding: 6px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid var(--navy);
   border-radius: 500px;
+  background: transparent;
   color: var(--navy);
   font-family: "Inter", sans-serif;
   font-size: clamp(16px, 1.875vw, 24px);
   font-weight: 500;
   line-height: 1.45;
+  transform: translate(var(--repel-x), var(--repel-y)) scale(var(--tag-scale));
+  transition: border-color 220ms ease, background-color 220ms ease, color 220ms ease, transform 180ms ease;
+  will-change: transform;
 }
 
 .tag-row .is-active {
   background: var(--navy);
   color: #ffffff;
-  transition: transform 250ms ease;
 }
 
-.tag-row .is-active:hover {
-  transform: scale(1.15);
+.tag-row a:hover {
+  --tag-scale: 1.15;
+  border-color: var(--pink);
+  background: var(--pink);
+  color: #ffffff;
 }
 
 .cta-links {
@@ -909,7 +922,7 @@ img {
     padding-left: 0;
   }
 
-  .tag-row span {
+  .tag-row a {
     font-size: 18px;
   }
 
@@ -977,7 +990,7 @@ img {
     gap: 10px;
   }
 
-  .tag-row--mobile span {
+  .tag-row--mobile a {
     padding: 5px 8px;
     font-family: "Noto Sans KR", sans-serif;
     font-size: 14px;
