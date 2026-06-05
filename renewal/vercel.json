@@ -1,0 +1,51 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/work.html",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/work",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/renewal/work.html",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio.html",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/about.html",
+      "destination": "/#why",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/#why",
+      "permanent": true
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/#contact",
+      "permanent": true
+    }
+  ]
+}
