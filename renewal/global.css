@@ -107,8 +107,8 @@ img {
 .site-header,
 .header {
   width: 100%;
-  min-height: 90px;
-  padding: 24px clamp(24px, 7.8125vw, 150px);
+  min-height: 70px;
+  padding: 10px clamp(10px, 7.8125vw, 150px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -125,6 +125,38 @@ img {
 .work-page,
 .contact-page {
   padding-top: 90px;
+}
+
+.work-page {
+  --work-banner-height: 40px;
+  padding-top: calc(70px + var(--work-banner-height));
+}
+
+.work-top-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+  width: 100%;
+  height: var(--work-banner-height);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--pink);
+  color: #fff;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.work-page .header {
+  top: var(--work-banner-height);
 }
 
 .brand {
@@ -156,6 +188,8 @@ img {
 
 .site-nav a,
 .nav a {
+  position: relative;
+  display: inline-block;
   color: var(--navy);
   font-size: clamp(15px, 1.04vw, 18px);
   font-weight: 500;
@@ -164,11 +198,55 @@ img {
   transition: color 180ms ease, opacity 180ms ease;
 }
 
+.nav a::after {
+  content: attr(data-label);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  color: var(--pink);
+  line-height: inherit;
+  letter-spacing: inherit;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
 .site-nav a:hover,
 .site-nav a.is-active,
-.nav a:hover,
 .nav a.is-active {
   color: var(--pink);
+}
+
+.nav a:hover {
+  color: transparent;
+}
+
+.nav a:hover::after {
+  opacity: 1;
+}
+
+.nav .nav__cta {
+  padding: 8px 16px;
+  background: var(--pink);
+  color: #fff;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0;
+  white-space: nowrap;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.nav .nav__cta::after {
+  content: none;
+}
+
+.nav .nav__cta:hover {
+  background: var(--navy);
+  color: #fff;
 }
 
 .site-footer,
@@ -193,6 +271,70 @@ img {
 .footer strong {
   font-family: "Inter", sans-serif;
   font-weight: 800;
+}
+
+.floating-kakao {
+  position: fixed;
+  right: 24px;
+  bottom: 100px;
+  z-index: 9999;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #fee500;
+  color: #3a1d1d;
+  text-decoration: none;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.18));
+}
+
+.floating-kakao__icon {
+  width: 60px;
+  height: 60px;
+  flex: 0 0 60px;
+  background-image: url("https://cdn.imweb.me/upload/S2026040130027df76b3c0/78f63d4c811e0.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.floating-kakao__label {
+  max-width: 0;
+  padding: 0;
+  overflow: hidden;
+  flex-shrink: 0;
+  opacity: 0;
+  color: #3a1d1d;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .floating-kakao {
+    transition: width 300ms ease, border-radius 300ms ease, filter 220ms ease;
+  }
+
+  .floating-kakao__label {
+    transition: opacity 150ms ease 120ms, max-width 300ms ease, padding 300ms ease;
+  }
+
+  .floating-kakao:hover {
+    width: 128px;
+    border-radius: 999px;
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.22));
+  }
+
+  .floating-kakao:hover .floating-kakao__label {
+    max-width: 70px;
+    padding-left: 14px;
+    opacity: 1;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -229,6 +371,27 @@ img {
 @media (max-width: 640px) {
   :root {
     --page-pad: 24px;
+  }
+
+  .nav .nav__cta {
+    display: none;
+  }
+
+  .floating-kakao {
+    right: 16px;
+    bottom: 50px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .floating-kakao__icon {
+    width: 50px;
+    height: 50px;
+    flex-basis: 50px;
+  }
+
+  .work-page {
+    padding-top: calc(100px + var(--work-banner-height));
   }
 
   .site-header,

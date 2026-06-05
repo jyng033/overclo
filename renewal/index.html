@@ -19,8 +19,8 @@
     <meta property="og:image:secure_url" content="https://overclo.vercel.app/image_overclo/renewal/re_img/%EB%8C%80%ED%91%9C%EC%9D%B4%EB%AF%B8%EC%A7%80.png" />
     <meta property="og:image:alt" content="Overclo Studio" />
     <meta name="twitter:image" content="https://overclo.vercel.app/image_overclo/renewal/re_img/%EB%8C%80%ED%91%9C%EC%9D%B4%EB%AF%B8%EC%A7%80.png" />
-    <link rel="icon" type="image/png" href="https://overclo.vercel.app/image_overclo/renewal/re_img/%ED%8C%8C%EB%B9%84%EC%BD%98.png" />
-    <link rel="apple-touch-icon" href="https://overclo.vercel.app/image_overclo/renewal/re_img/%ED%8C%8C%EB%B9%84%EC%BD%98.png" />
+    <link rel="icon" type="image/png" href="./re_img/%ED%8C%8C%EB%B9%84%EC%BD%982.png?v=3" />
+    <link rel="apple-touch-icon" href="./re_img/%ED%8C%8C%EB%B9%84%EC%BD%982.png?v=3" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -40,41 +40,44 @@
         </a>
 
         <nav class="nav" aria-label="Main navigation">
-          <a href="#why">ABOUT</a>
-          <a href="./work.html">WORK</a>
-          <a href="#contact">CONTACT</a>
+          <a href="#why" data-label="회사소개">ABOUT</a>
+      <a href="./work.html" data-label="포트폴리오">PORTFOLIO</a>
+          <a href="#contact" data-label="디자인문의">CONTACT</a>
+          <a class="nav__cta" href="https://open.kakao.com/o/sYtrPnxf" target="_blank">1:1문의</a>
         </nav>
       </header>
 
       <main>
-        <section class="hero" id="about">
-          <div class="hero__sticky">
-            <div class="hero__pattern" aria-hidden="true"></div>
-            <div class="hero__orb" aria-hidden="true"></div>
-            <img class="hero__halo" src="./re_img/히어로배경.png" alt="" />
+        <div class="hero-background">
+          <section class="hero" id="about">
+            <div class="hero__sticky">
+              <div class="hero__pattern" aria-hidden="true"></div>
+              <div class="hero__orb" aria-hidden="true"></div>
+              <img class="hero__halo" src="./re_img/히어로배경_비율조절.png" alt="" />
 
-            <div class="hero__logo">
-              <img class="hero__mark" src="./re_img/%EB%A1%9C%EA%B3%A0%EB%AA%A8%EC%96%91@300x-8.png" alt="" />
-              <h1>Overclo<br />Studio</h1>
+              <div class="hero__logo">
+                <img class="hero__mark" src="./re_img/%EB%A1%9C%EA%B3%A0%EB%AA%A8%EC%96%91@300x-8.png" alt="" />
+                <h1>Overclo<br />Studio</h1>
+              </div>
+
+              <div class="hero__marquee" aria-hidden="true">
+                <span>Overclo Studio</span>
+                <span>Overclo Studio</span>
+                <span>Overclo Studio</span>
+                <span>Overclo Studio</span>
+                <span>Overclo Studio</span>
+                <span>Overclo Studio</span>
+                <span>Overclo Studio</span>
+                <span>Overclo Studio</span>
+              </div>
             </div>
+          </section>
 
-            <div class="hero__marquee" aria-hidden="true">
-              <span>Overclo Studio</span>
-              <span>Overclo Studio</span>
-              <span>Overclo Studio</span>
-              <span>Overclo Studio</span>
-              <span>Overclo Studio</span>
-              <span>Overclo Studio</span>
-              <span>Overclo Studio</span>
-              <span>Overclo Studio</span>
-            </div>
-          </div>
-        </section>
-
-        <section class="statement">
-          <h2>안팔리는 디자인은<br />만들지 않습니다.</h2>
-          <p>고객이 이해하고, 신뢰하고, 구매하는<br />디자인을 만듭니다.</p>
-        </section>
+          <section class="statement">
+            <h2>안팔리는 디자인은<br />만들지 않습니다.</h2>
+            <p>고객이 이해하고, 신뢰하고, 구매하는<br />디자인을 만듭니다.</p>
+          </section>
+        </div>
 
         <section class="word-strip word-strip--pink" aria-hidden="true">
           <p>Overclo Studio</p>
@@ -114,34 +117,41 @@
         <section class="why" id="why">
           <h2>왜?</h2>
           <h3>오버클로 스튜디오여야 할까?</h3>
-          <p class="why__question">
-            시즌마다 배너 바꾸고 리뉴얼할 때마다<br />디자이너 새로 알아보고 계신가요?
-          </p>
-          <p class="why__answer">
-            오버클로 스튜디오는<br />홈페이지 제작부터 관리까지<br>원스톱으로 책임집니다.
-          </p>
+          <div class="why__conversation">
+            <p class="why__question">
+              <svg class="why__bubble-shape" viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M90 25 H910 C950 25 975 50 975 90 V205 C975 245 950 270 910 270 H195 L125 292 L145 270 H90 C50 270 25 245 25 205 V90 C25 50 50 25 90 25 Z" />
+              </svg>
+              <span>시즌마다 배너 바꾸고, 리뉴얼할 때마다<br />디자이너 알아보기 힘들어요...</span>
+            </p>
+            <p class="why__answer">
+              <svg class="why__bubble-shape" viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M90 25 H910 C950 25 975 50 975 90 V205 C975 245 950 270 910 270 H855 L875 292 L805 270 H90 C50 270 25 245 25 205 V90 C25 50 50 25 90 25 Z" />
+              </svg>
+              <span>오버클로 스튜디오는<br />홈페이지 제작부터 관리까지<br />원스톱으로 책임집니다.</span>
+            </p>
+          </div>
         </section>
 
         <section class="card-rail" aria-label="Process previews">
           <div class="card-rail__track">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div class="card-rail__item"><img class="card-rail__image" src="./re_img/리뷰1.png" alt="" /></div>
+            <div class="card-rail__item"><img class="card-rail__image" src="./re_img/리뷰2.png" alt="" /></div>
+            <div class="card-rail__item"><img class="card-rail__image" src="./re_img/리뷰3.png" alt="" /></div>
+            <div class="card-rail__item"><img class="card-rail__image" src="./re_img/리뷰4.png" alt="" /></div>
+            <div class="card-rail__item"><img class="card-rail__image" src="./re_img/리뷰5.png" alt="" /></div>
+            <div class="card-rail__item"><img class="card-rail__image" src="./re_img/리뷰6.png" alt="" /></div>
+            <div class="card-rail__item"><img class="card-rail__image" src="./re_img/리뷰7.png" alt="" /></div>
+            <div class="card-rail__item"><img class="card-rail__image" src="./re_img/리뷰8.png" alt="" /></div>
+            <div class="card-rail__item"><img class="card-rail__image" src="./re_img/리뷰9.png" alt="" /></div>
+            <div class="card-rail__item"><img class="card-rail__image" src="./re_img/리뷰10.png" alt="" /></div>
           </div>
         </section>
 
         <section class="consulting">
           <p>진행 여부와 관계없이</p>
           <h2><strong>10만원 상당</strong>의<br />디자인 상담을 무료로 받아보세요.</h2>
+          <a class="outline-button consulting__button" href="https://open.kakao.com/o/sYtrPnxf" target="_blank">무료 상담 바로가기</a>
         </section>
 
         <section class="services" aria-label="Services">
@@ -203,8 +213,12 @@
 
             <dl class="home-contact__info">
               <div>
+                <dt>Kakao Talk</dt>
+                <dd><a href="https://open.kakao.com/o/sYtrPnxf" target="_blank">빠른 상담 바로가기↗</a></dd>
+              </div>
+              <div>
                 <dt>Phone</dt>
-                <dd><a href="tel:01098455101">010-9845-5101</a></dd>
+                <dd><a href="tel:01098455101">010-9845-5101 (문자전용)</a></dd>
               </div>
               <div>
                 <dt>Email</dt>
@@ -237,10 +251,13 @@
             <fieldset class="home-contact__projects">
               <legend>원하시는 프로젝트를 선택해주세요.<b aria-hidden="true"></b></legend>
               <label><input type="checkbox" name="project" value="홈페이지 제작" /> 홈페이지 제작</label>
+              <label><input type="checkbox" name="project" value="" /> 제품 브랜딩</label>
               <label><input type="checkbox" name="project" value="상세페이지 제작" /> 상세페이지 제작</label>
               <label><input type="checkbox" name="project" value="블로그 디자인" /> 블로그 디자인</label>
               <label><input type="checkbox" name="project" value="패키지 디자인" /> 패키지 디자인</label>
-              <label><input type="checkbox" name="project" value="홍보영상" /> 홍보영상</label>
+                <label><input type="checkbox" name="project" value="홍보영상" /> 광고영상, ai영상</label>
+                <label><input type="checkbox" name="project" value="" /> 블로그 체험단, sns 바이럴광고</label>
+              <label><input type="checkbox" name="project" value="" /> 웹앱/어플리케이션 앱 제작</label>
               <label><input type="checkbox" name="project" value="__other_option__" data-other-label="기타" /> 기타</label>
             </fieldset>
 
@@ -254,7 +271,7 @@
               <input type="text" name="route" />
             </label>
 
-            <button class="home-contact__submit" type="submit">Submit</button>
+            <button class="home-contact__submit" type="submit">제출하기</button>
             <p class="home-contact__status" aria-live="polite"></p>
           </form>
         </section>
@@ -411,6 +428,10 @@
         kick();
       })();
     </script>
+    <a class="floating-kakao" href="https://open.kakao.com/o/sYtrPnxf" target="_blank" rel="noopener" aria-label="카톡문의">
+      <span class="floating-kakao__label">카톡문의</span>
+      <span class="floating-kakao__icon" aria-hidden="true"></span>
+    </a>
     <div class="custom-cursor"></div>
     <script src="./cursor.js"></script>
   </body>

@@ -8,8 +8,8 @@
     <meta name="keywords" content="오버클로 포트폴리오, 홈페이지 제작 포트폴리오, 웹디자인 포트폴리오, 상세페이지 디자인, 블로그 디자인, 패키징 디자인, 커머셜 영상, 디자인 스튜디오" />
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href="https://www.overclo.com/work.html" />
-    <link rel="icon" type="image/png" href="https://overclo.vercel.app/image_overclo/renewal/re_img/%ED%8C%8C%EB%B9%84%EC%BD%98.png" />
-    <link rel="apple-touch-icon" href="https://overclo.vercel.app/image_overclo/renewal/re_img/%ED%8C%8C%EB%B9%84%EC%BD%98.png" />
+    <link rel="icon" type="image/png" href="./re_img/%ED%8C%8C%EB%B9%84%EC%BD%982.png?v=3" />
+    <link rel="apple-touch-icon" href="./re_img/%ED%8C%8C%EB%B9%84%EC%BD%982.png?v=3" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Overclo Studio" />
     <meta property="og:locale" content="ko_KR" />
@@ -34,6 +34,7 @@
   </head>
   <body>
     <div class="work-page">
+      <div class="work-top-banner" aria-hidden="true">overclo studio</div>
       <header class="header">
         <a class="brand" href="./index.html" aria-label="Overclo Studio home">
           <img class="brand__mark" src="./re_img/%EB%A1%9C%EA%B3%A0%EB%AA%A8%EC%96%91@300x-8.png" alt="" />
@@ -41,15 +42,23 @@
         </a>
 
         <nav class="nav" aria-label="Main navigation">
-          <a href="./index.html#why">ABOUT</a>
-          <a class="is-active" href="./work.html">WORK</a>
-          <a href="./index.html#contact">CONTACT</a>
+          <a href="./index.html#why" data-label="회사소개">ABOUT</a>
+          <a class="is-active" href="./work.html" data-label="포트폴리오">PORTFOLIO</a>
+          <a href="./index.html#contact" data-label="디자인문의">CONTACT</a>
+          <a class="nav__cta" href="https://open.kakao.com/o/sYtrPnxf" target="_blank">1:1문의</a>
         </nav>
       </header>
 
       <main>
         <section class="work-hero">
-          <h1>WORK</h1>
+          <div class="work-hero__title">
+            <h1>Portfolio</h1>
+            <p>오버클로 스튜디오<br />포트폴리오</p>
+          </div>
+          <p class="work-hero__description">
+            "<br />한 번의 연출이 아닌, 오래가는 콘텐츠를 추구합니다.<br />
+            브랜드의 시작부터 성장까지 함께하는 디자인 스튜디오입니다.<br />"
+          </p>
         </section>
 
         <section class="work-tabs" aria-label="Work categories">
@@ -62,7 +71,7 @@
 
         <section class="work-gallery" aria-label="Work portfolio">
           <div class="tab-panel is-active" data-panel="web">
-            <article class="work-card work-card--web">
+            <article class="work-card work-card--web" data-copy-url="">
               <div class="work-card__media">
                 <img src="https://overclo.vercel.app/image_overclo/portfolio/개운한하루.jpg" alt="사주명리 홈페이지" />
               </div>
@@ -71,7 +80,7 @@
                 <p>#아임웹 <span>#쇼핑몰</span></p>
               </div>
             </article>
-            <article class="work-card work-card--web">
+            <article class="work-card work-card--web" data-copy-url="">
               <div class="work-card__media">
                 <img src="https://overclo.vercel.app/image_overclo/portfolio/디모스.jpg" alt="수입가구 쇼핑몰" />
               </div>
@@ -80,7 +89,7 @@
                 <p>#카페24 <span>#쇼핑몰</span></p>
               </div>
             </article>
-            <article class="work-card work-card--web">
+            <article class="work-card work-card--web" data-copy-url="">
               <div class="work-card__media">
                 <img src="https://overclo.vercel.app/image_overclo/portfolio/인사이팅.jpg" alt="프리미엄 가구 쇼핑몰" />
               </div>
@@ -89,7 +98,7 @@
                 <p>#아임웹 <span>#회사소개</span></p>
               </div>
             </article>
-            <article class="work-card work-card--web">
+            <article class="work-card work-card--web" data-copy-url="">
               <div class="work-card__media">
                 <img src="https://overclo.vercel.app/image_overclo/portfolio/지구상회.jpg" alt="협동조합 쇼핑몰" />
               </div>
@@ -98,7 +107,7 @@
                 <p>#아임웹 <span>#쇼핑몰</span></p>
               </div>
             </article>
-            <article class="work-card work-card--web">
+            <article class="work-card work-card--web" data-copy-url="">
               <div class="work-card__media">
                 <img src="https://overclo.vercel.app/image_overclo/portfolio/지스타지구조합.jpg" alt="협동조합 회사소개 홈페이지" />
               </div>
@@ -107,7 +116,7 @@
                 <p>#아임웹 <span>#협동조합</span> <span>#조합원모집</span></p>
               </div>
             </article>
-            <article class="work-card work-card--web">
+            <article class="work-card work-card--web" data-copy-url="">
               <div class="work-card__media">
                 <img src="https://overclo.vercel.app/image_overclo/portfolio/루멘창호.jpg" alt="루멘창호" />
               </div>
@@ -116,7 +125,7 @@
                 <p>#아임웹 <span>#회사소개</span></p>
               </div>
             </article>
-            <article class="work-card work-card--web">
+            <article class="work-card work-card--web" data-copy-url="">
               <div class="work-card__media">
                 <img src="https://overclo.vercel.app/image_overclo/portfolio/피른.jpg" alt="유리잔 브랜드 쇼핑몰" />
               </div>
@@ -125,7 +134,7 @@
                 <p>#아임웹 <span>#리뉴얼디자인</span></p>
               </div>
             </article>
-            <article class="work-card work-card--web">
+            <article class="work-card work-card--web" data-copy-url="">
               <div class="work-card__media">
                 <img src="https://overclo.vercel.app/image_overclo/portfolio/산물.png" alt="농산물 전문 쇼핑몰" />
               </div>
@@ -134,7 +143,7 @@
                 <p>#아임웹 <span>#쇼핑몰</span></p>
               </div>
             </article>
-            <article class="work-card work-card--web">
+            <article class="work-card work-card--web" data-copy-url="">
               <div class="work-card__media">
                 <img src="https://overclo.vercel.app/image_overclo/portfolio/러닝용품 랜딩페이지.png" alt="스포츠용품 브랜드 랜딩페이지" />
               </div>
@@ -143,7 +152,7 @@
                 <p>#아임웹 <span>#브랜드홍보</span></p>
               </div>
             </article>
-            <article class="work-card work-card--web">
+            <article class="work-card work-card--web" data-copy-url="">
               <div class="work-card__media">
                 <img src="https://overclo.vercel.app/image_overclo/portfolio/화장품_EN.png" alt="화장품 브랜드 글로벌 쇼핑몰" />
               </div>
@@ -152,7 +161,7 @@
                 <p>#아임웹 <span>#쇼핑몰</span> <span>#글로벌사이트</span></p>
               </div>
             </article>
-            <article class="work-card work-card--web">
+            <article class="work-card work-card--web" data-copy-url="">
               <div class="work-card__media">
                 <img src="https://overclo.vercel.app/image_overclo/portfolio/쿠키제과.jpg" alt="쿠키제과" />
               </div>
@@ -359,12 +368,39 @@
     </div>
     <div class="work-image-modal" aria-hidden="true">
       <button class="work-image-modal__close" type="button" aria-label="Close image preview">×</button>
+      <button class="work-image-modal__nav work-image-modal__nav--prev" type="button" aria-label="Previous work">‹</button>
+      <button class="work-image-modal__nav work-image-modal__nav--next" type="button" aria-label="Next work">›</button>
       <div class="work-image-modal__scroll">
-        <img class="work-image-modal__image" src="" alt="" />
-        <iframe class="work-image-modal__video" src="" title="Commercial video preview" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <div class="work-image-modal__meta">
+          <h2 class="work-image-modal__title"></h2>
+          <div class="work-image-modal__tags"></div>
+        </div>
+        <div class="work-image-modal__media">
+          <img class="work-image-modal__image" src="" alt="" draggable="false" />
+          <iframe class="work-image-modal__video" src="" title="Commercial video preview" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="work-image-modal__actions">
+        <div class="work-image-modal__actions-info">
+          <h2 class="work-image-modal__actions-title"></h2>
+          <div class="work-image-modal__actions-tags"></div>
+        </div>
+        <div class="work-image-modal__actions-buttons">
+          <button class="work-image-modal__copy" type="button">링크복사</button>
+          <a class="work-image-modal__inquiry" href="https://open.kakao.com/o/sYtrPnxf" target="_blank" rel="noopener">문의하기</a>
+        </div>
       </div>
     </div>
     <script>
+      document.querySelectorAll('.work-card__body p').forEach(tagList => {
+        [...tagList.childNodes].forEach(node => {
+          if (node.nodeType !== Node.TEXT_NODE || !node.textContent.trim()) return;
+          const tag = document.createElement('span');
+          tag.textContent = node.textContent.trim();
+          node.replaceWith(tag);
+        });
+      });
+
       document.querySelectorAll('.work-tabs a').forEach(tab => {
         tab.addEventListener('click', e => {
           e.preventDefault();
@@ -379,6 +415,23 @@
       const imageModalImg = document.querySelector('.work-image-modal__image');
       const imageModalVideo = document.querySelector('.work-image-modal__video');
       const imageModalClose = document.querySelector('.work-image-modal__close');
+      const imageModalScroll = document.querySelector('.work-image-modal__scroll');
+      const imageModalTitle = document.querySelector('.work-image-modal__title');
+      const imageModalTags = document.querySelector('.work-image-modal__tags');
+      const imageModalActionsTitle = document.querySelector('.work-image-modal__actions-title');
+      const imageModalActionsTags = document.querySelector('.work-image-modal__actions-tags');
+      const imageModalCopy = document.querySelector('.work-image-modal__copy');
+      const imageModalPrev = document.querySelector('.work-image-modal__nav--prev');
+      const imageModalNext = document.querySelector('.work-image-modal__nav--next');
+      const modalMediaItems = [...document.querySelectorAll('.work-card__media')];
+      let activeModalMedia = null;
+      let activeModalItems = [];
+      let activeModalIndex = -1;
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let mouseStartX = 0;
+      let mouseStartY = 0;
+      let wheelLock = false;
 
       const getYouTubeId = src => {
         if (!src) return '';
@@ -440,44 +493,186 @@
       };
 
       const closeImageModal = () => {
-        imageModal.classList.remove('is-open', 'is-detail', 'is-video');
+        imageModal.classList.remove('is-open', 'is-detail', 'is-video', 'is-short', 'is-actions-visible');
         imageModal.setAttribute('aria-hidden', 'true');
         imageModalImg.src = '';
         imageModalImg.alt = '';
         imageModalVideo.src = '';
+        imageModalCopy.dataset.copyUrl = '';
+        imageModalCopy.textContent = '링크복사';
+        activeModalMedia = null;
+        activeModalItems = [];
+        activeModalIndex = -1;
         document.body.classList.remove('is-modal-open');
       };
 
-      document.querySelectorAll('.work-card__media').forEach(media => {
-        media.addEventListener('click', () => {
-          const panel = media.closest('.tab-panel');
-          const image = media.querySelector('img');
-          const videoSrc = media.dataset.videoSrc;
+      const getCardInfo = media => {
+        const card = media.closest('.work-card');
+        const title = card?.querySelector('.work-card__body h2')?.textContent.trim() || '';
+        const tags = [...(card?.querySelectorAll('.work-card__body p') || [])]
+          .flatMap(element => element.textContent.trim().split(/\s+/))
+          .filter(Boolean);
 
-          imageModalImg.hidden = true;
-          imageModalVideo.hidden = true;
+        return {
+          title,
+          tags,
+          copyUrl: card?.dataset.copyUrl?.trim() || ''
+        };
+      };
 
-          if (videoSrc) {
-            imageModalVideo.src = normalizeVideoSrc(videoSrc);
-            imageModalVideo.hidden = false;
-            imageModal.classList.add('is-open', 'is-video');
-          } else {
-            const modalSrc = image?.dataset.modalSrc || image?.currentSrc || image?.src;
-            if (!modalSrc) return;
-            imageModalImg.src = modalSrc;
-            imageModalImg.alt = image?.alt || '';
-            imageModalImg.hidden = false;
-            imageModal.classList.add('is-open');
-
-            if (panel?.dataset.panel === 'detail') {
-              imageModal.classList.add('is-detail');
-            }
-          }
-
-          imageModal.setAttribute('aria-hidden', 'false');
-          document.body.classList.add('is-modal-open');
+      const renderTags = (container, tags) => {
+        container.replaceChildren();
+        tags.forEach((tag, index) => {
+          const span = document.createElement('span');
+          span.textContent = tag.replace(/^#/, '');
+          if (index === 0) span.classList.add('is-primary');
+          container.appendChild(span);
         });
+      };
+
+      const updateActionVisibility = () => {
+        if (!imageModal.classList.contains('is-open')) return;
+        const shouldShow = imageModal.classList.contains('is-short') || imageModalScroll.scrollTop > 150;
+        imageModal.classList.toggle('is-actions-visible', shouldShow);
+      };
+
+      const updateShortMediaState = () => {
+        requestAnimationFrame(() => {
+          const isShort = imageModalScroll.scrollHeight <= imageModalScroll.clientHeight + 1;
+          imageModal.classList.toggle('is-short', isShort);
+          updateActionVisibility();
+        });
+      };
+
+      const openModalMedia = media => {
+        const panel = media.closest('.tab-panel');
+        const image = media.querySelector('img');
+        const videoSrc = media.dataset.videoSrc;
+        const info = getCardInfo(media);
+
+        activeModalMedia = media;
+        activeModalItems = [...panel.querySelectorAll('.work-card__media')];
+        activeModalIndex = activeModalItems.indexOf(media);
+
+        imageModal.classList.remove('is-detail', 'is-video', 'is-short', 'is-actions-visible');
+        imageModalImg.hidden = true;
+        imageModalVideo.hidden = true;
+        imageModalVideo.src = '';
+        imageModalScroll.scrollTop = 0;
+
+        imageModalTitle.textContent = info.title;
+        imageModalActionsTitle.textContent = info.title;
+        renderTags(imageModalTags, info.tags);
+        renderTags(imageModalActionsTags, info.tags);
+
+        const isWebPanel = panel?.dataset.panel === 'web';
+        imageModalCopy.dataset.copyUrl = isWebPanel ? info.copyUrl : '';
+        imageModalCopy.hidden = !isWebPanel || !info.copyUrl;
+        imageModalCopy.textContent = '링크복사';
+
+        if (videoSrc) {
+          imageModalVideo.src = normalizeVideoSrc(videoSrc);
+          imageModalVideo.hidden = false;
+          imageModal.classList.add('is-video');
+          updateShortMediaState();
+        } else {
+          const modalSrc = image?.dataset.modalSrc || image?.currentSrc || image?.src;
+          if (!modalSrc) return;
+          imageModalImg.src = modalSrc;
+          imageModalImg.alt = image?.alt || info.title;
+          imageModalImg.hidden = false;
+
+          if (panel?.dataset.panel === 'detail') {
+            imageModal.classList.add('is-detail');
+          }
+        }
+
+        imageModal.classList.add('is-open');
+        imageModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('is-modal-open');
+        updateShortMediaState();
+      };
+
+      const moveModal = direction => {
+        if (!activeModalItems.length) return;
+        const nextIndex = (activeModalIndex + direction + activeModalItems.length) % activeModalItems.length;
+        openModalMedia(activeModalItems[nextIndex]);
+      };
+
+      modalMediaItems.forEach(media => {
+        media.addEventListener('click', () => openModalMedia(media));
       });
+
+      imageModalImg.addEventListener('load', updateShortMediaState);
+      imageModalScroll.addEventListener('scroll', updateActionVisibility, { passive: true });
+      imageModalPrev.addEventListener('click', () => moveModal(-1));
+      imageModalNext.addEventListener('click', () => moveModal(1));
+
+      imageModalCopy.addEventListener('click', async () => {
+        const copyUrl = imageModalCopy.dataset.copyUrl;
+        if (!copyUrl) return;
+
+        try {
+          if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(copyUrl);
+          } else {
+            const textarea = document.createElement('textarea');
+            textarea.value = copyUrl;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            textarea.remove();
+          }
+          imageModalCopy.textContent = '복사완료';
+          window.setTimeout(() => {
+            imageModalCopy.textContent = '링크복사';
+          }, 1400);
+        } catch {
+          imageModalCopy.textContent = '복사실패';
+        }
+      });
+
+      imageModalScroll.addEventListener('touchstart', event => {
+        touchStartX = event.changedTouches[0].clientX;
+        touchStartY = event.changedTouches[0].clientY;
+      }, { passive: true });
+
+      imageModalScroll.addEventListener('touchend', event => {
+        const touchDistance = event.changedTouches[0].clientX - touchStartX;
+        const verticalDistance = event.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(touchDistance) < 50 || Math.abs(touchDistance) <= Math.abs(verticalDistance)) return;
+        moveModal(touchDistance < 0 ? 1 : -1);
+      }, { passive: true });
+
+      imageModalScroll.addEventListener('pointerdown', event => {
+        if (event.pointerType === 'touch') return;
+        mouseStartX = event.clientX;
+        mouseStartY = event.clientY;
+        imageModalScroll.setPointerCapture(event.pointerId);
+      });
+
+      imageModalScroll.addEventListener('pointerup', event => {
+        if (event.pointerType === 'touch') return;
+        const mouseDistance = event.clientX - mouseStartX;
+        const verticalDistance = event.clientY - mouseStartY;
+        if (imageModalScroll.hasPointerCapture(event.pointerId)) {
+          imageModalScroll.releasePointerCapture(event.pointerId);
+        }
+        if (Math.abs(mouseDistance) < 70 || Math.abs(mouseDistance) <= Math.abs(verticalDistance)) return;
+        moveModal(mouseDistance < 0 ? 1 : -1);
+      });
+
+      imageModalScroll.addEventListener('wheel', event => {
+        if (wheelLock || Math.abs(event.deltaX) < 45 || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+        event.preventDefault();
+        wheelLock = true;
+        moveModal(event.deltaX > 0 ? 1 : -1);
+        window.setTimeout(() => {
+          wheelLock = false;
+        }, 450);
+      }, { passive: false });
 
       imageModalClose.addEventListener('click', closeImageModal);
       imageModal.addEventListener('click', event => {
@@ -489,6 +684,10 @@
         }
       });
     </script>
+    <a class="floating-kakao" href="https://open.kakao.com/o/sYtrPnxf" target="_blank" rel="noopener" aria-label="카톡문의">
+      <span class="floating-kakao__label">카톡문의</span>
+      <span class="floating-kakao__icon" aria-hidden="true"></span>
+    </a>
     <div class="custom-cursor"></div>
     <script src="./cursor.js"></script>
   </body>
