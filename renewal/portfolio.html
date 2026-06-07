@@ -203,19 +203,27 @@
           <div class="tab-panel" data-panel="detail">
             <article class="work-card work-card--detail">
               <div class="work-card__media">
-                <img src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/썸네일_유막제거.jpg"  
-                data-modal-src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/차량용품.png"  
+                <img src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/1_상세페이지_퓨리위유막제거.jpg"
                 alt="유막제거 티슈"/>
               </div>
               <div class="work-card__body">
                 <h2>PURIWI ROAD - 유막제거 티슈</h2>
-                <p><span>차량용품</span></p>
+                <p><span>차량용품</span> <span>쿠팡 상위판매자</span></p>
               </div>
             </article>
             <article class="work-card work-card--detail">
               <div class="work-card__media">
-                <img src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/썸네일_케겔운동기.jpg"  
-                data-modal-src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/휴토피아.png"  
+                <img src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/2_상세페이지_퓨리위김서림방지.jpg"
+                alt="김서림방지"/>
+              </div>
+              <div class="work-card__body">
+                <h2>PURIWI ROAD - 김서림방지 티슈</h2>
+                <p><span>차량용품</span> <span>쿠팡 상위판매자</span></p>
+              </div>
+            </article>
+            <article class="work-card work-card--detail">
+              <div class="work-card__media">
+                <img src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/휴토피아.png"
                 alt="케겔운동기"/>
               </div>
               <div class="work-card__body">
@@ -225,19 +233,7 @@
             </article>
             <article class="work-card work-card--detail">
               <div class="work-card__media">
-                <img src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/보탬 가르시니아.jpg" 
-                data-modal-src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/영양제.jpg" 
-                alt="영양제"/>
-              </div>
-              <div class="work-card__body">
-                <h2>보탬 - 영양제</h2>
-                <p><span>건강보조식품</span></p>
-              </div>
-            </article>
-            <article class="work-card work-card--detail">
-              <div class="work-card__media">
                 <img src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/레드비트.jpg"  
-                data-modal-src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/레드비트.jpg"  
                 alt="레드비트 원액"/>
               </div>
               <div class="work-card__body">
@@ -248,7 +244,6 @@
             <article class="work-card work-card--detail">
               <div class="work-card__media">
                 <img src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/석류즙.jpg" 
-                data-modal-src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/석류즙.jpg" 
                 alt="석류즙"/>
               </div>
               <div class="work-card__body">
@@ -259,7 +254,6 @@
             <article class="work-card work-card--detail">
               <div class="work-card__media">
                 <img src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/양배추즙.jpg" 
-                data-modal-src="https://overclo.vercel.app/image_overclo/portfolio/detail_page/양배추즙.jpg " 
                 alt="양배추즙"/>
               </div>
               <div class="work-card__body">
@@ -612,7 +606,7 @@
           imageModal.classList.add('is-video');
           updateShortMediaState();
         } else {
-          const modalSrc = image?.dataset.modalSrc || image?.currentSrc || image?.src;
+          const modalSrc = image?.currentSrc || image?.src;
           if (!modalSrc) return;
           imageModalImg.src = modalSrc;
           imageModalImg.alt = image?.alt || info.title;
