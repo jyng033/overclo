@@ -609,6 +609,18 @@
         imageModal.classList.toggle('is-actions-visible', shouldShow);
       };
 
+      const resetModalScroll = () => {
+        imageModalScroll.scrollTop = 0;
+        imageModalScroll.scrollLeft = 0;
+        imageModalScroll.scrollTo?.(0, 0);
+
+        requestAnimationFrame(() => {
+          imageModalScroll.scrollTop = 0;
+          imageModalScroll.scrollLeft = 0;
+          imageModalScroll.scrollTo?.(0, 0);
+        });
+      };
+
       const updateShortMediaState = () => {
         requestAnimationFrame(() => {
           const isShort = imageModalScroll.scrollHeight <= imageModalScroll.clientHeight + 1;
@@ -638,7 +650,7 @@
         imageModalImg.hidden = true;
         imageModalVideo.hidden = true;
         imageModalVideo.src = '';
-        imageModalScroll.scrollTop = 0;
+        resetModalScroll();
 
         imageModalTitle.textContent = info.title;
         imageModalActionsTitle.textContent = info.title;
@@ -670,6 +682,7 @@
         imageModal.classList.add('is-open');
         imageModal.setAttribute('aria-hidden', 'false');
         document.body.classList.add('is-modal-open');
+        resetModalScroll();
         updateShortMediaState();
       };
 
@@ -683,7 +696,10 @@
         media.addEventListener('click', () => openModalMedia(media));
       });
 
-      imageModalImg.addEventListener('load', updateShortMediaState);
+      imageModalImg.addEventListener('load', () => {
+        resetModalScroll();
+        updateShortMediaState();
+      });
       imageModalScroll.addEventListener('scroll', updateActionVisibility, { passive: true });
       imageModalPrev.addEventListener('click', () => moveModal(-1));
       imageModalNext.addEventListener('click', () => moveModal(1));

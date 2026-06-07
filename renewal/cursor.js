@@ -20,13 +20,17 @@
   let stretchX = 1;
   let stretchY = 1;
   let clickScale = 1;
+  let isVisible = false;
 
   const show = () => {
+    isVisible = true;
     cursor.style.opacity = "1";
   };
 
   const hide = () => {
+    isVisible = false;
     cursor.style.opacity = "0";
+    cursor.style.transform = "translate3d(-9999px, -9999px, 0) scale(1)";
   };
 
   const moveTo = (clientX, clientY) => {
@@ -37,6 +41,12 @@
   const onPointerMove = (event) => {
     show();
     moveTo(event.clientX, event.clientY);
+  };
+
+  const onDocumentMouseOut = (event) => {
+    if (!event.relatedTarget && !event.toElement) {
+      hide();
+    }
   };
 
   const onPointerDown = (event) => {
@@ -66,8 +76,10 @@
     }
 
     stretchY = 1 / stretchX;
-    cursor.style.transform =
-      `translate3d(${x}px, ${y}px, 0) rotate(${angle}rad) scale(${stretchX * clickScale}, ${stretchY * clickScale})`;
+    if (isVisible) {
+      cursor.style.transform =
+        `translate3d(${x}px, ${y}px, 0) rotate(${angle}rad) scale(${stretchX * clickScale}, ${stretchY * clickScale})`;
+    }
 
     prevX = x;
     prevY = y;
@@ -77,10 +89,14 @@
   window.addEventListener("pointermove", onPointerMove, { passive: true });
   window.addEventListener("pointerdown", onPointerDown, { passive: true });
   window.addEventListener("pointerup", onPointerUp, { passive: true });
-  window.addEventListener("mouseenter", show, { passive: true });
-  window.addEventListener("mouseleave", hide, { passive: true });
+  document.documentElement.addEventListener("mouseenter", show, { passive: true });
+  document.documentElement.addEventListener("mouseleave", hide, { passive: true });
+  document.addEventListener("mouseout", onDocumentMouseOut, { passive: true });
+  window.addEventListener("blur", hide, { passive: true });
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) hide();
+  }, { passive: true });
   window.addEventListener("pageshow", show, { passive: true });
 
-  show();
   requestAnimationFrame(render);
 })();
