@@ -179,7 +179,13 @@ img {
   font-weight: 600;
   line-height: 1.2;
   text-transform: capitalize;
-  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
 .work-tabs .is-active {
@@ -187,6 +193,20 @@ img {
   background: var(--pink);
   box-shadow: none;
   color: #ffffff;
+}
+
+.work-tabs a:hover {
+  border-color: var(--pink);
+  background: rgba(255, 38, 132, 0.08);
+  color: var(--pink);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(255, 38, 132, 0.14);
+}
+
+.work-tabs a.is-active:hover {
+  background: var(--pink);
+  color: #ffffff;
+  transform: translateY(-2px);
 }
 
 .work-gallery {
