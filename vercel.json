@@ -3,6 +3,36 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio.html",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/renewal",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/renewal/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/renewal/portfolio",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/renewal/portfolio.html",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
       "source": "/work.html",
       "destination": "/portfolio",
       "permanent": true
