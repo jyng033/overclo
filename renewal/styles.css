@@ -524,6 +524,8 @@ img {
     rgba(255, 255, 255, 0.29) 35%,
     rgba(255, 255, 255, 0.4) 71%
   );
+  color: inherit;
+  text-decoration: none;
 }
 
 .service-card__image {

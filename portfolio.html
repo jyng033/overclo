@@ -472,15 +472,30 @@
         });
       });
 
-      document.querySelectorAll('.work-tabs a').forEach(tab => {
+      const workTabs = document.querySelectorAll('.work-tabs a');
+      const activateWorkTab = tabName => {
+        const targetTab = document.querySelector('.work-tabs a[data-tab="' + tabName + '"]');
+        const targetPanel = document.querySelector('[data-panel="' + tabName + '"]');
+        if (!targetTab || !targetPanel) return false;
+
+        document.querySelector('.work-tabs .is-active')?.classList.remove('is-active');
+        targetTab.classList.add('is-active');
+        document.querySelector('.tab-panel.is-active')?.classList.remove('is-active');
+        targetPanel.classList.add('is-active');
+        return true;
+      };
+
+      workTabs.forEach(tab => {
+        tab.href = '?tab=' + tab.dataset.tab;
         tab.addEventListener('click', e => {
           e.preventDefault();
-          document.querySelector('.work-tabs .is-active').classList.remove('is-active');
-          tab.classList.add('is-active');
-          document.querySelector('.tab-panel.is-active').classList.remove('is-active');
-          document.querySelector('[data-panel="' + tab.dataset.tab + '"]').classList.add('is-active');
+          activateWorkTab(tab.dataset.tab);
+          history.replaceState(null, '', '?tab=' + tab.dataset.tab);
         });
       });
+
+      const initialTab = new URLSearchParams(window.location.search).get('tab') || window.location.hash.replace('#', '');
+      if (initialTab) activateWorkTab(initialTab);
 
       const imageModal = document.querySelector('.work-image-modal');
       const imageModalImg = document.querySelector('.work-image-modal__image');
