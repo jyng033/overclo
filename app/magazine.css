@@ -209,6 +209,62 @@ a {
   font-size: 14px;
 }
 
+.admin-form {
+  display: grid;
+  gap: 18px;
+  margin-top: 34px;
+}
+
+.admin-form label {
+  display: grid;
+  gap: 8px;
+  color: #f1e7d6;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.admin-form input {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 6px;
+  background: #111;
+  color: #fff;
+  font: inherit;
+}
+
+.admin-form button,
+.admin-secondary-button {
+  min-height: 48px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 6px;
+  background: #f1e7d6;
+  color: #141414;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.admin-secondary-button {
+  margin-top: 30px;
+  background: transparent;
+  color: #f1e7d6;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.admin-form button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.admin-error {
+  margin: 0;
+  color: #ffb4a8;
+  font-size: 14px;
+}
+
 @media (max-width: 760px) {
   .magazine-nav {
     align-items: flex-start;
