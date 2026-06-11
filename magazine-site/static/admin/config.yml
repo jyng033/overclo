@@ -1,0 +1,35 @@
+backend:
+  name: github
+  repo: jyng033/overclo
+  branch: main
+
+publish_mode: editorial_workflow
+media_folder: "magazine-site/static/uploads"
+public_folder: "/uploads"
+site_url: "https://magazine.overclo.com"
+display_url: "https://magazine.overclo.com"
+locale: "ko"
+
+collections:
+  - name: "posts"
+    label: "게시글"
+    label_singular: "게시글"
+    folder: "magazine-site/content/posts"
+    create: true
+    slug: "{{slug}}"
+    preview_path: "{{slug}}"
+    summary: "{{title}}"
+    fields:
+      - { label: "제목", name: "title", widget: "string" }
+      - { label: "URL 주소", name: "slug", widget: "string", hint: "영문, 숫자, 하이픈으로 입력하세요. 예: brand-renewal-checklist" }
+      - { label: "요약", name: "description", widget: "text", required: false }
+      - { label: "발행일", name: "date", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ" }
+      - { label: "수정일", name: "lastmod", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ", required: false }
+      - { label: "임시저장", name: "draft", widget: "boolean", default: true, hint: "켜져 있으면 실제 사이트에 공개되지 않습니다." }
+      - { label: "작성자", name: "author", widget: "string", default: "Overclo" }
+      - { label: "대표 이미지", name: "featured_image", widget: "image", required: false }
+      - { label: "대표 이미지 설명", name: "featured_image_alt", widget: "string", required: false }
+      - { label: "SEO 제목", name: "seo_title", widget: "string", required: false }
+      - { label: "SEO 설명", name: "seo_description", widget: "text", required: false }
+      - { label: "태그", name: "tags", widget: "list", required: false }
+      - { label: "본문", name: "body", widget: "markdown" }

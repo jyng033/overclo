@@ -1,0 +1,25 @@
+baseURL = "https://magazine.overclo.com/"
+languageCode = "ko-kr"
+title = "Overclo Magazine"
+enableRobotsTXT = false
+disableKinds = ["taxonomy", "term"]
+ignoreErrors = ["error-disable-taxonomy"]
+summaryLength = 28
+
+[params]
+  siteName = "Overclo Magazine"
+  description = "오버클로의 브랜드, 디자인, 콘텐츠, 비즈니스 인사이트를 기록하는 매거진입니다."
+  defaultImage = "https://www.overclo.com/renewal/re_img/%EB%8C%80%ED%91%9C1.png"
+  mainSiteURL = "https://www.overclo.com/"
+  author = "Overclo"
+
+[permalinks]
+  posts = "/:slug/"
+
+[outputs]
+  home = ["HTML", "RSS"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = false

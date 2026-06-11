@@ -1,0 +1,52 @@
+{{ $title := cond .IsHome .Site.Title (printf "%s | %s" .Title .Site.Title) }}
+{{ $description := .Site.Params.description }}
+{{ with .Params.seo_description }}{{ $description = . }}{{ else }}{{ with .Params.description }}{{ $description = . }}{{ else }}{{ with .Summary }}{{ $description = plainify . }}{{ end }}{{ end }}{{ end }}
+{{ $seoTitle := $title }}
+{{ with .Params.seo_title }}{{ $seoTitle = printf "%s | %s" . $.Site.Title }}{{ end }}
+{{ $image := .Site.Params.defaultImage }}
+{{ with .Params.featured_image }}{{ $image = . | absURL }}{{ end }}
+{{ $canonical := .Permalink }}
+{{ $author := .Site.Params.author }}
+{{ with .Params.author }}{{ $author = . }}{{ end }}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ $seoTitle }}</title>
+<meta name="description" content="{{ $description }}">
+<link rel="canonical" href="{{ $canonical }}">
+<meta property="og:site_name" content="{{ .Site.Params.siteName }}">
+<meta property="og:title" content="{{ $seoTitle }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ $canonical }}">
+<meta property="og:image" content="{{ $image }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $seoTitle }}">
+<meta name="twitter:description" content="{{ $description }}">
+<meta name="twitter:image" content="{{ $image }}">
+<link rel="alternate" type="application/rss+xml" href="{{ "index.xml" | absURL }}" title="{{ .Site.Title }}">
+<link rel="stylesheet" href="{{ "css/magazine.css" | relURL }}">
+{{ if .IsPage }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ $seoTitle | jsonify | safeJS }},
+  "description": {{ $description | jsonify | safeJS }},
+  "image": [{{ $image | jsonify | safeJS }}],
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+  "author": {
+    "@type": "Organization",
+    "name": {{ $author | jsonify | safeJS }}
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Overclo"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ $canonical | jsonify | safeJS }}
+  }
+}
+</script>
+{{ end }}

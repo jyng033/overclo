@@ -1,0 +1,33 @@
+{{ define "main" }}
+<section class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Overclo Magazine</p>
+    <h1>브랜드와 콘텐츠가 쌓이는 기록</h1>
+    <p class="hero-copy">오버클로가 디자인, 브랜드, 콘텐츠, 비즈니스 운영을 바라보는 관점을 기록합니다.</p>
+  </div>
+</section>
+
+<section class="post-list" aria-label="Latest posts">
+  <div class="section-head">
+    <h2>Latest</h2>
+  </div>
+  <div class="posts-grid">
+    {{ range where .Site.RegularPages "Section" "posts" }}
+      {{ if not .Draft }}
+        <article class="post-card">
+          <a href="{{ .RelPermalink }}">
+            {{ with .Params.featured_image }}
+              <img src="{{ . | relURL }}" alt="{{ $.Params.featured_image_alt }}">
+            {{ end }}
+            <div class="post-card-body">
+              <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+              <h3>{{ .Title }}</h3>
+              <p>{{ with .Params.description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}</p>
+            </div>
+          </a>
+        </article>
+      {{ end }}
+    {{ end }}
+  </div>
+</section>
+{{ end }}

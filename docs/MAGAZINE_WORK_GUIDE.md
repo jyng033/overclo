@@ -1,408 +1,469 @@
 # Overclo Magazine Work Guide
 
 작성일: 2026-06-10
+최종 변경: 2026-06-10
 
-이 문서는 오버클로 사이트를 운영형 매거진 플랫폼으로 전환할 때 따라야 할 작업 기준이다.
+이 문서는 오버클로 매거진을 기존 홈페이지에 영향을 주지 않는 방식으로 제작하고 운영하기 위한 작업 기준이다.
 
-## 1. 작업 원칙
+## 1. 최우선 작업 원칙
 
-- 기존 공개 URL은 유지한다.
-- 관리자 영역은 `admin.overclo.com`으로 분리한다.
-- 보안 검증은 UI가 아니라 서버와 DB 정책에서 수행한다.
-- 공개 페이지는 빠르고 검색엔진이 읽기 쉬워야 한다.
-- SEO 자동화는 본문 내용 기반으로 제안하고, 관리자가 수정할 수 있어야 한다.
-- 댓글은 승인 전 공개하지 않는다.
-- 모든 민감키는 서버 환경변수에만 둔다.
+- 현재 요청 범위에만 초점을 맞춘다. 이전에 완료된 작업, 기존 운영 방식, 다른 기기에서의 작업 흐름에 타격이 생기는 변경은 기본적으로 금지한다.
+- 수정은 항상 이전 작업에 영향이 없는 방식을 우선한다. 예를 들어 기존 루트 정적 사이트 구조, GitHub 공유 구조, 배포 구조, 사용자가 이미 쓰는 로컬 확인 방식은 보존 대상이다.
+- 다른 방법이 도저히 없어서 기존 구조나 이전 작업에 영향을 줄 수밖에 없다면, 작업 전에 반드시 사용자에게 다음 내용을 상세히 보고하고 확인을 받은 뒤 진행한다: 변경 이유, 영향 범위, 되돌리는 방법, 대안, 예상 리스크.
+- 임시 해결을 위해 기존 파일을 이동/삭제/추적 제외하거나, 배포 구조만 보고 로컬 작업 구조를 깨뜨리는 변경을 하지 않는다.
+- 기존 `index.html`, `portfolio.html`, `renewal/`, `image_overclo/`는 보존한다.
+- 기존 로컬 확인 방식인 `http://127.0.0.1:5500/index.html`이 깨지지 않아야 한다.
+- 매거진 작업은 기본적으로 `magazine-site/` 안에서만 진행한다.
+- 기존 홈페이지 전체를 Next.js 같은 JS 앱으로 전환하지 않는다.
+- 배포 설정 변경이 기존 홈페이지에 영향을 줄 수 있으면 먼저 보고하고 승인받는다.
 
-## 2. 권장 작업 순서
-
-### Phase 1. Next.js 기반 전환
-
-목표:
-
-- 기존 정적 HTML 사이트를 Next.js 앱으로 이전한다.
-- 사용자에게 보이는 홈/포트폴리오 디자인과 URL은 유지한다.
-
-작업:
+## 2. 현재 결정된 방향
 
 ```text
-1. Next.js App Router 프로젝트 생성
-2. 기존 index.html을 / app page로 이전
-3. 기존 portfolio.html을 /portfolio page로 이전
-4. CSS와 이미지 경로 정리
-5. vercel.json redirect 정책 반영
-6. 기존 SEO 메타 유지
-7. 로컬/배포 화면 검수
+기존 홈페이지: 현재 정적 HTML 구조 유지
+매거진 사이트: Hugo 기반 정적 사이트
+관리자 페이지: Decap CMS
+배포: Cloudflare Pages 무료 플랜
+콘텐츠 저장: GitHub
+매거진 주소: magazine.overclo.com
+관리자 주소: magazine.overclo.com/admin
+댓글: 1차 제외, 추후 검토
+카테고리: 1차 제외, 추후 검토
 ```
 
-완료 기준:
+이 방식은 운영 비용을 최소화하고, 오버클로가 글과 이미지 데이터를 직접 보유하면서, 개발 지식이 없는 직원도 관리자 화면에서 글을 발행할 수 있게 만드는 것을 목표로 한다.
+
+## 3. 작업 전 확인 순서
+
+작업을 시작하기 전 항상 다음을 확인한다.
 
 ```text
-/
-/portfolio
-/index.html -> /
-/portfolio.html -> /portfolio
+1. git status 확인
+2. 사용자 또는 이전 작업의 미완료 변경 확인
+3. 이번 작업이 기존 홈페이지 파일을 건드리는지 확인
+4. 기존 로컬 구조에 영향이 있는지 확인
+5. 매거진 전용 폴더 안에서 해결 가능한지 확인
 ```
 
-위 주소가 정상 동작한다.
+기존 홈페이지 파일을 수정해야 할 때는 수정 이유가 명확해야 한다. 단순히 매거진을 만들기 위한 이유라면 기존 홈페이지 파일 대신 매거진 폴더 안에서 해결한다.
 
-### Phase 2. Supabase 기반 구성
-
-목표:
-
-- 운영형 게시글, 댓글, 관리자 권한을 저장할 DB와 Auth를 구성한다.
-
-작업:
+## 4. 권장 프로젝트 구조
 
 ```text
-1. Supabase 프로젝트 생성
-2. 환경변수 추가
-3. Auth 이메일 로그인 설정
-4. 관리자 초대 정책 결정
-5. DB migration 작성
-6. RLS 활성화
-7. owner 계정 생성
-```
-
-환경변수 예시:
-
-```text
-NEXT_PUBLIC_SUPABASE_URL
-NEXT_PUBLIC_SUPABASE_ANON_KEY
-SUPABASE_SERVICE_ROLE_KEY
-SUPABASE_DB_URL
+overclo/
+  index.html
+  portfolio.html
+  renewal/
+  image_overclo/
+  docs/
+  magazine-site/
+    config.toml
+    content/
+      posts/
+    layouts/
+      _default/
+      partials/
+    static/
+      admin/
+        index.html
+        config.yml
+      uploads/
+    assets/
 ```
 
 주의:
 
-- `NEXT_PUBLIC_`이 붙은 값만 브라우저에 노출된다.
-- `SUPABASE_SERVICE_ROLE_KEY`는 절대 클라이언트 코드에서 import하지 않는다.
+- `magazine-site/`는 매거진 전용 격리 영역이다.
+- 루트의 기존 정적 파일과 이미지 폴더를 이동하지 않는다.
+- Cloudflare Pages는 `magazine-site/`를 루트 디렉터리로 빌드한다.
+- 기존 홈페이지 배포 설정과 매거진 배포 설정은 분리한다.
 
-### Phase 3. 관리자 앱
+## 5. 단계별 작업 가이드
+
+### Phase 1. 문서 정리
 
 목표:
 
-- `admin.overclo.com`에서 관리자 로그인과 기본 대시보드를 제공한다.
+- 계획서와 작업 가이드를 변경된 방향에 맞게 정리한다.
+- 기존 Next/Supabase 전환 계획은 보류 상태로 명시한다.
+
+완료 기준:
+
+```text
+docs/MAGAZINE_PLATFORM_PLAN.md
+docs/MAGAZINE_WORK_GUIDE.md
+```
+
+두 문서가 Hugo, Cloudflare Pages, Decap CMS 기반 계획을 설명한다.
+
+### Phase 2. 매거진 기본 프로젝트 생성
+
+목표:
+
+- 기존 홈페이지를 건드리지 않고 `magazine-site/`에 매거진 사이트를 만든다.
 
 작업:
 
 ```text
-1. admin 앱 생성
-2. 로그인 화면 구현
-3. 세션 검증 middleware 구현
-4. 관리자 role 검증 함수 구현
-5. 대시보드 구현
-6. 권한 없는 계정 차단
-7. 로그아웃 구현
+1. magazine-site/ 폴더 생성
+2. Hugo 설정 파일 생성
+3. 기본 레이아웃 생성
+4. 매거진 목록 페이지 생성
+5. 게시글 상세 페이지 생성
+6. 샘플 게시글 생성
+7. 기본 스타일 생성
 ```
 
 완료 기준:
 
-- 비로그인 사용자는 `/login`으로 이동한다.
-- 일반 Supabase 사용자는 관리자 화면에 접근할 수 없다.
-- owner/admin만 관리자 기능에 접근할 수 있다.
+```text
+magazine-site/에서 Hugo 빌드가 성공한다.
+생성된 매거진 목록과 상세 페이지가 정상 표시된다.
+기존 index.html 로컬 구조는 변하지 않는다.
+```
 
-### Phase 4. 게시글 관리
+### Phase 3. SEO 자동화
 
 목표:
 
-- 관리자가 매거진 글을 작성, 수정, 저장, 발행할 수 있다.
+- 글 내용에 맞는 SEO 메타를 자동으로 출력한다.
 
 작업:
 
 ```text
-1. 게시글 목록
-2. 게시글 작성 폼
-3. 에디터 구현
-4. 대표 이미지 업로드
-5. 임시저장
-6. 발행
-7. 예약발행
-8. 비공개
-9. 수정 이력 저장
-10. 발행 전 미리보기
+1. 기본 title 템플릿
+2. description 템플릿
+3. canonical 템플릿
+4. OG/Twitter 메타 템플릿
+5. Article JSON-LD
+6. BreadcrumbList JSON-LD
+7. sitemap.xml
+8. rss.xml
+9. robots.txt
 ```
 
-게시글 필수 필드:
+자동화 기준:
 
 ```text
-title
-slug
-excerpt
-content
-status
-visibility
-author
-featured_image
-seo_title
-seo_description
-primary_keyword
-secondary_keywords
-published_at
-updated_at
+seo_title이 있으면 seo_title 사용
+seo_title이 없으면 title 사용
+seo_description이 있으면 seo_description 사용
+seo_description이 없으면 description 사용
+description이 없으면 본문 요약 사용
+featured_image가 있으면 og:image로 사용
+featured_image가 없으면 사이트 기본 이미지 사용
 ```
 
-### Phase 5. 매거진 공개 페이지
+주의:
+
+- 검색량 높은 키워드를 자동으로 억지 삽입하지 않는다.
+- 글 내용과 맞는 제목과 설명을 우선한다.
+- 발행 후 Search Console 데이터를 보고 개선한다.
+
+### Phase 4. 관리자 CMS 설정
 
 목표:
 
-- 방문자가 `/magazine`에서 글 목록을 보고, `/magazine/[slug]`에서 글을 읽을 수 있다.
+- 개발 지식이 없는 직원이 관리자 화면에서 글을 작성하고 발행할 수 있게 한다.
 
 작업:
 
 ```text
-1. MAGAZINE 내비게이션 추가
-2. /magazine 목록 페이지
-3. 최신 글 카드
-4. 추천 글 영역
-5. 페이지네이션
-6. /magazine/[slug] 상세 페이지
-7. 관련 글
-8. 문의 CTA
-9. 댓글 영역
+1. static/admin/index.html 생성
+2. static/admin/config.yml 생성
+3. posts collection 설정
+4. 이미지 업로드 경로 설정
+5. 제목/요약/본문/대표이미지/SEO 필드 구성
+6. draft/published 상태 관리
+7. 관리자 로그인 방식 설정
 ```
 
-초기에는 내부 카테고리를 만들지 않는다. 추후 필요 시 `tags` 또는 `category` 테이블을 추가한다.
+관리자 작성 필드:
 
-### Phase 6. SEO 자동화
+```text
+제목
+URL 주소
+요약
+대표 이미지
+대표 이미지 설명
+본문
+SEO 제목
+SEO 설명
+공개 여부
+발행일
+작성자
+```
+
+직원 기준 완료 조건:
+
+```text
+Markdown을 몰라도 글 작성 가능
+이미지를 직접 업로드 가능
+발행 여부를 화면에서 선택 가능
+SEO 제목/설명을 화면에서 수정 가능
+```
+
+### Phase 5. 로컬 검수
 
 목표:
 
-- 게시글마다 본문 내용에 맞는 SEO 메타를 자동 생성하고, 관리자가 수정할 수 있게 한다.
+- 기존 홈페이지와 매거진이 각각 정상 동작하는지 확인한다.
 
-작업:
-
-```text
-1. SEO 자동 생성 함수 작성
-2. SEO 수동 수정 UI 작성
-3. SEO 점검 결과 표시
-4. Article JSON-LD 생성
-5. BreadcrumbList JSON-LD 생성
-6. canonical 생성
-7. OG/Twitter 메타 생성
-8. sitemap 자동 생성
-9. RSS 생성
-```
-
-자동 생성 규칙:
+확인 항목:
 
 ```text
-seo_title = 제목 또는 관리자 입력 SEO 제목
-seo_description = excerpt 또는 본문 첫 문단 기반 요약
-slug = 관리자 입력값 우선, 없으면 제목 기반 영문/숫자 slug
-og_title = seo_title
-og_description = seo_description
-og_image = 게시글 대표 이미지, 없으면 사이트 기본 대표 이미지
-canonical = https://www.overclo.com/magazine/[slug]
+기존 index.html 로컬 확인
+기존 portfolio.html 로컬 확인
+magazine-site Hugo 빌드
+매거진 목록 페이지
+게시글 상세 페이지
+대표 이미지
+모바일 화면
+SEO 메타
+sitemap
+rss
 ```
 
-관리자에게 보여줄 점검 항목:
+기존 홈페이지가 깨지면 매거진 작업을 완료한 것으로 보지 않는다.
 
-```text
-제목 있음
-설명 있음
-대표 이미지 있음
-이미지 alt 있음
-URL 중복 없음
-본문 길이 충분
-내부 링크 있음
-공개 상태일 때 sitemap 포함
-```
-
-### Phase 7. 댓글
+### Phase 6. Cloudflare Pages 배포
 
 목표:
 
-- 방문자는 댓글을 남기고, 관리자는 승인/숨김/삭제할 수 있다.
+- 매거진만 별도 무료 배포한다.
+
+Cloudflare Pages 설정:
+
+```text
+Project name: overclo-magazine
+Production branch: main
+Root directory: magazine-site
+Build command: hugo --minify
+Build output directory: public
+Custom domain: magazine.overclo.com
+```
+
+주의:
+
+- 기존 홈페이지 Vercel 프로젝트 설정을 변경하지 않는다.
+- 기존 `www.overclo.com` 배포에 영향을 주지 않는다.
+- DNS는 `magazine.overclo.com`만 추가한다.
+
+### Phase 7. 운영 등록
 
 작업:
 
 ```text
-1. 댓글 작성 폼
-2. 서버 검증
-3. pending 저장
-4. 승인된 댓글만 공개
-5. 관리자 댓글 목록
-6. 승인/숨김/스팸/삭제 처리
-7. rate limit
-8. honeypot 필드
+1. Google Search Console에 magazine.overclo.com 등록
+2. sitemap.xml 제출
+3. Naver Search Advisor 등록 검토
+4. 관리자 계정 2FA 확인
+5. 직원 발행 테스트
+6. 발행 후 자동 배포 테스트
 ```
 
-댓글 정책:
+## 6. 글 발행 운영 방식
 
-- HTML 입력 허용 금지
-- 승인 전 공개 금지
-- 이메일은 공개하지 않음
-- IP는 원문 저장하지 않고 hash 저장
-- 반복 스팸은 숨김 또는 차단 후보로 분류
-
-### Phase 8. 보안 점검
-
-작업:
+직원 발행 흐름:
 
 ```text
-1. RLS 활성화 확인
-2. anon 접근 정책 확인
-3. authenticated 접근 정책 확인
-4. service role key 노출 여부 확인
-5. admin route 접근 차단 확인
-6. 댓글 rate limit 확인
-7. 파일 업로드 검증 확인
-8. CSP/security headers 적용
-9. robots noindex for admin 확인
-10. audit log 기록 확인
+1. magazine.overclo.com/admin 접속
+2. 로그인
+3. 새 글 작성 클릭
+4. 제목, 요약, 대표 이미지, 본문 입력
+5. SEO 제목/설명 확인
+6. 임시저장 또는 발행 선택
+7. 저장
+8. GitHub에 자동 반영
+9. Cloudflare Pages 자동 배포
+10. 실제 매거진 페이지에 노출
 ```
 
-필수 보안 헤더:
+운영자가 직접 수정 가능한 항목:
 
 ```text
-Content-Security-Policy
-X-Frame-Options
-X-Content-Type-Options
-Referrer-Policy
-Permissions-Policy
-Strict-Transport-Security
+제목
+본문
+요약
+대표 이미지
+이미지 설명
+SEO 제목
+SEO 설명
+발행 상태
+발행일
 ```
 
-### Phase 9. 배포 및 운영
-
-작업:
+개발자가 관리해야 하는 항목:
 
 ```text
-1. Vercel 프로젝트 구성
-2. www.overclo.com 연결
-3. admin.overclo.com 연결
-4. 환경변수 Production/Preview 분리
-5. Supabase URL 설정
-6. Auth redirect URL 설정
-7. Search Console 제출
-8. Naver Search Advisor 제출
-9. sitemap 확인
-10. 로그/에러 모니터링 설정
+템플릿
+디자인
+SEO 출력 구조
+CMS 필드 설정
+빌드 설정
+배포 설정
+보안 설정
 ```
 
-## 3. DB Migration 작성 기준
+## 7. SEO 운영 기준
 
-- 모든 테이블은 `created_at`, `updated_at`을 둔다.
-- 공개 삭제 대신 `deleted_at` 기반 soft delete를 우선한다.
-- 공개 페이지에서 자주 조회하는 컬럼은 인덱스를 둔다.
-- RLS는 테이블 생성 직후 활성화한다.
-- 정책명은 역할과 동작이 드러나게 작성한다.
+초기 자동화:
 
-정책명 예시:
+- 글 제목과 요약을 기반으로 SEO 제목과 설명을 출력한다.
+- 대표 이미지를 OG 이미지로 사용한다.
+- 게시글마다 canonical을 자동 출력한다.
+- sitemap과 RSS를 자동 생성한다.
+- Article 구조화 데이터를 자동 출력한다.
 
-```text
-posts_select_published_for_anon
-posts_manage_for_admins
-comments_insert_pending_for_anon
-comments_select_approved_for_anon
-comments_moderate_for_admins
-```
-
-## 4. 관리자 권한 검증 기준
-
-서버 함수에서 항상 다음 순서로 검증한다.
+운영 개선:
 
 ```text
-1. Supabase 세션이 있는가
-2. auth user id가 admin_users에 있는가
-3. admin status가 active인가
-4. 필요한 role을 가지고 있는가
-5. 대상 리소스에 대한 작업 권한이 있는가
-```
-
-클라이언트에서 버튼을 숨기는 것은 편의 기능일 뿐이다. 실제 권한 검증은 서버와 DB에서 수행한다.
-
-## 5. SEO 작성/운영 기준
-
-SEO 자동화는 다음 원칙을 따른다.
-
-- 본문 주제와 맞지 않는 키워드를 강제로 넣지 않는다.
-- 제목은 사람이 클릭하고 싶은 문장으로 작성한다.
-- description은 검색결과에서 읽히는 요약문으로 작성한다.
-- 대표 키워드는 글의 주제를 설명하는 용도로 저장한다.
-- 검색량 키워드는 Google Search Console과 Keyword Planner 데이터를 보고 운영 중 개선한다.
-
-발행 후 개선 기준:
-
-```text
-노출 많고 CTR 낮음: title/description 개선
-평균 순위 5~15위: 본문 보강 및 내부 링크 추가
-예상 외 검색어 유입: 소제목/본문 보완
+노출 많고 클릭률 낮음: 제목/설명 개선
+평균 순위 5~15위: 본문 보강, 내부 링크 추가
+예상 외 검색어 유입: 소제목과 본문 보완
 성과 좋은 글: 후속 글 작성
 ```
 
-## 6. QA 체크리스트
+주의:
 
-공개 사이트:
+- SEO 자동화가 검색량 데이터를 실시간으로 분석해서 완벽한 키워드를 선택하는 것은 아니다.
+- 무료 운영에서는 Search Console 데이터를 쌓은 뒤 사람이 개선하는 방식이 가장 현실적이다.
+- 본문과 맞지 않는 키워드를 넣으면 장기 SEO에 불리할 수 있다.
+
+## 8. 댓글 기능 기준
+
+댓글은 1차 제작 범위에서 제외한다.
+
+추후 필요 시 다음 중 하나를 선택한다.
 
 ```text
-홈 정상
-포트폴리오 정상
-매거진 목록 정상
-게시글 상세 정상
-모바일 레이아웃 정상
-OG 이미지 정상
-댓글 승인 전 비노출
-댓글 승인 후 노출
+Giscus:
+  무료
+  GitHub Discussions 기반
+  관리 쉬움
+  방문자 로그인 경험은 제한적일 수 있음
+
+자체 승인형 댓글:
+  Supabase Free 또는 Cloudflare D1/Workers 사용
+  방문자 경험 좋음
+  구현과 보안 관리 부담 증가
+```
+
+댓글을 추가할 때의 기본 원칙:
+
+- 승인 전 공개하지 않는다.
+- HTML 입력을 허용하지 않는다.
+- 스팸 방지 장치를 둔다.
+- 개인정보를 최소 수집한다.
+
+## 9. 보안 기준
+
+관리자:
+
+- GitHub 계정에는 2FA를 적용한다.
+- 저장소 쓰기 권한은 필요한 직원에게만 준다.
+- 퇴사자나 담당 변경 시 GitHub 권한을 즉시 회수한다.
+- Decap CMS 설정에 비밀키를 저장하지 않는다.
+
+배포:
+
+- Cloudflare Pages 권한은 최소 인원에게만 준다.
+- 환경변수가 필요한 경우 공개 저장소에 커밋하지 않는다.
+- 관리자 페이지는 검색엔진 노출 대상이 아니다.
+
+콘텐츠:
+
+- 업로드 이미지 파일 크기를 제한한다.
+- 이미지 alt 텍스트를 작성한다.
+- 외부 스크립트 삽입은 제한한다.
+
+## 10. QA 체크리스트
+
+기존 홈페이지:
+
+```text
+index.html 로컬 확인 정상
+portfolio.html 로컬 확인 정상
+renewal 이미지 경로 정상
+image_overclo 이미지 경로 정상
+공유 대표 이미지 설정 유지
+GitHub에서 다른 기기로 받아도 구조 정상
+```
+
+매거진:
+
+```text
+목록 페이지 정상
+상세 페이지 정상
+대표 이미지 정상
+본문 이미지 정상
+모바일 정상
+SEO title 정상
+SEO description 정상
+OG image 정상
+sitemap 정상
+RSS 정상
 ```
 
 관리자:
 
 ```text
+/admin 접속 정상
 로그인 정상
-권한 없는 계정 차단
-게시글 임시저장
-게시글 발행
-게시글 수정
-게시글 삭제/보관
-이미지 업로드
-SEO 수정
-댓글 승인
-댓글 숨김
-댓글 삭제
+글 작성 가능
+이미지 업로드 가능
+임시저장 가능
+발행 가능
+발행 후 자동 배포 정상
+직원이 테스트 글을 문제없이 작성 가능
 ```
 
-보안:
+## 11. Git 작업 기준
+
+- 작업 전 `git status`를 확인한다.
+- 사용자 변경이 있는 파일은 덮어쓰지 않는다.
+- 매거진 작업은 가능한 `magazine-site/`와 `docs/`에 한정한다.
+- 기존 홈페이지 파일 수정이 필요한 경우 변경 이유를 설명한다.
+- 커밋 메시지는 작업 내용을 명확히 적는다.
+- 푸시 전 빌드 또는 최소 검수를 진행한다.
+
+## 12. 보류된 작업
+
+다음은 현재 방향에서는 보류한다.
 
 ```text
-service role key 미노출
-RLS 활성화
-비공개 글 접근 차단
-draft 글 접근 차단
-admin noindex
-업로드 파일 검증
-rate limit 적용
+Next.js 전면 전환
+Supabase DB 기반 CMS
+admin.overclo.com 별도 앱
+자체 댓글 DB
+다중 role 기반 세밀한 권한 시스템
+예약 발행 워크플로
+대규모 검색/필터 시스템
 ```
 
-## 7. 구현 전 결정해야 할 것
+보류 사유:
 
-- 관리자 초대 방식: owner가 이메일 초대
-- 댓글 작성자 이메일 필수 여부
-- 댓글 비밀번호 기능 제공 여부
-- 댓글 답글 제공 여부
-- 게시글 에디터: Markdown 기반 또는 Rich Text 기반
-- 이미지 저장소 공개/비공개 정책
-- AI 기반 SEO 자동 제안 사용 여부
-- 기존 HTML을 그대로 이전할지, 디자인을 정리하면서 이전할지
+- 현재 목적 대비 비용과 복잡도가 크다.
+- 기존 홈페이지 구조에 영향을 줄 수 있다.
+- 무료 운영과 쉬운 유지보수라는 우선순위에 맞지 않는다.
 
-추천 초기 결정:
+## 13. 재검토 기준
+
+다음 조건이 생기면 정적 매거진에서 운영형 CMS로 확장할지 재검토한다.
 
 ```text
-관리자 초대: owner 이메일 초대
-댓글 이메일: 선택
-댓글 비밀번호: 제공
-댓글 답글: 1단계에서는 미제공
-에디터: Markdown + 이미지 업로드
-이미지 저장소: 공개 읽기, 관리자만 쓰기
-AI SEO: 1단계는 규칙 기반, 추후 AI 제안 추가
-이전 방식: 기존 디자인 유지 후 구조 전환
+월간 게시글 수가 크게 증가
+관리자 권한 구분이 꼭 필요
+예약 발행과 승인 워크플로 필요
+자체 댓글이 핵심 기능화
+검색/카테고리/태그 관리가 복잡해짐
+콘텐츠 운영 예산 확보
 ```
 
-## 8. 참고 기준
+## 14. 참고 기준
 
-- Supabase Row Level Security: https://supabase.com/docs/guides/database/postgres/row-level-security
-- Supabase Auth with Next.js: https://supabase.com/docs/guides/auth/quickstarts/nextjs
-- Vercel Sensitive Environment Variables: https://vercel.com/docs/environment-variables/sensitive-environment-variables
-- Next.js Authentication Guide: https://nextjs.org/docs/app/guides/authentication
+- Hugo: https://gohugo.io/
+- Cloudflare Pages: https://pages.cloudflare.com/
+- Decap CMS: https://decapcms.org/
 - Google SEO Starter Guide: https://developers.google.com/search/docs/fundamentals/seo-starter-guide
+- Google Search Console: https://search.google.com/search-console

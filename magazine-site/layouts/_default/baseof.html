@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="{{ .Site.BaseURL }}">Overclo Magazine</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="{{ .Site.BaseURL }}">Magazine</a>
+        <a href="{{ .Site.Params.mainSiteURL }}">Overclo</a>
+        <a href="{{ .Site.Params.mainSiteURL }}#contact">Contact</a>
+      </nav>
+    </header>
+    <main>
+      {{ block "main" . }}{{ end }}
+    </main>
+    <footer class="site-footer">
+      <p>© {{ now.Format "2006" }} Overclo. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
