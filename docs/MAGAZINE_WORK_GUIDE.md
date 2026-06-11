@@ -13,7 +13,7 @@
 - 임시 해결을 위해 기존 파일을 이동/삭제/추적 제외하거나, 배포 구조만 보고 로컬 작업 구조를 깨뜨리는 변경을 하지 않는다.
 - 기존 `index.html`, `portfolio.html`, `renewal/`, `image_overclo/`는 보존한다.
 - 기존 로컬 확인 방식인 `http://127.0.0.1:5500/index.html`이 깨지지 않아야 한다.
-- 매거진 작업은 기본적으로 `magazine-site/` 안에서만 진행한다.
+- 매거진 작업은 기본적으로 `magazine-site/` 안에서 진행하고, 기존 홈페이지와 연결이 필요한 경우 `vercel.json` rewrite만 최소 수정한다.
 - 기존 홈페이지 전체를 Next.js 같은 JS 앱으로 전환하지 않는다.
 - 배포 설정 변경이 기존 홈페이지에 영향을 줄 수 있으면 먼저 보고하고 승인받는다.
 
@@ -25,8 +25,10 @@
 관리자 페이지: Decap CMS
 배포: Cloudflare Pages 무료 플랜
 콘텐츠 저장: GitHub
-매거진 주소: magazine.overclo.com
-관리자 주소: magazine.overclo.com/admin
+매거진 주소: www.overclo.com/magazine
+게시글 주소: www.overclo.com/magazine/[slug]
+관리자 주소: www.overclo.com/magazine/admin
+Cloudflare 원본: overclo-magazine.pages.dev
 댓글: 1차 제외, 추후 검토
 카테고리: 1차 제외, 추후 검토
 ```
@@ -76,7 +78,8 @@ overclo/
 - `magazine-site/`는 매거진 전용 격리 영역이다.
 - 루트의 기존 정적 파일과 이미지 폴더를 이동하지 않는다.
 - Cloudflare Pages는 `magazine-site/`를 루트 디렉터리로 빌드한다.
-- 기존 홈페이지 배포 설정과 매거진 배포 설정은 분리한다.
+- Vercel은 `/magazine` 경로를 Cloudflare Pages 원본으로 rewrite한다.
+- 기존 홈페이지 정적 파일과 로컬 구조는 유지한다.
 
 ## 5. 단계별 작업 가이드
 
@@ -226,11 +229,11 @@ rss
 
 기존 홈페이지가 깨지면 매거진 작업을 완료한 것으로 보지 않는다.
 
-### Phase 6. Cloudflare Pages 배포
+### Phase 6. Cloudflare Pages 배포 및 Vercel rewrite
 
 목표:
 
-- 매거진만 별도 무료 배포한다.
+- 매거진 원본은 Cloudflare Pages에 무료 배포하고, 방문자에게는 `www.overclo.com/magazine`으로 노출한다.
 
 Cloudflare Pages 설정:
 
@@ -240,21 +243,29 @@ Production branch: main
 Root directory: magazine-site
 Build command: hugo --minify
 Build output directory: public
-Custom domain: magazine.overclo.com
+Custom domain: 사용하지 않음
 ```
 
 주의:
 
-- 기존 홈페이지 Vercel 프로젝트 설정을 변경하지 않는다.
-- 기존 `www.overclo.com` 배포에 영향을 주지 않는다.
-- DNS는 `magazine.overclo.com`만 추가한다.
+- Cloudflare custom domain은 초기에는 연결하지 않는다.
+- Cloudflare Pages 원본 주소는 `overclo-magazine.pages.dev`로 둔다.
+- Vercel `vercel.json`에 `/magazine` rewrite만 추가한다.
+- 기존 `www.overclo.com` 홈페이지 정적 파일은 이동하지 않는다.
+
+Vercel rewrite:
+
+```text
+/magazine -> https://overclo-magazine.pages.dev/
+/magazine/:path* -> https://overclo-magazine.pages.dev/:path*
+```
 
 ### Phase 7. 운영 등록
 
 작업:
 
 ```text
-1. Google Search Console에 magazine.overclo.com 등록
+1. Google Search Console에서 www.overclo.com 속성 기준으로 /magazine sitemap 제출
 2. sitemap.xml 제출
 3. Naver Search Advisor 등록 검토
 4. 관리자 계정 2FA 확인
@@ -267,7 +278,7 @@ Custom domain: magazine.overclo.com
 직원 발행 흐름:
 
 ```text
-1. magazine.overclo.com/admin 접속
+1. www.overclo.com/magazine/admin 접속
 2. 로그인
 3. 새 글 작성 클릭
 4. 제목, 요약, 대표 이미지, 본문 입력
@@ -276,7 +287,7 @@ Custom domain: magazine.overclo.com
 7. 저장
 8. GitHub에 자동 반영
 9. Cloudflare Pages 자동 배포
-10. 실제 매거진 페이지에 노출
+10. Vercel rewrite를 통해 www.overclo.com/magazine에 노출
 ```
 
 운영자가 직접 수정 가능한 항목:

@@ -26,7 +26,7 @@ Cloudflare Pages 권장 설정:
 Root directory: magazine-site
 Build command: hugo --minify
 Build output directory: public
-Custom domain: magazine.overclo.com
+Custom domain: 사용하지 않음
 ```
 
 ## 관리자
@@ -34,7 +34,7 @@ Custom domain: magazine.overclo.com
 관리자 주소:
 
 ```text
-https://magazine.overclo.com/admin
+https://www.overclo.com/magazine/admin
 ```
 
 Decap CMS는 GitHub 저장소에 게시글과 이미지를 저장합니다. 실제 운영 전 GitHub 인증 설정을 완료해야 합니다.

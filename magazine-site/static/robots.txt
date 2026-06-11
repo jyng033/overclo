@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /admin/
+Disallow: /magazine/admin/
 
-Sitemap: https://magazine.overclo.com/sitemap.xml
+Sitemap: https://www.overclo.com/magazine/sitemap.xml

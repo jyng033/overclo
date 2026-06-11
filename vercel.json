@@ -67,5 +67,35 @@
       "destination": "/#contact",
       "permanent": true
     }
+  ],
+  "headers": [
+    {
+      "source": "/magazine/admin",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/magazine/admin/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/magazine",
+      "destination": "https://overclo-magazine.pages.dev/"
+    },
+    {
+      "source": "/magazine/:path*",
+      "destination": "https://overclo-magazine.pages.dev/:path*"
+    }
   ]
 }

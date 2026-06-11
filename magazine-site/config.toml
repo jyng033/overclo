@@ -1,8 +1,8 @@
-baseURL = "https://magazine.overclo.com/"
+baseURL = "https://www.overclo.com/magazine/"
 languageCode = "ko-kr"
 title = "Overclo Magazine"
 enableRobotsTXT = false
-disableKinds = ["taxonomy", "term"]
+disableKinds = ["taxonomy", "term", "section"]
 ignoreErrors = ["error-disable-taxonomy"]
 summaryLength = 28
 

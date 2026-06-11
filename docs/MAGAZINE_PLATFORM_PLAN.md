@@ -5,17 +5,18 @@
 
 ## 1. 계획 변경 요약
 
-오버클로 매거진은 기존 홈페이지 전체를 Next.js 같은 JS 앱으로 전환하지 않고, 현재 정적 홈페이지 구조를 유지한 상태에서 별도 매거진 사이트로 구축한다.
+오버클로 매거진은 기존 홈페이지 전체를 Next.js 같은 JS 앱으로 전환하지 않고, 현재 정적 홈페이지 구조를 유지한 상태에서 `www.overclo.com/magazine` 경로 아래에 붙여 운영한다.
 
 핵심 방향:
 
 - 기존 `index.html`, `portfolio.html`, `renewal/`, `image_overclo/` 구조는 보존한다.
 - 기존 로컬 확인 방식인 `http://127.0.0.1:5500/index.html`이 깨지지 않게 한다.
-- 매거진은 `magazine.overclo.com` 서브도메인에서 별도 운영한다.
-- 관리자는 `magazine.overclo.com/admin`에서 글을 작성하고 발행한다.
+- 매거진은 사용자에게 `https://www.overclo.com/magazine` 주소로 노출한다.
+- 관리자는 `https://www.overclo.com/magazine/admin`에서 글을 작성하고 발행한다.
 - 글과 이미지는 GitHub 저장소에 남겨 오버클로가 콘텐츠 자산을 직접 보유한다.
 - 운영 비용은 최대한 0원으로 유지한다.
-- 향후 필요하면 `overclo.com/magazine` 경로 통합, 댓글, 카테고리, 검색, AI SEO 제안을 단계적으로 추가한다.
+- Cloudflare Pages는 매거진 원본 호스팅으로만 사용하고, Vercel rewrite로 메인 도메인 아래에 연결한다.
+- 향후 필요하면 댓글, 카테고리, 검색, AI SEO 제안을 단계적으로 추가한다.
 
 ## 2. 목표
 
@@ -33,21 +34,15 @@
 
 ```text
 기존 홈페이지: https://www.overclo.com
-매거진: https://magazine.overclo.com
-관리자: https://magazine.overclo.com/admin
+매거진: https://www.overclo.com/magazine
+게시글: https://www.overclo.com/magazine/[slug]
+관리자: https://www.overclo.com/magazine/admin
+Cloudflare 원본: https://overclo-magazine.pages.dev
 ```
 
-별도 도메인을 구입하지 않는다. 이미 보유한 `overclo.com` 도메인에 `magazine` 서브도메인 DNS 레코드만 추가한다.
+별도 도메인을 구입하지 않는다. `magazine.overclo.com` 서브도메인도 초기 운영에서는 연결하지 않는다.
 
-초기에는 `magazine.overclo.com`으로 분리 운영한다. 기존 홈페이지와 배포 구조에 미치는 영향을 최소화하기 위해서다.
-
-추후 검토 가능:
-
-```text
-https://www.overclo.com/magazine
-```
-
-이 구조는 SEO상 메인 도메인 아래 콘텐츠가 쌓이는 장점이 있지만, 기존 홈페이지 배포 구조에 영향을 줄 수 있으므로 안정화 이후 별도 검토한다.
+Cloudflare Pages 프로젝트는 `overclo-magazine.pages.dev` 원본 주소를 제공하고, Vercel의 external rewrite가 `/magazine` 요청을 이 원본으로 전달한다. 방문자 주소창에는 계속 `www.overclo.com/magazine`이 표시된다.
 
 ## 4. 권장 기술 스택
 
@@ -75,23 +70,25 @@ Comments: 1차 제외, 추후 Giscus 또는 별도 승인형 댓글 검토
 ```mermaid
 flowchart LR
   Staff["직원 / 관리자"]
-  Admin["magazine.overclo.com/admin<br/>Decap CMS"]
+  Admin["www.overclo.com/magazine/admin<br/>Decap CMS"]
   GitHub["GitHub Repository<br/>content + images"]
   Build["Cloudflare Pages Build<br/>Hugo"]
-  Public["magazine.overclo.com<br/>Static Magazine"]
+  Origin["overclo-magazine.pages.dev<br/>Cloudflare Pages Origin"]
+  Public["www.overclo.com/magazine<br/>Vercel Rewrite"]
   Visitor["방문자 / 검색엔진"]
 
   Staff --> Admin
   Admin --> GitHub
   GitHub --> Build
-  Build --> Public
+  Build --> Origin
+  Origin --> Public
   Visitor --> Public
 ```
 
 글 발행 흐름:
 
 ```text
-1. 직원이 magazine.overclo.com/admin 접속
+1. 직원이 www.overclo.com/magazine/admin 접속
 2. 로그인
 3. 새 글 작성
 4. 제목, 요약, 대표 이미지, 본문 입력
@@ -99,7 +96,7 @@ flowchart LR
 6. 임시저장 또는 발행
 7. Decap CMS가 GitHub에 변경사항 저장
 8. Cloudflare Pages가 자동 빌드
-9. magazine.overclo.com에 반영
+9. www.overclo.com/magazine에 반영
 ```
 
 ## 6. 프로젝트 구조
@@ -140,7 +137,7 @@ overclo/
 관리자는 별도 주소에서 접속한다.
 
 ```text
-https://magazine.overclo.com/admin
+https://www.overclo.com/magazine/admin
 ```
 
 관리자 메뉴:
@@ -222,7 +219,7 @@ og_image:
   없으면 사이트 기본 대표 이미지 사용
 
 canonical:
-  https://magazine.overclo.com/[slug]
+  https://www.overclo.com/magazine/[slug]
 ```
 
 자동 생성 항목:
@@ -281,7 +278,7 @@ Giscus:
 
 관리자 보안:
 
-- 관리자 URL은 `magazine.overclo.com/admin`으로 분리한다.
+- 관리자 URL은 `www.overclo.com/magazine/admin`으로 둔다.
 - GitHub 저장소 쓰기 권한이 있는 관리자만 글을 발행할 수 있게 한다.
 - 불필요한 공개 회원가입을 허용하지 않는다.
 - 관리자 계정에는 2FA를 적용한다.
@@ -311,16 +308,17 @@ Production branch: main
 Root directory: magazine-site
 Build command: hugo --minify
 Build output directory: public
-Custom domain: magazine.overclo.com
+Custom domain: 사용하지 않음
 ```
 
-DNS:
+Vercel rewrite:
 
 ```text
-magazine.overclo.com -> Cloudflare Pages custom domain
+/magazine -> https://overclo-magazine.pages.dev/
+/magazine/:path* -> https://overclo-magazine.pages.dev/:path*
 ```
 
-기존 홈페이지 배포와 분리한다. 기존 Vercel 또는 정적 호스팅 설정을 매거진 때문에 변경하지 않는다.
+Cloudflare Pages는 별도 원본으로만 사용한다. 사용자에게 노출되는 주소는 `www.overclo.com/magazine`이다. 기존 홈페이지 정적 파일은 이동하지 않는다.
 
 ## 13. 작업 단계
 
@@ -365,7 +363,7 @@ magazine.overclo.com -> Cloudflare Pages custom domain
 ### Phase 6. 배포 연결
 
 - Cloudflare Pages 프로젝트 생성
-- `magazine.overclo.com` 연결
+- `www.overclo.com/magazine` rewrite 연결
 - GitHub 자동 배포 확인
 - Search Console 속성 추가
 - sitemap 제출
@@ -385,7 +383,7 @@ renewal 이미지 경로 정상
 매거진:
 
 ```text
-magazine.overclo.com 접속 정상
+www.overclo.com/magazine 접속 정상
 게시글 목록 정상
 게시글 상세 정상
 대표 이미지 정상
