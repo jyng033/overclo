@@ -4,6 +4,6 @@ node_modules
 .env
 .env.*
 !.env.example
-magazine-site/public
-magazine-site/resources
-magazine-site/.hugo_build.lock
+insight-site/public
+insight-site/resources
+insight-site/.hugo_build.lock

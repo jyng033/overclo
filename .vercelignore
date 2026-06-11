@@ -3,10 +3,10 @@ terminals/
 agent-transcripts/
 
 # Keep the existing Vercel deployment as a static homepage.
-# Magazine is deployed separately from magazine-site on Cloudflare Pages.
+# Insight is deployed separately from insight-site on Cloudflare Pages.
 app/
 supabase/
-magazine-site/
+insight-site/
 docs/
 .next/
 node_modules/

@@ -1,26 +1,26 @@
-# Overclo Magazine Platform Plan
+# Overclo Insight Platform Plan
 
 작성일: 2026-06-10
 최종 변경: 2026-06-10
 
 ## 1. 계획 변경 요약
 
-오버클로 매거진은 기존 홈페이지 전체를 Next.js 같은 JS 앱으로 전환하지 않고, 현재 정적 홈페이지 구조를 유지한 상태에서 `www.overclo.com/magazine` 경로 아래에 붙여 운영한다.
+오버클로 인사이트는 기존 홈페이지 전체를 Next.js 같은 JS 앱으로 전환하지 않고, 현재 정적 홈페이지 구조를 유지한 상태에서 `www.overclo.com/insight` 경로 아래에 붙여 운영한다.
 
 핵심 방향:
 
 - 기존 `index.html`, `portfolio.html`, `renewal/`, `image_overclo/` 구조는 보존한다.
 - 기존 로컬 확인 방식인 `http://127.0.0.1:5500/index.html`이 깨지지 않게 한다.
-- 매거진은 사용자에게 `https://www.overclo.com/magazine` 주소로 노출한다.
-- 관리자는 `https://www.overclo.com/magazine/admin`에서 글을 작성하고 발행한다.
+- 인사이트는 사용자에게 `https://www.overclo.com/insight` 주소로 노출한다.
+- 관리자는 `https://www.overclo.com/insight/admin`에서 글을 작성하고 발행한다.
 - 글과 이미지는 GitHub 저장소에 남겨 오버클로가 콘텐츠 자산을 직접 보유한다.
 - 운영 비용은 최대한 0원으로 유지한다.
-- Cloudflare Pages는 매거진 원본 호스팅으로만 사용하고, Vercel rewrite로 메인 도메인 아래에 연결한다.
+- Cloudflare Pages는 인사이트 원본 호스팅으로만 사용하고, Vercel rewrite로 메인 도메인 아래에 연결한다.
 - 향후 필요하면 댓글, 카테고리, 검색, AI SEO 제안을 단계적으로 추가한다.
 
 ## 2. 목표
 
-매거진의 목적은 단순히 블로그처럼 보이는 페이지를 만드는 것이 아니라, 오버클로의 SEO 자산을 지속적으로 축적하고 구글이 오버클로 관련 정보를 계속 수집할 수 있게 만드는 것이다. 이를 통해 향후 메타 광고 집행 시 브랜드 신뢰도, 검색 노출, 랜딩 후 탐색 경험을 보강한다.
+인사이트의 목적은 단순히 블로그처럼 보이는 페이지를 만드는 것이 아니라, 오버클로의 SEO 자산을 지속적으로 축적하고 구글이 오버클로 관련 정보를 계속 수집할 수 있게 만드는 것이다. 이를 통해 향후 메타 광고 집행 시 브랜드 신뢰도, 검색 노출, 랜딩 후 탐색 경험을 보강한다.
 
 운영 목표:
 
@@ -34,15 +34,15 @@
 
 ```text
 기존 홈페이지: https://www.overclo.com
-매거진: https://www.overclo.com/magazine
-게시글: https://www.overclo.com/magazine/[slug]
-관리자: https://www.overclo.com/magazine/admin
-Cloudflare 원본: https://overclo-magazine.pages.dev
+인사이트: https://www.overclo.com/insight
+게시글: https://www.overclo.com/insight/[slug]
+관리자: https://www.overclo.com/insight/admin
+Cloudflare 원본: https://overclo-insight.pages.dev
 ```
 
-별도 도메인을 구입하지 않는다. `magazine.overclo.com` 서브도메인도 초기 운영에서는 연결하지 않는다.
+별도 도메인을 구입하지 않는다. `insight.overclo.com` 서브도메인도 초기 운영에서는 연결하지 않는다.
 
-Cloudflare Pages 프로젝트는 `overclo-magazine.pages.dev` 원본 주소를 제공하고, Vercel의 external rewrite가 `/magazine` 요청을 이 원본으로 전달한다. 방문자 주소창에는 계속 `www.overclo.com/magazine`이 표시된다.
+Cloudflare Pages 프로젝트는 `overclo-insight.pages.dev` 원본 주소를 제공하고, Vercel의 external rewrite가 `/insight` 요청을 이 원본으로 전달한다. 방문자 주소창에는 계속 `www.overclo.com/insight`이 표시된다.
 
 ## 4. 권장 기술 스택
 
@@ -70,11 +70,11 @@ Comments: 1차 제외, 추후 Giscus 또는 별도 승인형 댓글 검토
 ```mermaid
 flowchart LR
   Staff["직원 / 관리자"]
-  Admin["www.overclo.com/magazine/admin<br/>Decap CMS"]
+  Admin["www.overclo.com/insight/admin<br/>Decap CMS"]
   GitHub["GitHub Repository<br/>content + images"]
   Build["Cloudflare Pages Build<br/>Hugo"]
-  Origin["overclo-magazine.pages.dev<br/>Cloudflare Pages Origin"]
-  Public["www.overclo.com/magazine<br/>Vercel Rewrite"]
+  Origin["overclo-insight.pages.dev<br/>Cloudflare Pages Origin"]
+  Public["www.overclo.com/insight<br/>Vercel Rewrite"]
   Visitor["방문자 / 검색엔진"]
 
   Staff --> Admin
@@ -88,7 +88,7 @@ flowchart LR
 글 발행 흐름:
 
 ```text
-1. 직원이 www.overclo.com/magazine/admin 접속
+1. 직원이 www.overclo.com/insight/admin 접속
 2. 로그인
 3. 새 글 작성
 4. 제목, 요약, 대표 이미지, 본문 입력
@@ -96,7 +96,7 @@ flowchart LR
 6. 임시저장 또는 발행
 7. Decap CMS가 GitHub에 변경사항 저장
 8. Cloudflare Pages가 자동 빌드
-9. www.overclo.com/magazine에 반영
+9. www.overclo.com/insight에 반영
 ```
 
 ## 6. 프로젝트 구조
@@ -110,7 +110,7 @@ overclo/
   renewal/
   image_overclo/
   docs/
-  magazine-site/
+  insight-site/
     config.toml
     content/
       posts/
@@ -128,16 +128,16 @@ overclo/
 원칙:
 
 - 기존 루트 정적 사이트 파일은 이동하지 않는다.
-- 매거진 관련 파일은 `magazine-site/` 안에 격리한다.
-- Cloudflare Pages는 `magazine-site/`를 빌드 루트로 사용한다.
-- 기존 홈페이지 배포와 매거진 배포를 분리한다.
+- 인사이트 관련 파일은 `insight-site/` 안에 격리한다.
+- Cloudflare Pages는 `insight-site/`를 빌드 루트로 사용한다.
+- 기존 홈페이지 배포와 인사이트 배포를 분리한다.
 
 ## 7. 관리자 화면 설계
 
 관리자는 별도 주소에서 접속한다.
 
 ```text
-https://www.overclo.com/magazine/admin
+https://www.overclo.com/insight/admin
 ```
 
 관리자 메뉴:
@@ -219,7 +219,7 @@ og_image:
   없으면 사이트 기본 대표 이미지 사용
 
 canonical:
-  https://www.overclo.com/magazine/[slug]
+  https://www.overclo.com/insight/[slug]
 ```
 
 자동 생성 항목:
@@ -254,9 +254,9 @@ SEO 운영 원칙:
 
 이유:
 
-- 무료 정적 매거진의 단순성과 보안을 우선한다.
+- 무료 정적 인사이트의 단순성과 보안을 우선한다.
 - 댓글은 스팸, 개인정보, 승인 관리, 저장소 관리 이슈가 생긴다.
-- 매거진 목적이 커뮤니티 운영보다 SEO 자산 축적에 가깝다.
+- 인사이트 목적이 커뮤니티 운영보다 SEO 자산 축적에 가깝다.
 
 추후 옵션:
 
@@ -278,7 +278,7 @@ Giscus:
 
 관리자 보안:
 
-- 관리자 URL은 `www.overclo.com/magazine/admin`으로 둔다.
+- 관리자 URL은 `www.overclo.com/insight/admin`으로 둔다.
 - GitHub 저장소 쓰기 권한이 있는 관리자만 글을 발행할 수 있게 한다.
 - 불필요한 공개 회원가입을 허용하지 않는다.
 - 관리자 계정에는 2FA를 적용한다.
@@ -303,9 +303,9 @@ Giscus:
 Cloudflare Pages 설정:
 
 ```text
-Project name: overclo-magazine
+Project name: overclo-insight
 Production branch: main
-Root directory: magazine-site
+Root directory: insight-site
 Build command: hugo --minify
 Build output directory: public
 Custom domain: 사용하지 않음
@@ -314,26 +314,26 @@ Custom domain: 사용하지 않음
 Vercel rewrite:
 
 ```text
-/magazine -> https://overclo-magazine.pages.dev/
-/magazine/:path* -> https://overclo-magazine.pages.dev/:path*
+/insight -> https://overclo-insight.pages.dev/
+/insight/:path* -> https://overclo-insight.pages.dev/:path*
 ```
 
-Cloudflare Pages는 별도 원본으로만 사용한다. 사용자에게 노출되는 주소는 `www.overclo.com/magazine`이다. 기존 홈페이지 정적 파일은 이동하지 않는다.
+Cloudflare Pages는 별도 원본으로만 사용한다. 사용자에게 노출되는 주소는 `www.overclo.com/insight`이다. 기존 홈페이지 정적 파일은 이동하지 않는다.
 
 ## 13. 작업 단계
 
 ### Phase 1. 문서 및 구조 정리
 
-- 계획서와 작업 가이드를 무료 정적 매거진 방식으로 수정
+- 계획서와 작업 가이드를 무료 정적 인사이트 방식으로 수정
 - 기존 Next/Supabase 전환 계획은 보류
 - 기존 홈페이지 보존 원칙 재확인
 
-### Phase 2. 매거진 기본 프로젝트 생성
+### Phase 2. 인사이트 기본 프로젝트 생성
 
-- `magazine-site/` 생성
+- `insight-site/` 생성
 - Hugo 설정
 - 기본 레이아웃
-- 매거진 목록 페이지
+- 인사이트 목록 페이지
 - 게시글 상세 페이지
 - 기본 샘플 글
 
@@ -356,14 +356,14 @@ Cloudflare Pages는 별도 원본으로만 사용한다. 사용자에게 노출�
 ### Phase 5. 로컬 검수
 
 - 기존 `index.html` 로컬 구조 정상 확인
-- 매거진 로컬 빌드 확인
+- 인사이트 로컬 빌드 확인
 - 생성된 HTML 메타 확인
 - 모바일/데스크톱 화면 확인
 
 ### Phase 6. 배포 연결
 
 - Cloudflare Pages 프로젝트 생성
-- `www.overclo.com/magazine` rewrite 연결
+- `www.overclo.com/insight` rewrite 연결
 - GitHub 자동 배포 확인
 - Search Console 속성 추가
 - sitemap 제출
@@ -380,10 +380,10 @@ renewal 이미지 경로 정상
 기존 GitHub 공유 구조 유지
 ```
 
-매거진:
+인사이트:
 
 ```text
-www.overclo.com/magazine 접속 정상
+www.overclo.com/insight 접속 정상
 게시글 목록 정상
 게시글 상세 정상
 대표 이미지 정상

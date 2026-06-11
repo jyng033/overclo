@@ -4,17 +4,17 @@ backend:
   branch: main
 
 publish_mode: editorial_workflow
-media_folder: "magazine-site/static/uploads"
-public_folder: "/magazine/uploads"
-site_url: "https://www.overclo.com/magazine"
-display_url: "https://www.overclo.com/magazine"
+media_folder: "insight-site/static/uploads"
+public_folder: "/insight/uploads"
+site_url: "https://www.overclo.com/insight"
+display_url: "https://www.overclo.com/insight"
 locale: "ko"
 
 collections:
   - name: "posts"
     label: "게시글"
     label_singular: "게시글"
-    folder: "magazine-site/content/posts"
+    folder: "insight-site/content/posts"
     create: true
     slug: "{{slug}}"
     preview_path: "{{slug}}"

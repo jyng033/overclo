@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./magazine.css";
+import "./insight.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.overclo.com"),

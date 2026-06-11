@@ -18,13 +18,13 @@ a {
   text-decoration: none;
 }
 
-.magazine-shell,
+.insight-shell,
 .admin-shell {
   min-height: 100vh;
   padding: 28px clamp(20px, 4vw, 64px) 72px;
 }
 
-.magazine-nav {
+.insight-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -32,12 +32,12 @@ a {
   padding-bottom: 56px;
 }
 
-.magazine-brand {
+.insight-brand {
   font-size: 18px;
   font-weight: 800;
 }
 
-.magazine-nav nav {
+.insight-nav nav {
   display: flex;
   align-items: center;
   gap: clamp(14px, 3vw, 34px);
@@ -47,7 +47,7 @@ a {
   letter-spacing: 0;
 }
 
-.magazine-hero {
+.insight-hero {
   max-width: 980px;
   padding: 56px 0 64px;
 }
@@ -59,7 +59,7 @@ a {
   font-weight: 800;
 }
 
-.magazine-hero h1,
+.insight-hero h1,
 .article-body h1,
 .admin-panel h1 {
   margin: 0;
@@ -69,7 +69,7 @@ a {
   letter-spacing: 0;
 }
 
-.magazine-hero p:not(.eyebrow),
+.insight-hero p:not(.eyebrow),
 .admin-panel p {
   max-width: 680px;
   margin: 28px 0 0;
@@ -78,7 +78,7 @@ a {
   line-height: 1.7;
 }
 
-.magazine-grid {
+.insight-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
@@ -266,13 +266,13 @@ a {
 }
 
 @media (max-width: 760px) {
-  .magazine-nav {
+  .insight-nav {
     align-items: flex-start;
     flex-direction: column;
     padding-bottom: 34px;
   }
 
-  .magazine-grid {
+  .insight-grid {
     grid-template-columns: 1fr;
   }
 

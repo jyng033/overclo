@@ -70,7 +70,7 @@
   ],
   "headers": [
     {
-      "source": "/magazine/admin",
+      "source": "/insight/admin",
       "headers": [
         {
           "key": "X-Robots-Tag",
@@ -79,7 +79,7 @@
       ]
     },
     {
-      "source": "/magazine/admin/:path*",
+      "source": "/insight/admin/:path*",
       "headers": [
         {
           "key": "X-Robots-Tag",
@@ -90,12 +90,12 @@
   ],
   "rewrites": [
     {
-      "source": "/magazine",
-      "destination": "https://overclo-magazine.pages.dev/"
+      "source": "/insight",
+      "destination": "https://overclo-insight.pages.dev/"
     },
     {
-      "source": "/magazine/:path*",
-      "destination": "https://overclo-magazine.pages.dev/:path*"
+      "source": "/insight/:path*",
+      "destination": "https://overclo-insight.pages.dev/:path*"
     }
   ]
 }

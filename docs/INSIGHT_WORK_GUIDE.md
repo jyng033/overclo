@@ -1,9 +1,9 @@
-# Overclo Magazine Work Guide
+# Overclo Insight Work Guide
 
 작성일: 2026-06-10
 최종 변경: 2026-06-10
 
-이 문서는 오버클로 매거진을 기존 홈페이지에 영향을 주지 않는 방식으로 제작하고 운영하기 위한 작업 기준이다.
+이 문서는 오버클로 인사이트를 기존 홈페이지에 영향을 주지 않는 방식으로 제작하고 운영하기 위한 작업 기준이다.
 
 ## 1. 최우선 작업 원칙
 
@@ -13,7 +13,7 @@
 - 임시 해결을 위해 기존 파일을 이동/삭제/추적 제외하거나, 배포 구조만 보고 로컬 작업 구조를 깨뜨리는 변경을 하지 않는다.
 - 기존 `index.html`, `portfolio.html`, `renewal/`, `image_overclo/`는 보존한다.
 - 기존 로컬 확인 방식인 `http://127.0.0.1:5500/index.html`이 깨지지 않아야 한다.
-- 매거진 작업은 기본적으로 `magazine-site/` 안에서 진행하고, 기존 홈페이지와 연결이 필요한 경우 `vercel.json` rewrite만 최소 수정한다.
+- 인사이트 작업은 기본적으로 `insight-site/` 안에서 진행하고, 기존 홈페이지와 연결이 필요한 경우 `vercel.json` rewrite만 최소 수정한다.
 - 기존 홈페이지 전체를 Next.js 같은 JS 앱으로 전환하지 않는다.
 - 배포 설정 변경이 기존 홈페이지에 영향을 줄 수 있으면 먼저 보고하고 승인받는다.
 
@@ -21,14 +21,14 @@
 
 ```text
 기존 홈페이지: 현재 정적 HTML 구조 유지
-매거진 사이트: Hugo 기반 정적 사이트
+인사이트 사이트: Hugo 기반 정적 사이트
 관리자 페이지: Decap CMS
 배포: Cloudflare Pages 무료 플랜
 콘텐츠 저장: GitHub
-매거진 주소: www.overclo.com/magazine
-게시글 주소: www.overclo.com/magazine/[slug]
-관리자 주소: www.overclo.com/magazine/admin
-Cloudflare 원본: overclo-magazine.pages.dev
+인사이트 주소: www.overclo.com/insight
+게시글 주소: www.overclo.com/insight/[slug]
+관리자 주소: www.overclo.com/insight/admin
+Cloudflare 원본: overclo-insight.pages.dev
 댓글: 1차 제외, 추후 검토
 카테고리: 1차 제외, 추후 검토
 ```
@@ -44,10 +44,10 @@ Cloudflare 원본: overclo-magazine.pages.dev
 2. 사용자 또는 이전 작업의 미완료 변경 확인
 3. 이번 작업이 기존 홈페이지 파일을 건드리는지 확인
 4. 기존 로컬 구조에 영향이 있는지 확인
-5. 매거진 전용 폴더 안에서 해결 가능한지 확인
+5. 인사이트 전용 폴더 안에서 해결 가능한지 확인
 ```
 
-기존 홈페이지 파일을 수정해야 할 때는 수정 이유가 명확해야 한다. 단순히 매거진을 만들기 위한 이유라면 기존 홈페이지 파일 대신 매거진 폴더 안에서 해결한다.
+기존 홈페이지 파일을 수정해야 할 때는 수정 이유가 명확해야 한다. 단순히 인사이트를 만들기 위한 이유라면 기존 홈페이지 파일 대신 인사이트 폴더 안에서 해결한다.
 
 ## 4. 권장 프로젝트 구조
 
@@ -58,7 +58,7 @@ overclo/
   renewal/
   image_overclo/
   docs/
-  magazine-site/
+  insight-site/
     config.toml
     content/
       posts/
@@ -75,10 +75,10 @@ overclo/
 
 주의:
 
-- `magazine-site/`는 매거진 전용 격리 영역이다.
+- `insight-site/`는 인사이트 전용 격리 영역이다.
 - 루트의 기존 정적 파일과 이미지 폴더를 이동하지 않는다.
-- Cloudflare Pages는 `magazine-site/`를 루트 디렉터리로 빌드한다.
-- Vercel은 `/magazine` 경로를 Cloudflare Pages 원본으로 rewrite한다.
+- Cloudflare Pages는 `insight-site/`를 루트 디렉터리로 빌드한다.
+- Vercel은 `/insight` 경로를 Cloudflare Pages 원본으로 rewrite한다.
 - 기존 홈페이지 정적 파일과 로컬 구조는 유지한다.
 
 ## 5. 단계별 작업 가이드
@@ -93,25 +93,25 @@ overclo/
 완료 기준:
 
 ```text
-docs/MAGAZINE_PLATFORM_PLAN.md
-docs/MAGAZINE_WORK_GUIDE.md
+docs/INSIGHT_PLATFORM_PLAN.md
+docs/INSIGHT_WORK_GUIDE.md
 ```
 
 두 문서가 Hugo, Cloudflare Pages, Decap CMS 기반 계획을 설명한다.
 
-### Phase 2. 매거진 기본 프로젝트 생성
+### Phase 2. 인사이트 기본 프로젝트 생성
 
 목표:
 
-- 기존 홈페이지를 건드리지 않고 `magazine-site/`에 매거진 사이트를 만든다.
+- 기존 홈페이지를 건드리지 않고 `insight-site/`에 인사이트 사이트를 만든다.
 
 작업:
 
 ```text
-1. magazine-site/ 폴더 생성
+1. insight-site/ 폴더 생성
 2. Hugo 설정 파일 생성
 3. 기본 레이아웃 생성
-4. 매거진 목록 페이지 생성
+4. 인사이트 목록 페이지 생성
 5. 게시글 상세 페이지 생성
 6. 샘플 게시글 생성
 7. 기본 스타일 생성
@@ -120,8 +120,8 @@ docs/MAGAZINE_WORK_GUIDE.md
 완료 기준:
 
 ```text
-magazine-site/에서 Hugo 빌드가 성공한다.
-생성된 매거진 목록과 상세 페이지가 정상 표시된다.
+insight-site/에서 Hugo 빌드가 성공한다.
+생성된 인사이트 목록과 상세 페이지가 정상 표시된다.
 기존 index.html 로컬 구조는 변하지 않는다.
 ```
 
@@ -210,15 +210,15 @@ SEO 제목/설명을 화면에서 수정 가능
 
 목표:
 
-- 기존 홈페이지와 매거진이 각각 정상 동작하는지 확인한다.
+- 기존 홈페이지와 인사이트가 각각 정상 동작하는지 확인한다.
 
 확인 항목:
 
 ```text
 기존 index.html 로컬 확인
 기존 portfolio.html 로컬 확인
-magazine-site Hugo 빌드
-매거진 목록 페이지
+insight-site Hugo 빌드
+인사이트 목록 페이지
 게시글 상세 페이지
 대표 이미지
 모바일 화면
@@ -227,20 +227,20 @@ sitemap
 rss
 ```
 
-기존 홈페이지가 깨지면 매거진 작업을 완료한 것으로 보지 않는다.
+기존 홈페이지가 깨지면 인사이트 작업을 완료한 것으로 보지 않는다.
 
 ### Phase 6. Cloudflare Pages 배포 및 Vercel rewrite
 
 목표:
 
-- 매거진 원본은 Cloudflare Pages에 무료 배포하고, 방문자에게는 `www.overclo.com/magazine`으로 노출한다.
+- 인사이트 원본은 Cloudflare Pages에 무료 배포하고, 방문자에게는 `www.overclo.com/insight`으로 노출한다.
 
 Cloudflare Pages 설정:
 
 ```text
-Project name: overclo-magazine
+Project name: overclo-insight
 Production branch: main
-Root directory: magazine-site
+Root directory: insight-site
 Build command: hugo --minify
 Build output directory: public
 Custom domain: 사용하지 않음
@@ -249,15 +249,15 @@ Custom domain: 사용하지 않음
 주의:
 
 - Cloudflare custom domain은 초기에는 연결하지 않는다.
-- Cloudflare Pages 원본 주소는 `overclo-magazine.pages.dev`로 둔다.
-- Vercel `vercel.json`에 `/magazine` rewrite만 추가한다.
+- Cloudflare Pages 원본 주소는 `overclo-insight.pages.dev`로 둔다.
+- Vercel `vercel.json`에 `/insight` rewrite만 추가한다.
 - 기존 `www.overclo.com` 홈페이지 정적 파일은 이동하지 않는다.
 
 Vercel rewrite:
 
 ```text
-/magazine -> https://overclo-magazine.pages.dev/
-/magazine/:path* -> https://overclo-magazine.pages.dev/:path*
+/insight -> https://overclo-insight.pages.dev/
+/insight/:path* -> https://overclo-insight.pages.dev/:path*
 ```
 
 ### Phase 7. 운영 등록
@@ -265,7 +265,7 @@ Vercel rewrite:
 작업:
 
 ```text
-1. Google Search Console에서 www.overclo.com 속성 기준으로 /magazine sitemap 제출
+1. Google Search Console에서 www.overclo.com 속성 기준으로 /insight sitemap 제출
 2. sitemap.xml 제출
 3. Naver Search Advisor 등록 검토
 4. 관리자 계정 2FA 확인
@@ -278,7 +278,7 @@ Vercel rewrite:
 직원 발행 흐름:
 
 ```text
-1. www.overclo.com/magazine/admin 접속
+1. www.overclo.com/insight/admin 접속
 2. 로그인
 3. 새 글 작성 클릭
 4. 제목, 요약, 대표 이미지, 본문 입력
@@ -287,7 +287,7 @@ Vercel rewrite:
 7. 저장
 8. GitHub에 자동 반영
 9. Cloudflare Pages 자동 배포
-10. Vercel rewrite를 통해 www.overclo.com/magazine에 노출
+10. Vercel rewrite를 통해 www.overclo.com/insight에 노출
 ```
 
 운영자가 직접 수정 가능한 항목:
@@ -401,7 +401,7 @@ image_overclo 이미지 경로 정상
 GitHub에서 다른 기기로 받아도 구조 정상
 ```
 
-매거진:
+인사이트:
 
 ```text
 목록 페이지 정상
@@ -433,7 +433,7 @@ RSS 정상
 
 - 작업 전 `git status`를 확인한다.
 - 사용자 변경이 있는 파일은 덮어쓰지 않는다.
-- 매거진 작업은 가능한 `magazine-site/`와 `docs/`에 한정한다.
+- 인사이트 작업은 가능한 `insight-site/`와 `docs/`에 한정한다.
 - 기존 홈페이지 파일 수정이 필요한 경우 변경 이유를 설명한다.
 - 커밋 메시지는 작업 내용을 명확히 적는다.
 - 푸시 전 빌드 또는 최소 검수를 진행한다.
@@ -460,7 +460,7 @@ admin.overclo.com 별도 앱
 
 ## 13. 재검토 기준
 
-다음 조건이 생기면 정적 매거진에서 운영형 CMS로 확장할지 재검토한다.
+다음 조건이 생기면 정적 인사이트에서 운영형 CMS로 확장할지 재검토한다.
 
 ```text
 월간 게시글 수가 크게 증가
