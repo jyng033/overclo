@@ -1,3 +1,20 @@
 .playwright-mcp/
 terminals/
 agent-transcripts/
+
+# Keep the existing Vercel deployment as a static homepage.
+# Magazine is deployed separately from magazine-site on Cloudflare Pages.
+app/
+supabase/
+magazine-site/
+docs/
+.next/
+node_modules/
+package.json
+package-lock.json
+next.config.mjs
+next-env.d.ts
+tsconfig.json
+middleware.ts
+.env
+.env.*
