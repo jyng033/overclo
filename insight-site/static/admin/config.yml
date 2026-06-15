@@ -2,6 +2,8 @@ backend:
   name: github
   repo: jyng033/overclo
   branch: main
+  base_url: https://overclo-insight.pages.dev
+  auth_endpoint: auth
 
 publish_mode: editorial_workflow
 media_folder: "insight-site/static/uploads"
