@@ -1,7 +1,7 @@
 # Overclo Insight Work Guide
 
 작성일: 2026-06-10
-최종 변경: 2026-06-10
+최종 변경: 2026-06-16
 
 이 문서는 오버클로 인사이트를 기존 홈페이지에 영향을 주지 않는 방식으로 제작하고 운영하기 위한 작업 기준이다.
 
@@ -34,6 +34,56 @@ Cloudflare 원본: overclo-insight.pages.dev
 ```
 
 이 방식은 운영 비용을 최소화하고, 오버클로가 글과 이미지 데이터를 직접 보유하면서, 개발 지식이 없는 직원도 관리자 화면에서 글을 발행할 수 있게 만드는 것을 목표로 한다.
+
+## 2-1. 현재 진행 상태
+
+2026-06-16 기준 인사이트/블로그 구축은 운영 테스트 직전 단계까지 완료되었다.
+
+완료:
+
+```text
+Phase 1 문서 정리
+Phase 2 Hugo 인사이트 기본 사이트 생성
+Phase 3 SEO 자동화 기본 구성
+Phase 4 Decap CMS 관리자 페이지 구성
+Phase 5 Hugo 로컬 빌드 및 주요 산출물 검수
+Phase 6 Cloudflare Pages 배포
+메인/포트폴리오 GNB의 INSIGHT 링크 연결
+Cloudflare 원본 도메인 디자인 적용 확인
+GitHub OAuth App Client ID / Secret을 Cloudflare 환경변수에 등록
+관리자 페이지 GitHub 로그인 확인
+```
+
+현재 확인된 주소:
+
+```text
+인사이트 원본: https://overclo-insight.pages.dev/
+관리자 페이지: https://overclo-insight.pages.dev/admin/
+게시글 예시: https://overclo-insight.pages.dev/overclo-insight-start/
+Sitemap: https://overclo-insight.pages.dev/sitemap.xml
+RSS: https://overclo-insight.pages.dev/index.xml
+```
+
+남은 운영 테스트:
+
+```text
+테스트 글 1개 작성
+대표 이미지 업로드 확인
+임시저장/발행 상태 확인
+발행 후 GitHub markdown 파일 반영 확인
+Cloudflare Pages 자동 재배포 확인
+새 글이 목록, 상세, sitemap, RSS에 반영되는지 확인
+www.overclo.com/insight Vercel rewrite 최종 확인
+Google Search Console에 /insight/sitemap.xml 제출
+Naver Search Advisor 등록 검토
+```
+
+주의:
+
+- 실제 글 발행 테스트는 아직 진행하지 않았다.
+- `www.overclo.com/insight` 본 도메인 rewrite는 실제 배포 후 최종 확인한다.
+- 관리자 권한은 GitHub 저장소 collaborator 권한으로 관리한다.
+- 개인 GitHub 저장소 collaborator 초대에서는 별도 권한 선택이 보이지 않을 수 있다.
 
 ## 3. 작업 전 확인 순서
 
@@ -99,6 +149,8 @@ docs/INSIGHT_WORK_GUIDE.md
 
 두 문서가 Hugo, Cloudflare Pages, Decap CMS 기반 계획을 설명한다.
 
+상태: 완료.
+
 ### Phase 2. 인사이트 기본 프로젝트 생성
 
 목표:
@@ -124,6 +176,8 @@ insight-site/에서 Hugo 빌드가 성공한다.
 생성된 인사이트 목록과 상세 페이지가 정상 표시된다.
 기존 index.html 로컬 구조는 변하지 않는다.
 ```
+
+상태: 완료.
 
 ### Phase 3. SEO 자동화
 
@@ -162,6 +216,8 @@ featured_image가 없으면 사이트 기본 이미지 사용
 - 검색량 높은 키워드를 자동으로 억지 삽입하지 않는다.
 - 글 내용과 맞는 제목과 설명을 우선한다.
 - 발행 후 Search Console 데이터를 보고 개선한다.
+
+상태: 완료. 기본 title/description/canonical/OG/Twitter/Article JSON-LD/BreadcrumbList/sitemap/RSS/robots 구성이 적용되어 있다.
 
 ### Phase 4. 관리자 CMS 설정
 
@@ -206,6 +262,8 @@ Markdown을 몰라도 글 작성 가능
 SEO 제목/설명을 화면에서 수정 가능
 ```
 
+상태: 로그인 확인까지 완료. 실제 글 작성, 이미지 업로드, 임시저장, 발행 테스트는 운영 테스트 단계에서 확인한다.
+
 ### Phase 5. 로컬 검수
 
 목표:
@@ -228,6 +286,8 @@ rss
 ```
 
 기존 홈페이지가 깨지면 인사이트 작업을 완료한 것으로 보지 않는다.
+
+상태: Hugo 로컬 빌드 완료. `overclo-insight.pages.dev` 원본에서 홈, 상세, 관리자, sitemap, RSS, robots 응답 확인 완료.
 
 ### Phase 6. Cloudflare Pages 배포 및 Vercel rewrite
 
@@ -260,6 +320,8 @@ Vercel rewrite:
 /insight/:path* -> https://overclo-insight.pages.dev/:path*
 ```
 
+상태: Cloudflare Pages 배포 완료. `overclo-insight.pages.dev` 원본 도메인에서 디자인 적용 확인 완료. Vercel rewrite는 본 도메인 운영 확인 단계에서 최종 확인한다.
+
 ### Phase 7. 운영 등록
 
 작업:
@@ -272,6 +334,8 @@ Vercel rewrite:
 5. 직원 발행 테스트
 6. 발행 후 자동 배포 테스트
 ```
+
+상태: 대기. 관리자 로그인까지 확인했으며, 실제 글 발행 테스트와 검색엔진 등록은 아직 진행하지 않았다.
 
 ## 6. 글 발행 운영 방식
 
@@ -375,6 +439,8 @@ Giscus:
 - 저장소 쓰기 권한은 필요한 직원에게만 준다.
 - 퇴사자나 담당 변경 시 GitHub 권한을 즉시 회수한다.
 - Decap CMS 설정에 비밀키를 저장하지 않는다.
+- GitHub OAuth App의 Client Secret은 Cloudflare Pages 환경변수에만 저장한다.
+- Cloudflare Pages 환경변수 이름은 `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`을 사용한다.
 
 배포:
 
