@@ -11,25 +11,8 @@
   box-sizing: border-box;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  html,
-  body,
-  a,
-  button,
-  input,
-  textarea,
-  select,
-  [contenteditable="true"],
-  * {
-    cursor: none !important;
-  }
-}
-
 .custom-cursor {
   position: fixed;
-  width: 60px;
-  height: 60px;
-  background: url('re_img/커스텀커서.png') no-repeat center / contain;
   pointer-events: none;
   z-index: 99999;
   top: 0;
@@ -44,11 +27,9 @@
 }
 
 .custom-cursor {
-  --cursor-size: 30px;
+  --cursor-size: 12px;
   width: var(--cursor-size);
   height: var(--cursor-size);
-  margin-top: calc(var(--cursor-size) / -2);
-  margin-left: calc(var(--cursor-size) / -2);
   border-radius: 50%;
   background: var(--pink);
   opacity: 0;

@@ -6,19 +6,13 @@
   window.__overcloCursorStretch__ = true;
 
   const config = {
-    stretchK: 0.018,
-    maxStretch: 1.55,
-    relax: 0.18,
-    clickScale: 0.62
+    offsetX: 18,
+    offsetY: 14,
+    clickScale: 0.82
   };
 
   let x = innerWidth / 2;
   let y = innerHeight / 2;
-  let prevX = x;
-  let prevY = y;
-  let angle = 0;
-  let stretchX = 1;
-  let stretchY = 1;
   let clickScale = 1;
   let isVisible = false;
 
@@ -59,30 +53,11 @@
   };
 
   const render = () => {
-    const velocityX = x - prevX;
-    const velocityY = y - prevY;
-    const speed = Math.hypot(velocityX, velocityY);
-
-    if (speed > 0.001) {
-      angle = Math.atan2(velocityY, velocityX);
-    }
-
-    const targetStretch = Math.min(1 + speed * config.stretchK, config.maxStretch);
-
-    if (speed > 0.1) {
-      stretchX += (targetStretch - stretchX) * 0.5;
-    } else {
-      stretchX += (1 - stretchX) * config.relax;
-    }
-
-    stretchY = 1 / stretchX;
     if (isVisible) {
       cursor.style.transform =
-        `translate3d(${x}px, ${y}px, 0) rotate(${angle}rad) scale(${stretchX * clickScale}, ${stretchY * clickScale})`;
+        `translate3d(${x + config.offsetX}px, ${y + config.offsetY}px, 0) scale(${clickScale})`;
     }
 
-    prevX = x;
-    prevY = y;
     requestAnimationFrame(render);
   };
 
