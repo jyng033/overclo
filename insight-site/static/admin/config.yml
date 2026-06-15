@@ -17,7 +17,7 @@ collections:
     folder: "insight-site/content/posts"
     create: true
     slug: "{{slug}}"
-    preview_path: "{{slug}}"
+    preview_path: "/insight/{{slug}}/"
     summary: "{{title}}"
     fields:
       - { label: "제목", name: "title", widget: "string" }

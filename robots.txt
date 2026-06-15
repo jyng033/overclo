@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /insight/admin/
 
 Sitemap: https://www.overclo.com/sitemap.xml
+Sitemap: https://www.overclo.com/insight/sitemap.xml

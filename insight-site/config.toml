@@ -1,5 +1,5 @@
 baseURL = "https://www.overclo.com/insight/"
-languageCode = "ko-kr"
+locale = "ko-KR"
 title = "Overclo Insight"
 enableRobotsTXT = false
 disableKinds = ["taxonomy", "term", "section"]

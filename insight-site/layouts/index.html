@@ -12,21 +12,22 @@
     <h2>Latest</h2>
   </div>
   <div class="posts-grid">
-    {{ range where .Site.RegularPages "Section" "posts" }}
-      {{ if not .Draft }}
-        <article class="post-card">
-          <a href="{{ .RelPermalink }}">
-            {{ with .Params.featured_image }}
-              <img src="{{ . | relURL }}" alt="{{ $.Params.featured_image_alt }}">
-            {{ end }}
-            <div class="post-card-body">
-              <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
-              <h3>{{ .Title }}</h3>
-              <p>{{ with .Params.description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}</p>
-            </div>
-          </a>
-        </article>
-      {{ end }}
+    {{ $posts := where (where .Site.RegularPages "Section" "posts") "Draft" false }}
+    {{ range sort $posts "Date" "desc" }}
+      <article class="post-card">
+        <a href="{{ .RelPermalink }}">
+          {{ with .Params.featured_image }}
+            <img src="{{ . | relURL }}" alt="{{ $.Params.featured_image_alt }}">
+          {{ end }}
+          <div class="post-card-body">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+            <h3>{{ .Title }}</h3>
+            <p>{{ with .Params.description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}</p>
+          </div>
+        </a>
+      </article>
+    {{ else }}
+      <p class="empty-state">아직 공개된 게시글이 없습니다.</p>
     {{ end }}
   </div>
 </section>

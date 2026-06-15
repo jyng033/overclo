@@ -1,0 +1,3 @@
+/insight/css/* /css/:splat 200
+/insight/admin/* /admin/:splat 200
+/insight/* /:splat 200

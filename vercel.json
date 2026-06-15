@@ -13,6 +13,11 @@
       "permanent": true
     },
     {
+      "source": "/insight.html",
+      "destination": "/insight",
+      "permanent": true
+    },
+    {
       "source": "/renewal",
       "destination": "/",
       "permanent": true

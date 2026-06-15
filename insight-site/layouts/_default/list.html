@@ -4,21 +4,22 @@
     <h1>{{ .Title }}</h1>
   </div>
   <div class="posts-grid">
-    {{ range .Pages }}
-      {{ if not .Draft }}
-        <article class="post-card">
-          <a href="{{ .RelPermalink }}">
-            {{ with .Params.featured_image }}
-              <img src="{{ . | relURL }}" alt="{{ $.Params.featured_image_alt }}">
-            {{ end }}
-            <div class="post-card-body">
-              <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
-              <h2>{{ .Title }}</h2>
-              <p>{{ with .Params.description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}</p>
-            </div>
-          </a>
-        </article>
-      {{ end }}
+    {{ $posts := where .Pages "Draft" false }}
+    {{ range $posts.ByDate.Reverse }}
+      <article class="post-card">
+        <a href="{{ .RelPermalink }}">
+          {{ with .Params.featured_image }}
+            <img src="{{ . | relURL }}" alt="{{ $.Params.featured_image_alt }}">
+          {{ end }}
+          <div class="post-card-body">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+            <h2>{{ .Title }}</h2>
+            <p>{{ with .Params.description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}</p>
+          </div>
+        </a>
+      </article>
+    {{ else }}
+      <p class="empty-state">아직 공개된 게시글이 없습니다.</p>
     {{ end }}
   </div>
 </section>

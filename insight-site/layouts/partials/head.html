@@ -2,7 +2,7 @@
 {{ $description := .Site.Params.description }}
 {{ with .Params.seo_description }}{{ $description = . }}{{ else }}{{ with .Params.description }}{{ $description = . }}{{ else }}{{ with .Summary }}{{ $description = plainify . }}{{ end }}{{ end }}{{ end }}
 {{ $seoTitle := $title }}
-{{ with .Params.seo_title }}{{ $seoTitle = printf "%s | %s" . $.Site.Title }}{{ end }}
+{{ with .Params.seo_title }}{{ $seoTitle = . }}{{ end }}
 {{ $image := .Site.Params.defaultImage }}
 {{ with .Params.featured_image }}{{ $image = . | absURL }}{{ end }}
 {{ $canonical := .Permalink }}
@@ -14,11 +14,17 @@
 <meta name="description" content="{{ $description }}">
 <link rel="canonical" href="{{ $canonical }}">
 <meta property="og:site_name" content="{{ .Site.Params.siteName }}">
+<meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="{{ $seoTitle }}">
 <meta property="og:description" content="{{ $description }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ $canonical }}">
 <meta property="og:image" content="{{ $image }}">
+{{ if .IsPage }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+{{ range .Params.tags }}<meta property="article:tag" content="{{ . }}">{{ end }}
+{{ end }}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ $seoTitle }}">
 <meta name="twitter:description" content="{{ $description }}">
@@ -46,6 +52,46 @@
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": {{ $canonical | jsonify | safeJS }}
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Overclo",
+      "item": {{ .Site.Params.mainSiteURL | jsonify | safeJS }}
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Insight",
+      "item": {{ .Site.BaseURL | jsonify | safeJS }}
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ .Title | jsonify | safeJS }},
+      "item": {{ $canonical | jsonify | safeJS }}
+    }
+  ]
+}
+</script>
+{{ else }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ .Site.Params.siteName | jsonify | safeJS }},
+  "description": {{ $description | jsonify | safeJS }},
+  "url": {{ .Site.BaseURL | jsonify | safeJS }},
+  "publisher": {
+    "@type": "Organization",
+    "name": "Overclo"
   }
 }
 </script>
