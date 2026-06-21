@@ -4,19 +4,29 @@
     {{ partial "head.html" . }}
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="{{ .Site.BaseURL }}">Overclo Insight</a>
-      <nav class="site-nav" aria-label="Primary navigation">
-        <a href="{{ .Site.BaseURL }}">Insight</a>
-        <a href="{{ .Site.Params.mainSiteURL }}">Overclo</a>
-        <a href="{{ .Site.Params.mainSiteURL }}#contact">Contact</a>
+    <header class="header">
+      <a class="brand" href="{{ .Site.Params.mainSiteURL }}" aria-label="Overclo Studio home">
+        <img class="brand__mark" src="{{ .Site.Params.mainSiteURL }}renewal/re_img/%EB%A1%9C%EA%B3%A0%EB%AA%A8%EC%96%91@300x-8.png" alt="" />
+        <span class="brand__name">Overclo Studio</span>
+      </a>
+
+      <nav class="nav" aria-label="Main navigation">
+        <a href="{{ .Site.Params.mainSiteURL }}#why" data-label="회사소개">ABOUT</a>
+        <a href="{{ .Site.Params.mainSiteURL }}portfolio" data-label="포트폴리오">PORTFOLIO</a>
+        <a href="{{ .Site.Params.mainSiteURL }}insight.html" data-label="인사이트">INSIGHT</a>
+        <a href="{{ .Site.Params.mainSiteURL }}#contact" data-label="디자인문의">CONTACT</a>
+        <a class="nav__cta" href="https://open.kakao.com/o/sYtrPnxf" target="_blank" rel="noopener">1:1문의</a>
       </nav>
     </header>
     <main>
       {{ block "main" . }}{{ end }}
     </main>
     <footer class="site-footer">
-      <p>© {{ now.Format "2006" }} Overclo. All rights reserved.</p>
+      <p>
+        <span>Copyright 2025.&nbsp;</span>
+        <strong>Overclo Studio</strong>
+        <span>&nbsp;Co. All rights reserved.</span>
+      </p>
     </footer>
   </body>
 </html>
