@@ -1,8 +1,9 @@
 {{ define "main" }}
-<section class="post-list">
+<section class="post-list" aria-label="Post list">
   <div class="section-head">
-    <h1>{{ .Title }}</h1>
+    <h1>{{ if eq .Kind "term" }}{{ .Title }}{{ else }}Post{{ end }}</h1>
   </div>
+  {{ partial "category-nav.html" . }}
   <div class="posts-grid">
     {{ $posts := where .Pages "Draft" false }}
     {{ range $posts.ByDate.Reverse }}
@@ -13,6 +14,9 @@
           {{ end }}
           <div class="post-card-body">
             <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+            {{ with .Params.tags }}
+              <p class="post-card-tags">{{ delimit . " · " }}</p>
+            {{ end }}
             <h2>{{ .Title }}</h2>
             <p>{{ with .Params.description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}</p>
           </div>

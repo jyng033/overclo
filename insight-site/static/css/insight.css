@@ -183,10 +183,46 @@ main {
   margin: 0;
 }
 
+.category-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin: 0 0 28px;
+}
+
+.category-nav a {
+  align-items: center;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  display: inline-flex;
+  font-size: 15px;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1.2;
+  min-height: 42px;
+  padding: 10px 20px;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+  white-space: nowrap;
+}
+
+.category-nav a:hover {
+  border-color: var(--pink);
+  color: var(--pink);
+  transform: translateY(-2px);
+}
+
+.category-nav a.is-active {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: #ffffff;
+}
+
 .posts-grid {
   display: grid;
   gap: 18px;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .post-card {
@@ -194,6 +230,13 @@ main {
   border: 1px solid var(--line);
   border-radius: 8px;
   overflow: hidden;
+}
+
+.post-card a {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .post-card img {
@@ -204,6 +247,9 @@ main {
 }
 
 .post-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   padding: 22px;
 }
 
@@ -216,16 +262,37 @@ main {
   margin-bottom: 12px;
 }
 
+.post-card-tags {
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+  margin: 0 0 10px;
+}
+
 .post-card h2,
 .post-card h3 {
+  display: -webkit-box;
   font-size: 22px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
   line-height: 1.25;
   margin: 0 0 12px;
+  overflow: hidden;
 }
 
 .post-card p {
   color: var(--muted);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
   margin: 0;
+  overflow: hidden;
+}
+
+.post-card p:not(.post-card-tags) {
+  font-size: 15px;
+  line-height: 1.65;
 }
 
 .empty-state {
@@ -289,6 +356,60 @@ main {
   color: var(--accent);
   font-weight: 700;
   text-decoration: underline;
+}
+
+.geo-summary,
+.geo-takeaways,
+.geo-faq,
+.related-links {
+  border: 1px solid var(--line);
+  margin: 0 0 28px;
+  padding: 24px;
+}
+
+.geo-summary h2,
+.geo-takeaways h2,
+.geo-faq h2,
+.related-links h2 {
+  font-size: 22px;
+  line-height: 1.25;
+  margin: 0 0 14px;
+}
+
+.geo-summary p,
+.geo-faq-item p {
+  margin: 0;
+}
+
+.geo-takeaways ul,
+.related-links ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.geo-takeaways li,
+.related-links li {
+  margin: 0 0 8px;
+}
+
+.geo-takeaways li:last-child,
+.related-links li:last-child {
+  margin-bottom: 0;
+}
+
+.geo-faq-item {
+  border-top: 1px solid var(--line);
+  padding: 18px 0 0;
+}
+
+.geo-faq-item + .geo-faq-item {
+  margin-top: 18px;
+}
+
+.geo-faq-item h3 {
+  font-size: 18px;
+  line-height: 1.35;
+  margin: 0 0 8px;
 }
 
 .site-footer {
@@ -416,6 +537,14 @@ main {
   .site-footer {
     padding: 60px 150px 10px;
   }
+
+  .category-nav {
+    justify-content: flex-start;
+  }
+
+  .posts-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 640px) {
@@ -503,5 +632,26 @@ main {
   .site-footer p {
     font-size: 11px;
     text-align: center;
+  }
+
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-nav {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .category-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .category-nav a {
+    min-height: 36px;
+    padding: 8px 14px;
   }
 }

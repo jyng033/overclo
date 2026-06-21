@@ -2,8 +2,7 @@ baseURL = "https://www.overclo.com/insight/"
 locale = "ko-KR"
 title = "Overclo Insight"
 enableRobotsTXT = false
-disableKinds = ["taxonomy", "term", "section"]
-ignoreErrors = ["error-disable-taxonomy"]
+disableKinds = ["section"]
 summaryLength = 28
 
 [params]
@@ -15,6 +14,15 @@ summaryLength = 28
 
 [permalinks]
   posts = "/:slug/"
+
+[taxonomies]
+  tag = "tags"
+
+[slugify]
+  disablePathToLower = true
+
+[permalinks.term]
+  tags = "/tags/:slug/"
 
 [outputs]
   home = ["HTML", "RSS"]

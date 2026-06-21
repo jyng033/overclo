@@ -6,10 +6,11 @@
   </div>
 </section>
 
-<section class="post-list" aria-label="Latest posts">
+<section class="post-list" aria-label="Post list">
   <div class="section-head">
-    <h2>Latest</h2>
+    <h2>Post</h2>
   </div>
+  {{ partial "category-nav.html" . }}
   <div class="posts-grid">
     {{ $posts := where (where .Site.RegularPages "Section" "posts") "Draft" false }}
     {{ range sort $posts "Date" "desc" }}
@@ -20,6 +21,9 @@
           {{ end }}
           <div class="post-card-body">
             <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+            {{ with .Params.tags }}
+              <p class="post-card-tags">{{ delimit . " · " }}</p>
+            {{ end }}
             <h3>{{ .Title }}</h3>
             <p>{{ with .Params.description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}</p>
           </div>

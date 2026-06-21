@@ -10,7 +10,48 @@
     {{ end }}
   </header>
   <div class="article-body">
+    {{ with .Params.geo_summary }}
+      <section class="geo-summary" aria-label="Article summary">
+        <h2>요약</h2>
+        <p>{{ . }}</p>
+      </section>
+    {{ end }}
+
+    {{ with .Params.key_takeaways }}
+      <section class="geo-takeaways" aria-label="Key takeaways">
+        <h2>핵심 체크리스트</h2>
+        <ul>
+          {{ range . }}
+            <li>{{ . }}</li>
+          {{ end }}
+        </ul>
+      </section>
+    {{ end }}
+
     {{ .Content }}
+
+    {{ with .Params.faq }}
+      <section class="geo-faq" aria-label="Frequently asked questions">
+        <h2>자주 묻는 질문</h2>
+        {{ range . }}
+          <article class="geo-faq-item">
+            <h3>{{ .question }}</h3>
+            <p>{{ .answer }}</p>
+          </article>
+        {{ end }}
+      </section>
+    {{ end }}
+
+    {{ with .Params.related_links }}
+      <section class="related-links" aria-label="Related articles">
+        <h2>관련 글</h2>
+        <ul>
+          {{ range . }}
+            <li><a href="{{ .url }}">{{ .title }}</a></li>
+          {{ end }}
+        </ul>
+      </section>
+    {{ end }}
   </div>
 </article>
 {{ end }}

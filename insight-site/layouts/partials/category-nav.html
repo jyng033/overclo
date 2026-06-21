@@ -1,0 +1,14 @@
+{{ $categories := slice
+  (dict "label" "전체" "url" ("" | relURL))
+  (dict "label" "홈페이지 제작" "url" ("tags/홈페이지-제작/" | relURL))
+  (dict "label" "랜딩페이지" "url" ("tags/랜딩페이지/" | relURL))
+  (dict "label" "상세페이지" "url" ("tags/상세페이지/" | relURL))
+  (dict "label" "브랜딩" "url" ("tags/브랜딩/" | relURL))
+  (dict "label" "디자인 외주" "url" ("tags/디자인-외주/" | relURL))
+}}
+<nav class="category-nav" aria-label="Insight categories">
+  {{ range $categories }}
+    {{ $isActive := or (and $.IsHome (eq .label "전체")) (eq $.Title .label) }}
+    <a class="{{ if $isActive }}is-active{{ end }}" href="{{ .url }}">{{ .label }}</a>
+  {{ end }}
+</nav>

@@ -34,4 +34,45 @@ collections:
       - { label: "SEO 제목", name: "seo_title", widget: "string", required: false }
       - { label: "SEO 설명", name: "seo_description", widget: "text", required: false }
       - { label: "태그", name: "tags", widget: "list", required: false }
-      - { label: "본문", name: "body", widget: "markdown" }
+      - label: "GEO 요약"
+        name: "geo_summary"
+        widget: "text"
+        required: false
+        hint: "AI 검색과 독자가 빠르게 이해할 수 있도록 글의 핵심 결론을 1~3문장으로 적으세요."
+      - label: "핵심 체크리스트"
+        name: "key_takeaways"
+        widget: "list"
+        required: false
+        hint: "글의 핵심 내용을 짧은 문장 목록으로 입력하세요."
+      - label: "자주 묻는 질문"
+        name: "faq"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "질문", name: "question", widget: "string" }
+          - { label: "답변", name: "answer", widget: "text" }
+      - label: "관련 글"
+        name: "related_links"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "제목", name: "title", widget: "string" }
+          - { label: "URL", name: "url", widget: "string", hint: "내부 글은 /insight/example-slug/ 형식으로 입력하세요." }
+      - label: "본문"
+        name: "body"
+        widget: "markdown"
+        hint: "본문은 핵심 내용, 상세 설명, 자주 묻는 질문 순서로 작성하면 AI 검색과 일반 검색에 모두 유리합니다."
+        default: |
+          ## 핵심 내용
+
+          이 글의 핵심 내용을 구체적으로 작성합니다.
+
+          ## 상세 설명
+
+          독자가 실제로 궁금해할 맥락, 기준, 예시를 함께 정리합니다.
+
+          ## 자주 묻는 질문
+
+          ### 질문을 입력하세요
+
+          답변을 짧고 명확하게 작성합니다.

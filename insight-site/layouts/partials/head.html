@@ -34,6 +34,24 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&family=Source+Serif+4:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ "css/insight.css" | relURL }}">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Overclo Studio",
+  "url": {{ .Site.Params.mainSiteURL | jsonify | safeJS }},
+  "logo": {{ "https://www.overclo.com/renewal/re_img/%EB%A1%9C%EA%B3%A0%EB%AA%A8%EC%96%91@300x-8.png" | jsonify | safeJS }},
+  "sameAs": [
+    "https://open.kakao.com/o/sYtrPnxf"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https://open.kakao.com/o/sYtrPnxf",
+    "availableLanguage": ["ko"]
+  }
+}
+</script>
 {{ if .IsPage }}
 <script type="application/ld+json">
 {
@@ -58,6 +76,27 @@
   }
 }
 </script>
+{{ with .Params.faq }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {{ range $index, $item := . }}
+    {{ if $index }},{{ end }}
+    {
+      "@type": "Question",
+      "name": {{ $item.question | jsonify | safeJS }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ $item.answer | jsonify | safeJS }}
+      }
+    }
+    {{ end }}
+  ]
+}
+</script>
+{{ end }}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
