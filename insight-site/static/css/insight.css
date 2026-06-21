@@ -312,6 +312,70 @@ main {
   font-weight: 800;
 }
 
+.floating-kakao {
+  align-items: center;
+  background: #fee500;
+  border-radius: 50%;
+  bottom: 100px;
+  color: #3a1d1d;
+  display: flex;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.18));
+  height: 60px;
+  justify-content: flex-end;
+  overflow: hidden;
+  position: fixed;
+  right: 24px;
+  text-decoration: none;
+  width: 60px;
+  z-index: 9999;
+}
+
+.floating-kakao__icon {
+  background-image: url("https://cdn.imweb.me/upload/S2026040130027df76b3c0/78f63d4c811e0.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex: 0 0 60px;
+  height: 60px;
+  width: 60px;
+}
+
+.floating-kakao__label {
+  color: #3a1d1d;
+  flex-shrink: 0;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;
+  white-space: nowrap;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .floating-kakao {
+    transition: width 300ms ease, border-radius 300ms ease, filter 220ms ease;
+  }
+
+  .floating-kakao__label {
+    transition: opacity 150ms ease 120ms, max-width 300ms ease, padding 300ms ease;
+  }
+
+  .floating-kakao:hover {
+    border-radius: 999px;
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.22));
+    width: 128px;
+  }
+
+  .floating-kakao:hover .floating-kakao__label {
+    max-width: 70px;
+    opacity: 1;
+    padding-left: 14px;
+  }
+}
+
 @media (max-width: 1024px) {
   :root {
     --page-pad: 32px;
@@ -399,6 +463,19 @@ main {
 
   .nav .nav__cta {
     display: none;
+  }
+
+  .floating-kakao {
+    bottom: 50px;
+    height: 50px;
+    right: 16px;
+    width: 50px;
+  }
+
+  .floating-kakao__icon {
+    flex-basis: 50px;
+    height: 50px;
+    width: 50px;
   }
 
   main {
