@@ -6,8 +6,8 @@ const nextConfig = {
       "./portfolio.html",
       "./robots.txt",
       "./sitemap.xml",
-      "./public/renewal/**/*",
-      "./public/image_overclo/**/*"
+      "./renewal/**/*",
+      "./image_overclo/**/*"
     ]
   },
   async redirects() {

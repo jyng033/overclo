@@ -5,7 +5,7 @@ export const dynamic = "force-static";
 
 export async function GET(_request: Request, { params }: { params: Promise<{ asset: string[] }> }) {
   const { asset } = await params;
-  const filePath = safePath(path.join(process.cwd(), "public", "image_overclo"), asset);
+  const filePath = safePath(path.join(process.cwd(), "image_overclo"), asset);
 
   return fileResponse(filePath);
 }
