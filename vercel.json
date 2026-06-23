@@ -95,14 +95,6 @@
   ],
   "rewrites": [
     {
-      "source": "/renewal/:path*",
-      "destination": "https://cdn.jsdelivr.net/gh/jyng033/overclo@main/public/renewal/:path*"
-    },
-    {
-      "source": "/image_overclo/:path*",
-      "destination": "https://cdn.jsdelivr.net/gh/jyng033/overclo@main/public/image_overclo/:path*"
-    },
-    {
       "source": "/insight",
       "destination": "https://overclo-insight.pages.dev/"
     },
