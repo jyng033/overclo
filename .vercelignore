@@ -2,7 +2,7 @@
 terminals/
 agent-transcripts/
 
-supabase/
+/supabase/
 insight-site/
 docs/
 .next/
