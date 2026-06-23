@@ -2,10 +2,19 @@
 terminals/
 agent-transcripts/
 
-/supabase/
+# Keep the existing Vercel deployment as a static homepage.
+# Insight is deployed separately from insight-site on Cloudflare Pages.
+app/
+supabase/
 insight-site/
 docs/
 .next/
 node_modules/
+package.json
+package-lock.json
+next.config.mjs
+next-env.d.ts
+tsconfig.json
+middleware.ts
 .env
 .env.*
