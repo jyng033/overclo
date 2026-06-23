@@ -11,7 +11,10 @@ async function proxyInsight(
 ) {
   const { path = [] } = await params;
   const sourceUrl = new URL(request.url);
-  const originPath = path.length > 0 ? `/${path.join("/")}` : "/";
+  const lastSegment = path.at(-1) ?? "";
+  const looksLikeFile = lastSegment.includes(".");
+  const originPath =
+    path.length === 0 ? "/" : `/${path.join("/")}${looksLikeFile ? "" : "/"}`;
   const upstreamUrl = new URL(originPath, INSIGHT_ORIGIN);
   upstreamUrl.search = sourceUrl.search;
 
