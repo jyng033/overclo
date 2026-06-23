@@ -7,7 +7,7 @@ summaryLength = 28
 
 [params]
   siteName = "Overclo Insight"
-  description = "오버클로의 브랜드, 디자인, 콘텐츠, 비즈니스 운영 관점을 기록하는 인사이트 허브입니다."
+  description = "대전 기반 오버클로 스튜디오가 홈페이지 제작, 상세페이지, 브랜딩, 디자인 외주 관점을 기록하는 인사이트 허브입니다."
   defaultImage = "https://www.overclo.com/renewal/re_img/%EB%8C%80%ED%91%9C1.png"
   mainSiteURL = "https://www.overclo.com/"
   author = "Overclo"

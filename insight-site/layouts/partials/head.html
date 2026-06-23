@@ -37,16 +37,45 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "ProfessionalService",
   "name": "Overclo Studio",
+  "alternateName": "오버클로 스튜디오",
+  "legalName": "오버클로 스튜디오",
   "url": {{ .Site.Params.mainSiteURL | jsonify | safeJS }},
   "logo": {{ "https://www.overclo.com/renewal/re_img/%EB%A1%9C%EA%B3%A0%EB%AA%A8%EC%96%91@300x-8.png" | jsonify | safeJS }},
+  "founder": {
+    "@type": "Person",
+    "name": "최수현"
+  },
+  "taxID": "361-67-00626",
+  "telephone": "010-9845-5101",
+  "email": "Overclo51@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "와룡로 136번길",
+    "addressLocality": "유성구",
+    "addressRegion": "대전광역시",
+    "addressCountry": "KR"
+  },
+  "areaServed": "KR",
+  "knowsAbout": [
+    "홈페이지 제작",
+    "상세페이지 제작",
+    "랜딩페이지 디자인",
+    "브랜딩 디자인",
+    "디자인 외주"
+  ],
   "sameAs": [
-    "https://open.kakao.com/o/sYtrPnxf"
+    "https://www.instagram.com/overclo_design/",
+    "https://brunch.co.kr/@dls337?tab=info",
+    "https://open.kakao.com/o/sYtrPnxf",
+    "https://www.youtube.com/@%EC%98%A4%EB%B0%8D%EB%B0%8DAI"
   ],
   "contactPoint": {
     "@type": "ContactPoint",
     "contactType": "customer support",
+    "telephone": "010-9845-5101",
+    "email": "Overclo51@gmail.com",
     "url": "https://open.kakao.com/o/sYtrPnxf",
     "availableLanguage": ["ko"]
   }
