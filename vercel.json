@@ -92,15 +92,5 @@
         }
       ]
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/insight",
-      "destination": "https://overclo-insight.pages.dev/"
-    },
-    {
-      "source": "/insight/:path*",
-      "destination": "https://overclo-insight.pages.dev/:path*"
-    }
   ]
 }
