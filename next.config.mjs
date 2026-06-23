@@ -5,9 +5,7 @@ const nextConfig = {
       "./index.html",
       "./portfolio.html",
       "./robots.txt",
-      "./sitemap.xml",
-      "./renewal/**/*",
-      "./image_overclo/**/*"
+      "./sitemap.xml"
     ]
   },
   async redirects() {
