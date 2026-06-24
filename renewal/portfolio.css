@@ -468,6 +468,9 @@ img {
 
 .work-image-modal__copy,
 .work-image-modal__inquiry {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-width: auto;
   padding: 10px 20px;
   border: 0;
@@ -478,6 +481,7 @@ img {
   font-weight: 500;
   line-height: 1.2;
   text-align: center;
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -641,6 +645,10 @@ img {
   color: var(--navy);
   line-height: 1.2;
   white-space: nowrap;
+}
+
+.work-card__body p span:nth-child(n + 4) {
+  display: none;
 }
 
 .site-footer {
