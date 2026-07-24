@@ -51,6 +51,8 @@ collections:
         fields:
           - { label: "질문", name: "question", widget: "string" }
           - { label: "답변", name: "answer", widget: "text" }
+          - { label: "FAQ 이미지", name: "image", widget: "image", required: false }
+          - { label: "FAQ 이미지 설명", name: "image_alt", widget: "string", required: false }
       - label: "관련 글"
         name: "related_links"
         widget: "list"

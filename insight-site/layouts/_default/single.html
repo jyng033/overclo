@@ -35,6 +35,10 @@
         <h2>자주 묻는 질문</h2>
         {{ range . }}
           <article class="geo-faq-item">
+            {{ $faqImageAlt := .image_alt }}
+            {{ with .image }}
+              <img class="geo-faq-image" src="{{ . | relURL }}" alt="{{ $faqImageAlt }}">
+            {{ end }}
             <h3>{{ .question }}</h3>
             <p>{{ .answer }}</p>
           </article>

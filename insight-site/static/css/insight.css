@@ -376,6 +376,22 @@ main {
   margin: 0 0 22px;
 }
 
+.article-body p > img,
+.geo-faq-image {
+  border-radius: 8px;
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.article-body p > img {
+  margin: 30px 0;
+}
+
+.geo-faq-image {
+  margin: 0 0 18px;
+}
+
 .article-body a {
   color: var(--accent);
   font-weight: 700;
