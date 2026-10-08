@@ -4,13 +4,13 @@ import "./insight.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.overclo.com"),
   title: {
-    default: "Overclo Studio | 디자인 스튜디오",
-    template: "%s | Overclo Studio"
+    default: "디자인 오버클로 스튜디오",
+    template: "%s | 디자인 오버클로 스튜디오"
   },
   description:
     "홈페이지 제작 전문 디자인 스튜디오 오버클로. 반응형 웹사이트, 랜딩페이지, 쇼핑몰 제작부터 상세페이지와 브랜드 디자인까지 제공합니다.",
   openGraph: {
-    siteName: "Overclo Studio",
+    siteName: "디자인 오버클로 스튜디오",
     type: "website",
     locale: "ko_KR"
   }
