@@ -624,6 +624,9 @@ img {
 }
 
 .work-card__body p {
+  min-height: 64px;
+  align-content: flex-start;
+  align-items: flex-start;
   margin: 0;
   display: flex;
   flex-wrap: wrap;
@@ -871,6 +874,7 @@ img {
   }
 
   .work-card__body p {
+    min-height: 54px;
     gap: 6px;
     font-size: 12px;
     line-height: 1.3;
